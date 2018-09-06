@@ -7,9 +7,17 @@
     }
     $("#search").click(searchAddress);
     $("#addressLookUp").keypress(function (e) {
-        if (e.which == 13) {
+        if (e.which === 13) {
             searchAddress();
             window.location = $("#search").attr('href');
+        }
+    });
+
+    $("#PageNumber").keypress(function (e) {
+        if (e.which === 13) {
+            var searchPhrase = search ? $("#addressLookUp").val() : null;
+            var order = getURLParameter("order") === null ? "" : getURLParameter("order");
+            window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + order + "&pageNumber=" + this.value);
         }
     });
     function sort() {
@@ -17,7 +25,15 @@
 
         window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + this.id);
     }
-
+    function getURLParameter(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
 
     $("#CityName_Asc").click(sort);
     $("#CityName_Desc").click(sort);
