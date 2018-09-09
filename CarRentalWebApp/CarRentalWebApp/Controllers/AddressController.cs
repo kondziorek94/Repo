@@ -65,6 +65,7 @@ namespace CarRentalWebApp.Controllers
             int currentPage=(pageNumber.HasValue ? pageNumber.Value : 1);
 
             list = list.Skip((currentPage - 1) * PAGE_SIZE).Take(PAGE_SIZE).ToList();
+            ViewBag.CurrentPageNumber = currentPage;
             ViewBag.TotalPageNumber = GetNumberPages();
             //return widok
             return View(list);
