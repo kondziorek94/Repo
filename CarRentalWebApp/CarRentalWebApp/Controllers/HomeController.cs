@@ -4,33 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
+//adresAplikacji/NazwaKontrolera/NazwaMetody
 
 namespace CarRentalWebApp.Controllers
 {
     public class HomeController : Controller
     {
-
         public HomeController() : base()
         {
         }
-
-        //action
         public ActionResult Index()
         {
             return View();
         }
-        //adresAplikacji/NazwaKontrolera/NazwaMetody
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page!";
             dynamic o = new System.Dynamic.ExpandoObject();
             o.Roman = "Cos";
             ViewBag.o = o;
-
-
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -47,7 +41,7 @@ namespace CarRentalWebApp.Controllers
             {
                 a1 = context.Addresses.ToList();
             }
-                return View(a1);
+            return View(a1);
         }
     }
 }

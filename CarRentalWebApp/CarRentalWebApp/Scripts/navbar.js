@@ -1,6 +1,6 @@
 ﻿$(window).load(function () {
     $("#romanButton").click(function () {
-        //alert("c;licked");
+        //alert("clicked");
         let button = $(this);
         if (button.hasClass("btn-primary")) {
             button.removeClass("btn-primary");

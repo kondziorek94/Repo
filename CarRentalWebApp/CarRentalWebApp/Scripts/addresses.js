@@ -1,5 +1,4 @@
 ﻿$(window).load(function () {
-
     function searchAddress() {
         var searchButton = $("#search")[0];
         var searchBoxValue = $("#addressLookUp").val();
@@ -29,7 +28,7 @@
         }
     });
     $("#clearSearch").click(function () {
-        window.location.assign("/Address/Index?pageNumber ="+ 1);
+        window.location.assign("/Address/Index?pageNumber =" + 1);
     });
     $("#PageNumber").keypress(function (e) {
         if (e.which === 13) {
@@ -38,6 +37,17 @@
             var pageSize = getURLParameter("PageSize");
             window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + order + "&pageNumber=" + this.value + "&PageSize=" + pageSize);
             $("#addressLookUp").val = searchPhrase;
+        }
+    });
+    $('#pagesizelist').on('change', function (event) {
+        var searchPhrase = search ? $("#addressLookUp").val() : null;
+        var order = getURLParameter("order");
+        pageSize = $('#pagesizelist').val();
+        if (order === null) {
+            window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&PageSize=" + pageSize);
+        }
+        else {
+            window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&PageSize=" + pageSize + "&order=" + order);
         }
     });
     $("#CityName_Asc").click(sort);
@@ -60,10 +70,4 @@
             $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
         }
     });
-    $('#pagesizelist').on('change', function (event) {
-        var searchPhrase = search ? $("#addressLookUp").val() : null;
-        pageSize = $('#pagesizelist').val();
-        window.location.assign("/Address/Index?searchPhrase=" + searchPhrase +  "&PageSize=" + pageSize);
-    });
-
-    });
+});

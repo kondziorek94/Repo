@@ -22,12 +22,12 @@
 
 @foreach (Address a in Model)
 {
-<address>
-    @a.StreetName<br />
-    @a.CityName, @a.ZipCode<br />
-    <abbr title="Phone">P:</abbr>
-    @a.PhoneNumber<br />
-</address>
+    <address>
+        @a.StreetName<br />
+        @a.CityName, @a.ZipCode<br />
+        <abbr title="Phone">P:</abbr>
+        @a.PhoneNumber<br />
+    </address>
 }
 
 <address>

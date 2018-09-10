@@ -7,9 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
-//Praca domowa
-//Stworz dropdown w ktorym mozesz wybrac wielkosc strony :2,5,8,10 rekordow
-
 //Zadanie
 //Stwórz nowy kontroler, ten kontroler ma miec funkcjonalnosc kalkulatora, na poczatek ma tylko dodawac
 //jezeli podasz mu argumenty a=4 i b=7 to on zwroci widok na ktorym bedzie mozna zobaczyc napis 4 + 7 = 11
@@ -21,17 +18,15 @@ namespace CarRentalWebApp.Controllers
     //dodaj przyicsk PLOT ktory wyrysuje funckje bez przeladowywania strony
     public class AddressController : Controller
     {
-        //public const int PAGE_SIZE = 5;
         int pageSize = 2;
         private CarRentalDbContext db = new CarRentalDbContext();
         public ActionResult Index(string searchPhrase, string order, int? pageNumber, int? PageSize)
         {
-            
+            ViewBag.searchPhrase = searchPhrase;
             if (PageSize != null)
             {
                 pageSize = (int)PageSize;
             }
-        ViewBag.searchPhrase = searchPhrase;
             List<Address> list;
             if (!String.IsNullOrWhiteSpace(searchPhrase))
             {
@@ -44,7 +39,6 @@ namespace CarRentalWebApp.Controllers
             {
                 list = db.Addresses.ToList();
             }
-            //potem osobno posortowac po nazwie miasta
             if (!String.IsNullOrWhiteSpace(order))
             {
                 var splitOrder = order.Split('_');
@@ -59,12 +53,18 @@ namespace CarRentalWebApp.Controllers
                     list = list.OrderByDescending(o => o.GetType().GetProperty(propertyName).GetValue(o, null)).ToList();
                 }
             }
-            int currentPage=(pageNumber.HasValue ? pageNumber.Value : 1);
+            int currentPage = (pageNumber.HasValue ? pageNumber.Value : 1);
             ViewBag.TotalPageNumber = GetNumberPages(list);
             list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.CurrentPageNumber = currentPage;
-            
             return View(list);
+        }
+        public String GetNumberPages(List<Address> list)
+        {
+            int recordNumber = list.Count();
+            return recordNumber % pageSize == 0 ?
+                 (recordNumber / pageSize).ToString() :
+                 (recordNumber / pageSize + 1).ToString();
         }
 
         public ActionResult Details(Guid? id)
@@ -80,12 +80,10 @@ namespace CarRentalWebApp.Controllers
             }
             return View(address);
         }
-
         public ActionResult Create()
         {
             return View();
         }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber")] Address address)
@@ -100,7 +98,6 @@ namespace CarRentalWebApp.Controllers
 
             return View(address);
         }
-
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -127,14 +124,6 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost]
-        public String GetNumberPages(List<Address> list)
-        {
-            int recordNumber = list.Count();
-            return recordNumber % pageSize == 0 ?
-                 (recordNumber / pageSize).ToString() :
-                 (recordNumber / pageSize + 1).ToString();
-        }
-
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -148,14 +137,6 @@ namespace CarRentalWebApp.Controllers
             }
             return View(address);
         }
-
-        public ActionResult getPageSize(string getPageSize) {
-            string value = getPageSize;
-
-            return View();
-        }
-
-
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
@@ -165,7 +146,6 @@ namespace CarRentalWebApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

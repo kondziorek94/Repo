@@ -6,9 +6,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
 <h2>Index</h2>
-
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -19,7 +17,6 @@
 <button type="button" class="btn btn-default" id="clearSearch">
     Clear search
 </button>
-
 <table class="table">
     <tr>
         <th>
@@ -88,9 +85,8 @@
             </td>
         </tr>
     }
-
 </table>
-@using (Html.BeginForm("Index","Address",FormMethod.Get))
+@using (Html.BeginForm("Index", "Address", FormMethod.Get))
 {
     <div>
         @Html.DropDownList("PageSize", new SelectList(new Dictionary<string, int> { { "2", 2 }, { "5", 5 }, { "8", 8 }, { "10", 10 } }, "Key", "Value"), new { @class = "pro_pag_tf1", id = "pagesizelist" })

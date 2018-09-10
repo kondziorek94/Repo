@@ -8,16 +8,13 @@ namespace CarRentalWebApp.Migrations
     using CarRentalWebApp.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CarRentalWebApp.Models.CarRentalDbContext>
-
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
-
         protected override void Seed(CarRentalDbContext context)
         {
-
             Guid guid1 = new Guid("1F941B15-1BF9-4793-83F1-A5B8523AB118");
             Guid guid2 = new Guid("B0FAC3A3-7955-4A91-B0B3-A666021D4026");
             Guid guid3 = new Guid("0CF1D643-8EB0-4723-8CDA-1856074176F5");
@@ -82,11 +79,6 @@ namespace CarRentalWebApp.Migrations
                 address20
             });
             context.SaveChanges();
-
-
-
         }
-
-
     }
 }
