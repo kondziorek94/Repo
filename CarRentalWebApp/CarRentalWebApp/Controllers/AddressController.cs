@@ -8,15 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
 //DOPROWADZENIE PROJEKTU DO STANU Z OSTATNICH ZAJEC
-//Wyswietla sie numer atkualnej stronya w polu tekstowym
 //Mozna filtrowac wyniki i sa one stronicowane, czyli wyszukujesz a potem masz np. 2 strny z wynikiami
 //Sortowanie dziala ze stronicowaniem
 
 //Praca domowa
 //Stworz dropdown w ktorym mozesz wybrac wielkosc strony :2,5,8,10 rekordow
-
-
-
 
 //Zadanie
 //Stwórz nowy kontroler, ten kontroler ma miec funkcjonalnosc kalkulatora, na poczatek ma tylko dodawac
@@ -31,10 +27,9 @@ namespace CarRentalWebApp.Controllers
     {
         public const int PAGE_SIZE = 5;
         private CarRentalDbContext db = new CarRentalDbContext();
-            //cis
-        // GET: Address
         public ActionResult Index(string searchPhrase, string order, int? pageNumber)
         {
+            ViewBag.searchPhrase = searchPhrase;
             List<Address> list;
             if (!String.IsNullOrWhiteSpace(searchPhrase))
             {
@@ -63,16 +58,13 @@ namespace CarRentalWebApp.Controllers
                 }
             }
             int currentPage=(pageNumber.HasValue ? pageNumber.Value : 1);
-
+            ViewBag.TotalPageNumber = GetNumberPages(list);
             list = list.Skip((currentPage - 1) * PAGE_SIZE).Take(PAGE_SIZE).ToList();
             ViewBag.CurrentPageNumber = currentPage;
-            ViewBag.TotalPageNumber = GetNumberPages();
-            //return widok
+            
             return View(list);
-
         }
 
-        // GET: Address/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -87,15 +79,11 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
 
-        // GET: Address/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Address/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber")] Address address)
@@ -111,7 +99,6 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
 
-        // GET: Address/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -125,11 +112,6 @@ namespace CarRentalWebApp.Controllers
             }
             return View(address);
         }
-
-
-        // POST: Address/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber")] Address address)
@@ -143,15 +125,14 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost]
-        public String GetNumberPages()
+        public String GetNumberPages(List<Address> list)
         {
-            int recordNumber = db.Addresses.Count();
+            int recordNumber = list.Count();
             return recordNumber % PAGE_SIZE == 0 ?
                  (recordNumber / PAGE_SIZE).ToString() :
                  (recordNumber / PAGE_SIZE + 1).ToString();
         }
 
-        // GET: Address/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -166,7 +147,6 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
 
-        // POST: Address/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)

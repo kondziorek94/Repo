@@ -10,6 +10,7 @@
         if (e.which === 13) {
             searchAddress();
             window.location = $("#search").attr('href');
+
         }
     });
 
@@ -18,6 +19,7 @@
             var searchPhrase = search ? $("#addressLookUp").val() : null;
             var order = getURLParameter("order") === null ? "" : getURLParameter("order");
             window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + order + "&pageNumber=" + this.value);
+            $("#addressLookUp").val = searchPhrase;
         }
     });
     function sort() {
