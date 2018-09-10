@@ -21,11 +21,17 @@ namespace CarRentalWebApp.Controllers
     //dodaj przyicsk PLOT ktory wyrysuje funckje bez przeladowywania strony
     public class AddressController : Controller
     {
-        public const int PAGE_SIZE = 5;
+        //public const int PAGE_SIZE = 5;
+        int pageSize = 2;
         private CarRentalDbContext db = new CarRentalDbContext();
-        public ActionResult Index(string searchPhrase, string order, int? pageNumber)
+        public ActionResult Index(string searchPhrase, string order, int? pageNumber, int? PageSize)
         {
-            ViewBag.searchPhrase = searchPhrase;
+            
+            if (PageSize != null)
+            {
+                pageSize = (int)PageSize;
+            }
+        ViewBag.searchPhrase = searchPhrase;
             List<Address> list;
             if (!String.IsNullOrWhiteSpace(searchPhrase))
             {
@@ -55,7 +61,7 @@ namespace CarRentalWebApp.Controllers
             }
             int currentPage=(pageNumber.HasValue ? pageNumber.Value : 1);
             ViewBag.TotalPageNumber = GetNumberPages(list);
-            list = list.Skip((currentPage - 1) * PAGE_SIZE).Take(PAGE_SIZE).ToList();
+            list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.CurrentPageNumber = currentPage;
             
             return View(list);
@@ -124,9 +130,9 @@ namespace CarRentalWebApp.Controllers
         public String GetNumberPages(List<Address> list)
         {
             int recordNumber = list.Count();
-            return recordNumber % PAGE_SIZE == 0 ?
-                 (recordNumber / PAGE_SIZE).ToString() :
-                 (recordNumber / PAGE_SIZE + 1).ToString();
+            return recordNumber % pageSize == 0 ?
+                 (recordNumber / pageSize).ToString() :
+                 (recordNumber / pageSize + 1).ToString();
         }
 
         public ActionResult Delete(Guid? id)
@@ -142,6 +148,13 @@ namespace CarRentalWebApp.Controllers
             }
             return View(address);
         }
+
+        public ActionResult getPageSize(string getPageSize) {
+            string value = getPageSize;
+
+            return View();
+        }
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
