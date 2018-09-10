@@ -16,12 +16,10 @@
     <input id="addressLookUp" placeholder="Look for address" value="@ViewBag.searchPhrase" />
     @Html.ActionLink("Search", "Index", "Address", new { searchPhrase = "xxx" }, new { id = "search" })
 </p>
-<select id="pageSize">
-    <option value="2">2</option>
-    <option value="5" selected>5</option>
-    <option value="8">8</option>
-    <option value="10">10</option>
-</select>
+<button type="button" class="btn btn-default" id="clearSearch">
+   Clear search
+</button>
+
 <table class="table">
     <tr>
         <th>
@@ -92,4 +90,9 @@
     }
 
 </table>
-<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+<select id="pageSize">
+    <option value="2">2</option>
+    <option value="5" selected>5</option>
+    <option value="8">8</option>
+    <option value="10">10</option>
+</select>

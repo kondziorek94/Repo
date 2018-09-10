@@ -7,10 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
-//DOPROWADZENIE PROJEKTU DO STANU Z OSTATNICH ZAJEC
-//Mozna filtrowac wyniki i sa one stronicowane, czyli wyszukujesz a potem masz np. 2 strny z wynikiami
-//Sortowanie dziala ze stronicowaniem
-
 //Praca domowa
 //Stworz dropdown w ktorym mozesz wybrac wielkosc strony :2,5,8,10 rekordow
 

@@ -13,7 +13,10 @@
 
         }
     });
-
+    $("#clearSearch").click(function () {
+        window.location.assign("/Address/Index?pageNumber ="+ 1);
+    });
+    
     $("#PageNumber").keypress(function (e) {
         if (e.which === 13) {
             var searchPhrase = search ? $("#addressLookUp").val() : null;
