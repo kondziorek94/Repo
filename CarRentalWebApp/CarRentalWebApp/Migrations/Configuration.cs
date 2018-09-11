@@ -1,11 +1,14 @@
 namespace CarRentalWebApp.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Data.Entity.Validation;
     using System.Linq;
     using CarRentalWebApp.Models;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
 
     internal sealed class Configuration : DbMigrationsConfiguration<CarRentalWebApp.Models.CarRentalDbContext>
     {
@@ -79,6 +82,36 @@ namespace CarRentalWebApp.Migrations
                 address20
             });
             context.SaveChanges();
+
+            using (var applicationContext = new ApplicationDbContext())
+            {
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(applicationContext));
+
+
+                if (!roleManager.RoleExists("Administrator"))
+                {
+                    var role = new IdentityRole();
+                    role.Name = "Administrator";
+                    roleManager.Create(role);
+                }
+                if (!roleManager.RoleExists("RegularUser"))
+                {
+                    var role = new IdentityRole();
+                    role.Name = "RegularUser";
+                    roleManager.Create(role);
+                }
+
+                var store = new UserStore<ApplicationUser>(applicationContext);
+                var manager = new ApplicationUserManager(store);
+                var user = new ApplicationUser() { Email = "a@a.pl", UserName = "a@a.pl" };
+                manager.Create(user, "Password2@");
+                manager.AddToRole(user.Id, "Administrator");
+
+                //praca domowa (opcjonalna, jak nie zrobisz to sie nic nie stanie, masz sie zajac rysowaniem funkcji)
+                //1. dodaj zwyklego uzytkownika
+                //2. zadbaj o to zeby zwykly uzytkownik nie byl autoryzowany do usuwania, czyli jak klika w delete to przenosi go do strony logowania(domyslne zachowanie)
+                //3. zadbaj o to by zwykly uzytkownik nie widzial przycisku delete
+            }
         }
     }
 }

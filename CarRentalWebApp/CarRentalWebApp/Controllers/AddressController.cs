@@ -56,6 +56,7 @@ namespace CarRentalWebApp.Controllers
             ViewBag.TotalPageNumber = GetNumberPages(list);
             int currentPage = (pageNumber.HasValue ? pageNumber.Value : 1);
             currentPage = ViewBag.TotalPageNumber < currentPage ? ViewBag.TotalPageNumber : currentPage;
+            currentPage = currentPage < 1 ? 1 : currentPage;
             list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.CurrentPageNumber = currentPage;
             return View(list);
@@ -99,6 +100,7 @@ namespace CarRentalWebApp.Controllers
 
             return View(address);
         }
+        [Authorize]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -113,6 +115,7 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber")] Address address)
         {
@@ -125,6 +128,7 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -139,6 +143,7 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost, ActionName("Delete")]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
