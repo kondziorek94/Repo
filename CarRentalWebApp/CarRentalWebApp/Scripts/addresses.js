@@ -1,8 +1,9 @@
 ﻿$(window).load(function () {
-    function searchAddress() {
-        var searchButton = $("#search")[0];
-        var searchBoxValue = $("#addressLookUp").val();
-        searchButton.href = searchButton.href.replace("xxx", searchBoxValue);
+    function filter() {
+        var searchPhrase = search ? $("#addressLookUp").val() : null;
+        var order = getURLParameter("order") === null ? "" : getURLParameter("order");
+        var pageSize = getURLParameter("PageSize");
+        window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + order + "&pageNumber=" + this.value + "&PageSize=" + pageSize);
     }
     function sort() {
         var searchPhrase = search ? $("#addressLookUp").val() : null;
@@ -19,12 +20,10 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
-    $("#search").click(searchAddress);
+    $("#search").click(filter);
     $("#addressLookUp").keypress(function (e) {
         if (e.which === 13) {
-            searchAddress();
-            window.location = $("#search").attr('href');
-
+            filter();
         }
     });
     $("#clearSearch").click(function () {
@@ -32,10 +31,7 @@
     });
     $("#PageNumber").keypress(function (e) {
         if (e.which === 13) {
-            var searchPhrase = search ? $("#addressLookUp").val() : null;
-            var order = getURLParameter("order") === null ? "" : getURLParameter("order");
-            var pageSize = getURLParameter("PageSize");
-            window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + order + "&pageNumber=" + this.value + "&PageSize=" + pageSize);
+            filter.apply(this);
             $("#addressLookUp").val = searchPhrase;
         }
     });
