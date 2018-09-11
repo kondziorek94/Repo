@@ -53,18 +53,19 @@ namespace CarRentalWebApp.Controllers
                     list = list.OrderByDescending(o => o.GetType().GetProperty(propertyName).GetValue(o, null)).ToList();
                 }
             }
-            int currentPage = (pageNumber.HasValue ? pageNumber.Value : 1);
             ViewBag.TotalPageNumber = GetNumberPages(list);
+            int currentPage = (pageNumber.HasValue ? pageNumber.Value : 1);
+            currentPage = ViewBag.TotalPageNumber < currentPage ? ViewBag.TotalPageNumber : currentPage;
             list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
             ViewBag.CurrentPageNumber = currentPage;
             return View(list);
         }
-        public String GetNumberPages(List<Address> list)
+        public int GetNumberPages(List<Address> list)
         {
             int recordNumber = list.Count();
             return recordNumber % pageSize == 0 ?
-                 (recordNumber / pageSize).ToString() :
-                 (recordNumber / pageSize + 1).ToString();
+                 (recordNumber / pageSize) :
+                 (recordNumber / pageSize + 1);
         }
 
         public ActionResult Details(Guid? id)
