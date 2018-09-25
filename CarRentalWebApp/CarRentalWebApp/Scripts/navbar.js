@@ -1,4 +1,4 @@
-﻿$(window).load(function () {
+﻿$(window).on("load",function () {
     $("#romanButton").click(function () {
         //alert("clicked");
         let button = $(this);
@@ -11,3 +11,4 @@
         }
     });
 });
+$(window).trigger("load");

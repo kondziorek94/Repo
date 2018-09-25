@@ -1,4 +1,4 @@
-﻿$(window).load(function () {
+﻿$(window).on("load", function () {
     function filter() {
         var searchPhrase = search ? $("#addressLookUp").val() : null;
         var order = getURLParameter("order") === null ? "" : getURLParameter("order");
@@ -63,7 +63,8 @@
             $("#TotalPageNumber").text(result);
         },
         error: function (xhr, status, error) {
-            $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+            $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
         }
     });
 });
+$(window).trigger("load");

@@ -1,4 +1,4 @@
-﻿$(window).load(function () {
+﻿$(window).on("load", function () {
     $("#calculatorDisplay").val("2 + 5");
     let myFunction = function () {
         let display = $("#calculatorDisplay");
@@ -10,7 +10,7 @@
         let display = $("#calculatorDisplay");
         var currentValue = display.val() + " " + (this.id) + " ";
         display.val(currentValue);
-    }
+    };
     for (let i = 0; i < 10; i++) {
         $("#" + i).click(myFunction);
     }
@@ -67,3 +67,4 @@
         return false;
     });
 });
+$(window).trigger("load");
