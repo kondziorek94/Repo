@@ -107,6 +107,12 @@ namespace CarRentalWebApp.Migrations
                 manager.Create(user, "Password2@");
                 manager.AddToRole(user.Id, "Administrator");
 
+
+                var user2 = new ApplicationUser() { Email = "b@b.pl", UserName = "b@b.pl" };
+                manager.Create(user2, "Password3#");
+                manager.AddToRole(user2.Id, "RegularUser");
+
+
                 //praca domowa (opcjonalna, jak nie zrobisz to sie nic nie stanie, masz sie zajac rysowaniem funkcji)
                 //1. dodaj zwyklego uzytkownika
                 //2. zadbaj o to zeby zwykly uzytkownik nie byl autoryzowany do usuwania, czyli jak klika w delete to przenosi go do strony logowania(domyslne zachowanie)
