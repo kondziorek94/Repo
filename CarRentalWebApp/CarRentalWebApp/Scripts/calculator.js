@@ -20,6 +20,7 @@
     $("#\\/").click(operatorFunction);
     $("#\\%").click(operatorFunction);
     $("#\\.").click(myFunction);
+    $("#x").click(myFunction);
     $("#clear").click(function () {
         $("#calculatorDisplay").val("");
     });
@@ -66,9 +67,21 @@
         });
         return false;
     });
+    $("#plot").click(function () {
+        myGraph.repaint(myGraph.config);
+        let display = $("#calculatorDisplay");
+        let s = display.val();
+        let fn = eval("(function(x){ return " + s + "})");
+        myGraph.drawEquation(fn, 'blue', 3);
+    });
     //graph
     function Graph(config) {
+        this.config = config;
+        this.repaint(this.config);
+    }
+    Graph.prototype.repaint = function (config) {
         // user defined properties
+
         this.canvas = document.getElementById(config.canvasId);
         this.minX = config.minX;
         this.minY = config.minY;
@@ -96,8 +109,7 @@
         // draw x and y axis
         this.drawXAxis();
         this.drawYAxis();
-    }
-
+    };
     Graph.prototype.drawXAxis = function () {
         var context = this.context;
         context.save();
@@ -227,9 +239,6 @@
         unitsPerTick: 1
     });
 
-    let s = "3 * x + 4";
-    let fn = eval("(function(x){ return " + s +"})");
-   myGraph.drawEquation(fn, 'blue', 3);
 
 
 });
