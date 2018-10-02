@@ -127,7 +127,7 @@ namespace CarRentalWebApp.Controllers
             }
             return View(address);
         }
-        [HttpPost]
+
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(Guid? id)
         {
