@@ -60,7 +60,8 @@
         contentType: "application/json; charset=utf-8",
         dataType: "html",
         success: function (result, status, xhr) {
-            $("#TotalPageNumber").text(result);
+            //uncomment do overwite whatever is in TotalPageNumber div
+           // $("#TotalPageNumber").text(result);
         },
         error: function (xhr, status, error) {
             $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);

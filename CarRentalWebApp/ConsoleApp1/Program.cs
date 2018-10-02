@@ -7,15 +7,31 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp1
 {
+
+    public enum CardType
+    {
+        Clubs, Diamonsds, Spades, Hearts
+    }
+
+    public class Card
+    {
+        public CardType CardType { get; set; }
+
+        public Card(CardType cardType)
+        {
+            CardType = cardType;
+        }
+    }
+
     class Program
     {
         static void Main(string[] args)
         {
+            Card card = new Card(CardType.Spades);
 
-            
 
             string s = "12";
-            string pattern =  @"^-?(\d+)*(?:\.\d+)$";
+            string pattern = @"^-?(\d+)*(?:\.\d+)$";
 
 
             //string pattern = @"^-?(\d+)*(?:\.\d+)(\s+)(\+|\-|\*|/|\%)(\s+)(\d+)*(?:\.\d+)$";
@@ -30,7 +46,7 @@ namespace ConsoleApp1
 
 
             MatchCollection matches = Regex.Matches(s, pattern);
-            if(matches.Count > 0)
+            if (matches.Count > 0)
             {
                 Match match = matches[0];
                 Console.WriteLine(value: match.Groups[0]);
@@ -40,7 +56,7 @@ namespace ConsoleApp1
                 Console.WriteLine(match.Groups[4]);
                 Console.WriteLine(match.Groups[5]);
             }
-            
+
 
             Console.ReadKey();
         }

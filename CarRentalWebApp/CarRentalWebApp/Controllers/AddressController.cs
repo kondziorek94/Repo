@@ -63,7 +63,7 @@ namespace CarRentalWebApp.Controllers
         }
         public int GetNumberPages(List<Address> list)
         {
-            int recordNumber = list.Count();
+            int recordNumber = list != null ? list.Count() : 0;
             return recordNumber % pageSize == 0 ?
                  (recordNumber / pageSize) :
                  (recordNumber / pageSize + 1);
@@ -147,10 +147,10 @@ namespace CarRentalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-                Address address = db.Addresses.Find(id);
-                db.Addresses.Remove(address);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+            Address address = db.Addresses.Find(id);
+            db.Addresses.Remove(address);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

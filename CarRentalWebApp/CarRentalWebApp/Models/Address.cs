@@ -7,6 +7,10 @@ using System.Net.Http;
 using System.Web.Http;
 namespace CarRentalWebApp.Models
 {
+    public enum ImportanceLevel
+    {
+        VIP, Critical, Regular
+    }
     public class Address
     {
         public Guid Id { get; set; }
@@ -15,5 +19,6 @@ namespace CarRentalWebApp.Models
         public String ZipCode { get; set; }
         [RegularExpression(@"^\d{3}-\d{3}-\d{3}$", ErrorMessage = "Ivalid Phone Number")]
         public String PhoneNumber { get; set; }
+        public ImportanceLevel ImportanceLevel { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-namespace CarRentalWebApp.Migrations
+﻿namespace CarRentalWebApp.Migrations
 {
     using System;
     using System.Collections.Generic;
@@ -39,26 +39,26 @@ namespace CarRentalWebApp.Migrations
             Guid guid19 = new Guid("e102cdc1-44c5-4e51-91af-ee908fd37eb9");
             Guid guid20 = new Guid("c880d2ca-2a61-4327-bd07-ecdae0da3465");
 
-            Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783" };
-            Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920" };
-            Address address3 = new Address { Id = guid3, CityName = "Los Angeles, CA", StreetName = "Regent Avenue", PhoneNumber = "745-361-295", ZipCode = "930 829" };
-            Address address4 = new Address { Id = guid4, CityName = "Chicago, IL", StreetName = "Fermor Avenue", PhoneNumber = "413-758-382", ZipCode = "592 739" };
-            Address address5 = new Address { Id = guid5, CityName = "Bufflo, NY", StreetName = "Main Street", PhoneNumber = "554-954-785", ZipCode = "105 674" };
-            Address address6 = new Address { Id = guid6, CityName = "Orlando, FL", StreetName = "Portage Avenue", PhoneNumber = "843-578-291", ZipCode = "246 964" };
-            Address address7 = new Address { Id = guid7, CityName = "Atlanta, GA", StreetName = "Osborne Street", PhoneNumber = "483-195-643", ZipCode = "575 103" };
-            Address address8 = new Address { Id = guid8, CityName = "Nashville, TN", StreetName = "5th Street", PhoneNumber = "612-019-169", ZipCode = "309 142" };
-            Address address9 = new Address { Id = guid9, CityName = "Indianapolis, IN", StreetName = "University Crescent", PhoneNumber = "213-305-756", ZipCode = "745 102" };
-            Address address10 = new Address { Id = guid10, CityName = "Kansas, MO", StreetName = "Ulanowska", PhoneNumber = "314-483-795", ZipCode = "901 384" };
-            Address address11 = new Address { Id = guid11, CityName = "Warszawa", StreetName = "Gleboka", PhoneNumber = "501-518-811", ZipCode = "21943" };
-            Address address12 = new Address { Id = guid12, CityName = "Krakow", StreetName = "Solidarnosci", PhoneNumber = "509-421-255", ZipCode = "46382" };
-            Address address13 = new Address { Id = guid13, CityName = "Lublin", StreetName = "Krasnicka", PhoneNumber = "302-281-573", ZipCode = "52845" };
-            Address address14 = new Address { Id = guid14, CityName = "Rzeszow", StreetName = "Zemborzycka", PhoneNumber = "728-472-674", ZipCode = "68291" };
-            Address address15 = new Address { Id = guid15, CityName = "Bydgoszcz", StreetName = "Pawia", PhoneNumber = "693-472-193", ZipCode = "57282" };
-            Address address16 = new Address { Id = guid16, CityName = "Bialystok", StreetName = "Odrodzenia", PhoneNumber = "583-839-100", ZipCode = "10384" };
-            Address address17 = new Address { Id = guid17, CityName = "Torun", StreetName = "Niepodleglosci", PhoneNumber = "500-638-683", ZipCode = "81924" };
-            Address address18 = new Address { Id = guid18, CityName = "Szczecin", StreetName = "Paderewskiego", PhoneNumber = "120-499-281", ZipCode = "91024" };
-            Address address19 = new Address { Id = guid19, CityName = "Katowice", StreetName = "Hutnicza", PhoneNumber = "601-272-572", ZipCode = "42834" };
-            Address address20 = new Address { Id = guid20, CityName = "Wroclaw", StreetName = "Jana Pawla II", PhoneNumber = "609-478-172", ZipCode = "72924" };
+            Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel=ImportanceLevel.Regular };
+            Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920", ImportanceLevel = ImportanceLevel.Critical};
+            Address address3 = new Address { Id = guid3, CityName = "Los Angeles, CA", StreetName = "Regent Avenue", PhoneNumber = "745-361-295", ZipCode = "930 829", ImportanceLevel = ImportanceLevel.VIP };
+            Address address4 = new Address { Id = guid4, CityName = "Chicago, IL", StreetName = "Fermor Avenue", PhoneNumber = "413-758-382", ZipCode = "592 739", ImportanceLevel = ImportanceLevel.Regular };
+            Address address5 = new Address { Id = guid5, CityName = "Bufflo, NY", StreetName = "Main Street", PhoneNumber = "554-954-785", ZipCode = "105 674", ImportanceLevel = ImportanceLevel.Critical };
+            Address address6 = new Address { Id = guid6, CityName = "Orlando, FL", StreetName = "Portage Avenue", PhoneNumber = "843-578-291", ZipCode = "246 964", ImportanceLevel = ImportanceLevel.VIP };
+            Address address7 = new Address { Id = guid7, CityName = "Atlanta, GA", StreetName = "Osborne Street", PhoneNumber = "483-195-643", ZipCode = "575 103", ImportanceLevel = ImportanceLevel.Regular };
+            Address address8 = new Address { Id = guid8, CityName = "Nashville, TN", StreetName = "5th Street", PhoneNumber = "612-019-169", ZipCode = "309 142", ImportanceLevel = ImportanceLevel.Critical };
+            Address address9 = new Address { Id = guid9, CityName = "Indianapolis, IN", StreetName = "University Crescent", PhoneNumber = "213-305-756", ZipCode = "745 102", ImportanceLevel = ImportanceLevel.VIP };
+            Address address10 = new Address { Id = guid10, CityName = "Kansas, MO", StreetName = "Ulanowska", PhoneNumber = "314-483-795", ZipCode = "901 384", ImportanceLevel = ImportanceLevel.Regular };
+            Address address11 = new Address { Id = guid11, CityName = "Warszawa", StreetName = "Gleboka", PhoneNumber = "501-518-811", ZipCode = "21943", ImportanceLevel = ImportanceLevel.Critical };
+            Address address12 = new Address { Id = guid12, CityName = "Krakow", StreetName = "Solidarnosci", PhoneNumber = "509-421-255", ZipCode = "46382", ImportanceLevel = ImportanceLevel.VIP };
+            Address address13 = new Address { Id = guid13, CityName = "Lublin", StreetName = "Krasnicka", PhoneNumber = "302-281-573", ZipCode = "52845", ImportanceLevel = ImportanceLevel.Regular };
+            Address address14 = new Address { Id = guid14, CityName = "Rzeszow", StreetName = "Zemborzycka", PhoneNumber = "728-472-674", ZipCode = "68291", ImportanceLevel = ImportanceLevel.Critical };
+            Address address15 = new Address { Id = guid15, CityName = "Bydgoszcz", StreetName = "Pawia", PhoneNumber = "693-472-193", ZipCode = "57282", ImportanceLevel = ImportanceLevel.VIP };
+            Address address16 = new Address { Id = guid16, CityName = "Bialystok", StreetName = "Odrodzenia", PhoneNumber = "583-839-100", ZipCode = "10384", ImportanceLevel = ImportanceLevel.Regular };
+            Address address17 = new Address { Id = guid17, CityName = "Torun", StreetName = "Niepodleglosci", PhoneNumber = "500-638-683", ZipCode = "81924", ImportanceLevel = ImportanceLevel.Critical };
+            Address address18 = new Address { Id = guid18, CityName = "Szczecin", StreetName = "Paderewskiego", PhoneNumber = "120-499-281", ZipCode = "91024", ImportanceLevel = ImportanceLevel.VIP};
+            Address address19 = new Address { Id = guid19, CityName = "Katowice", StreetName = "Hutnicza", PhoneNumber = "601-272-572", ZipCode = "42834", ImportanceLevel = ImportanceLevel.Regular };
+            Address address20 = new Address { Id = guid20, CityName = "Wroclaw", StreetName = "Jana Pawla II", PhoneNumber = "609-478-172", ZipCode = "72924", ImportanceLevel = ImportanceLevel.Critical };
             context.Addresses.AddOrUpdate(a => a.Id, new Address[]{
                 address1,
                 address2,
@@ -126,3 +126,10 @@ namespace CarRentalWebApp.Migrations
         }
     }
 }
+
+//Praca domowa 02.10.2018
+//Dodaj do adresu status danego adresu Regular, VIP, Critical
+//Na liście adresów przy adresie Reugular nie powinno być żadnej ikonki, przy ViP powinna być ikonka VIP, a przy Critical ikonka Critical
+
+    //Przy tworzeniu nowego adresu miej możliwość wybierania statusu adresu poprzez dropdown (lista rozwijana)
+    //Oczywiście przy edycji adresu taka lista rozwijana też musi być dostępna
