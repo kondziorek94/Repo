@@ -96,6 +96,7 @@
 
         // relationships
         this.context = this.canvas.getContext('2d');
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.rangeX = this.maxX - this.minX;
         this.rangeY = this.maxY - this.minY;
         this.unitX = this.canvas.width / this.rangeX;
@@ -112,6 +113,7 @@
     };
     Graph.prototype.drawXAxis = function () {
         var context = this.context;
+
         context.save();
         context.beginPath();
         context.moveTo(0, this.centerY);

@@ -128,7 +128,7 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -143,15 +143,16 @@ namespace CarRentalWebApp.Controllers
             return View(address);
         }
         [HttpPost, ActionName("Delete")]
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Address address = db.Addresses.Find(id);
-            db.Addresses.Remove(address);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                Address address = db.Addresses.Find(id);
+                db.Addresses.Remove(address);
+                db.SaveChanges();
+                return RedirectToAction("Index");
         }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

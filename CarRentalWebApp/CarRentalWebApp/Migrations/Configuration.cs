@@ -103,18 +103,23 @@ namespace CarRentalWebApp.Migrations
 
                 var store = new UserStore<ApplicationUser>(applicationContext);
                 var manager = new ApplicationUserManager(store);
-                var user = new ApplicationUser() { Email = "a@a.pl", UserName = "a@a.pl" };
-                manager.Create(user, "Password2@");
-                manager.AddToRole(user.Id, "Administrator");
+                var user1Email = "a@a.pl";
+                if (manager.FindByEmail(user1Email) == null)
+                {
+                    var user = new ApplicationUser() { Email = user1Email, UserName = user1Email };
+                    manager.Create(user, "Password2@");
+                    manager.AddToRole(user.Id, "Administrator");
+                }
 
-
-                var user2 = new ApplicationUser() { Email = "b@b.pl", UserName = "b@b.pl" };
-                manager.Create(user2, "Password3#");
-                manager.AddToRole(user2.Id, "RegularUser");
-
+                var user2Email = "b@b.pl";
+                if (manager.FindByEmail(user2Email) == null)
+                {
+                    var user2 = new ApplicationUser() { Email = user2Email, UserName = user2Email };
+                    manager.Create(user2, "Password3#");
+                    manager.AddToRole(user2.Id, "RegularUser");
+                }
 
                 //praca domowa (opcjonalna, jak nie zrobisz to sie nic nie stanie, masz sie zajac rysowaniem funkcji)
-                //1. dodaj zwyklego uzytkownika
                 //2. zadbaj o to zeby zwykly uzytkownik nie byl autoryzowany do usuwania, czyli jak klika w delete to przenosi go do strony logowania(domyslne zachowanie)
                 //3. zadbaj o to by zwykly uzytkownik nie widzial przycisku delete
             }
