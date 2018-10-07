@@ -4,18 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
-//Zadanie
-//Stwórz nowy kontroler, ten kontroler ma miec funkcjonalnosc kalkulatora, na poczatek ma tylko dodawac
-//jezeli podasz mu argumenty a=4 i b=7 to on zwroci widok na ktorym bedzie mozna zobaczyc napis 4 + 7 = 11
 namespace CarRentalWebApp.Controllers
 {
-    //do kalkulatora dodaj mozliwosc wpisywania zmiannej x, dzieki ktorej bedziesz mogl pisac wzory funkcji np.
-    //x * x + 4
-    //5*x  + 5
-    //dodaj przyicsk PLOT ktory wyrysuje funckje bez przeladowywania strony
     public class AddressController : Controller
     {
         int pageSize = 2;
@@ -54,7 +46,7 @@ namespace CarRentalWebApp.Controllers
                 }
             }
             ViewBag.TotalPageNumber = GetNumberPages(list);
-            int currentPage = (pageNumber.HasValue ? pageNumber.Value : 1);
+            int currentPage = pageNumber.HasValue ? pageNumber.Value : 1;
             currentPage = ViewBag.TotalPageNumber < currentPage ? ViewBag.TotalPageNumber : currentPage;
             currentPage = currentPage < 1 ? 1 : currentPage;
             list = list.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
@@ -68,7 +60,6 @@ namespace CarRentalWebApp.Controllers
                  (recordNumber / pageSize) :
                  (recordNumber / pageSize + 1);
         }
-
         public ActionResult Details(Guid? id)
         {
             if (id == null)
@@ -88,7 +79,7 @@ namespace CarRentalWebApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber")] Address address)
+        public ActionResult Create([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber,ImportanceLevel")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -97,7 +88,6 @@ namespace CarRentalWebApp.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(address);
         }
         [Authorize]
@@ -117,7 +107,7 @@ namespace CarRentalWebApp.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber")] Address address)
+        public ActionResult Edit([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber,ImportanceLevel")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -152,7 +142,6 @@ namespace CarRentalWebApp.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)

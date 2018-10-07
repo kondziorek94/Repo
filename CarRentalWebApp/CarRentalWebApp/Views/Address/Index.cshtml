@@ -2,7 +2,6 @@
     @Scripts.Render("~/bundles/addresses");
 }
 @model IEnumerable<CarRentalWebApp.Models.Address>
-
 @{
     ViewBag.Title = "Index";
 }
@@ -63,7 +62,6 @@
             <span id="TotalPageNumber">@ViewBag.TotalPageNumber</span>
         </th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
@@ -80,7 +78,14 @@
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
             <td>
-                <img  class="importanceLevel" src="~/Content/ImagesLevels/critical.png" />
+                @if (item.ImportanceLevel.Equals(CarRentalWebApp.Models.ImportanceLevel.Critical))
+                {
+                    <img class="importanceLevel" src="~/Content/ImagesLevels/critical.png" />
+                }
+                else if (item.ImportanceLevel.Equals(CarRentalWebApp.Models.ImportanceLevel.VIP))
+                {
+                    <img class="importanceLevel" src="~/Content/ImagesLevels/vip.png" />
+                }
             </td>
             <td>
                 @if (User.Identity.IsAuthenticated)
@@ -88,10 +93,11 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-warning btn-xs" }) <text>|</text>
                 }
                 @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-success btn-xs" })
-                @if (User.IsInRole("Administrator")) { 
+                @if (User.IsInRole("Administrator"))
+                {
                     <text>|</text>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs"})}
-                
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-xs" })}
+
             </td>
         </tr>
     }

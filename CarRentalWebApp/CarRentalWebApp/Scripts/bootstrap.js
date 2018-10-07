@@ -153,7 +153,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
       var data  = $this.data('bs.alert')
 
       if (!data) $this.data('bs.alert', (data = new Alert(this)))
-      if (typeof option == 'string') data[option].call($this)
+      if (typeof option === 'string') data[option].call($this)
     })
   }
 
@@ -224,7 +224,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
 
     // push to event loop to allow forms to submit
     setTimeout(function () {
-      state == 'loadingText' ?
+      state === 'loadingText' ?
         $el.addClass(d).attr(d, d) :
         $el.removeClass(d).removeAttr(d);
     }, 0)
@@ -253,11 +253,11 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.button')
-      var options = typeof option == 'object' && option
+      var options = typeof option === 'object' && option
 
       if (!data) $this.data('bs.button', (data = new Button(this, options)))
 
-      if (option == 'toggle') data.toggle()
+      if (option === 'toggle') data.toggle()
       else if (option) data.setState(option)
     })
   }
@@ -321,7 +321,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     this.$active     =
     this.$items      = null
 
-    this.options.pause == 'hover' && this.$element
+    this.options.pause === 'hover' && this.$element
       .on('mouseenter', $.proxy(this.pause, this))
       .on('mouseleave', $.proxy(this.cycle, this))
   }
@@ -358,7 +358,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     if (pos > (this.$items.length - 1) || pos < 0) return
 
     if (this.sliding)       return this.$element.one('slid', function () { that.to(pos) })
-    if (activeIndex == pos) return this.pause().cycle()
+    if (activeIndex === pos) return this.pause().cycle()
 
     return this.slide(pos > activeIndex ? 'next' : 'prev', $(this.$items[pos]))
   }
@@ -390,8 +390,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var $active   = this.$element.find('.item.active')
     var $next     = next || $active[type]()
     var isCycling = this.interval
-    var direction = type == 'next' ? 'left' : 'right'
-    var fallback  = type == 'next' ? 'first' : 'last'
+    var direction = type === 'next' ? 'left' : 'right'
+    var fallback  = type === 'next' ? 'first' : 'last'
     var that      = this
 
     if (!$next.length) {
@@ -454,11 +454,11 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.carousel')
-      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option == 'object' && option)
-      var action  = typeof option == 'string' ? option : options.slide
+      var options = $.extend({}, Carousel.DEFAULTS, $this.data(), typeof option === 'object' && option)
+      var action  = typeof option === 'string' ? option : options.slide
 
       if (!data) $this.data('bs.carousel', (data = new Carousel(this, options)))
-      if (typeof option == 'number') data.to(option)
+      if (typeof option === 'number') data.to(option)
       else if (action) data[action]()
       else if (options.interval) data.pause().cycle()
     })
@@ -641,10 +641,10 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     return this.each(function () {
       var $this   = $(this)
       var data    = $this.data('bs.collapse')
-      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option === 'object' && option)
 
       if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
-      if (typeof option == 'string') data[option]()
+      if (typeof option === 'string') data[option]()
     })
   }
 
@@ -758,8 +758,8 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var $parent  = getParent($this)
     var isActive = $parent.hasClass('open')
 
-    if (!isActive || (isActive && e.keyCode == 27)) {
-      if (e.which == 27) $parent.find(toggle).focus()
+    if (!isActive || (isActive && e.keyCode === 27)) {
+      if (e.which === 27) $parent.find(toggle).focus()
       return $this.click()
     }
 
@@ -770,7 +770,7 @@ if (!jQuery) { throw new Error("Bootstrap requires jQuery") }
     var index = $items.index($items.filter(':focus'))
 
     if (e.keyCode == 38 && index > 0)                 index--                        // up
-    if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
+    if (e.keyCode === 40 && index < $items.length - 1) index++                        // down
     if (!~index)                                      index=0
 
     $items.eq(index).focus()

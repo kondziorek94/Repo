@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 using System.Web.Mvc;
-
 namespace CarRentalWebApp.Controllers
 {
     public class CalculatorController : Controller
     {
-        public static Dictionary<string, ArithmeticOperation> EvaulationDictionary = new Dictionary<string, ArithmeticOperation> {
+        public static Dictionary<string, ArithmeticOperation> EvaulationDictionary { get; set; } = new Dictionary<string, ArithmeticOperation> {
             { "+", (a, b) => a + b},
             { "-", (a, b) => a - b},
             { "*", (a, b) => a * b},
             { "/", (a, b) => a / b},
             { "%", (a, b) => a % b} };
+
         public ActionResult Index()
         {
             return RedirectToAction("Evaluate", new { a = 2, b = 5, op = "+" });

@@ -1,11 +1,8 @@
 ﻿@model CarRentalWebApp.Models.Address
-
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
-
 <div>
     <h4>Address</h4>
     <hr />
@@ -13,39 +10,38 @@
         <dt>
             @Html.DisplayNameFor(model => model.CityName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.CityName)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.StreetName)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.StreetName)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.ZipCode)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.ZipCode)
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.PhoneNumber)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.PhoneNumber)
         </dd>
-
+        <dt>
+            Importance Level
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ImportanceLevel)
+        </dd>
     </dl>
 </div>
 <p>
-    @if (User.Identity.IsAuthenticated) {
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>}
+    @if (User.Identity.IsAuthenticated)
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>}
     @Html.ActionLink("Back to List", "Index")
 </p>

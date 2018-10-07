@@ -1,7 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
-
-[assembly: OwinStartupAttribute(typeof(CarRentalWebApp.Startup))]
+[assembly: OwinStartup(typeof(CarRentalWebApp.Startup))]
 namespace CarRentalWebApp
 {
     public partial class Startup

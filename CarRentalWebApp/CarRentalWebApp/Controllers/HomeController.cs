@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
 //adresAplikacji/NazwaKontrolera/NazwaMetody
-
 namespace CarRentalWebApp.Controllers
 {
     public class HomeController : Controller
@@ -31,12 +28,7 @@ namespace CarRentalWebApp.Controllers
             ViewBag.Val = 10;
             ViewBag.Address = new Address { CityName = "Redmond, WA", StreetName = "One Microsoft Way", PhoneNumber = "425.555.0100", ZipCode = "98052-6399" };
             ViewData["vala"] = "VAL from ViewData";
-            // var a1 = new Address { CityName = "Warszawa", StreetName = "Kolejowa", PhoneNumber = "22 755-32-02", ZipCode = "00-001" };
-            //var a1 = odczytaj obiekt z bazy;
             List<Address> a1 = null;
-
-            //1. tworzy sie context w klazuli using 
-            //2. odcytaj obiekt uzywajac wlasciwego DbSeta
             using (CarRentalDbContext context = new CarRentalDbContext())
             {
                 a1 = context.Addresses.ToList();

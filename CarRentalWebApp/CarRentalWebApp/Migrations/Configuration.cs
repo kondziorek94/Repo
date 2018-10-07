@@ -1,15 +1,10 @@
 ﻿namespace CarRentalWebApp.Migrations
 {
     using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Data.Entity.Validation;
-    using System.Linq;
     using CarRentalWebApp.Models;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-
     internal sealed class Configuration : DbMigrationsConfiguration<CarRentalWebApp.Models.CarRentalDbContext>
     {
         public Configuration()
@@ -38,9 +33,8 @@
             Guid guid18 = new Guid("ee0c3f49-a648-4476-a465-a9fc2c73da6a");
             Guid guid19 = new Guid("e102cdc1-44c5-4e51-91af-ee908fd37eb9");
             Guid guid20 = new Guid("c880d2ca-2a61-4327-bd07-ecdae0da3465");
-
-            Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel=ImportanceLevel.Regular };
-            Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920", ImportanceLevel = ImportanceLevel.Critical};
+            Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel = ImportanceLevel.Regular };
+            Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920", ImportanceLevel = ImportanceLevel.Critical };
             Address address3 = new Address { Id = guid3, CityName = "Los Angeles, CA", StreetName = "Regent Avenue", PhoneNumber = "745-361-295", ZipCode = "930 829", ImportanceLevel = ImportanceLevel.VIP };
             Address address4 = new Address { Id = guid4, CityName = "Chicago, IL", StreetName = "Fermor Avenue", PhoneNumber = "413-758-382", ZipCode = "592 739", ImportanceLevel = ImportanceLevel.Regular };
             Address address5 = new Address { Id = guid5, CityName = "Bufflo, NY", StreetName = "Main Street", PhoneNumber = "554-954-785", ZipCode = "105 674", ImportanceLevel = ImportanceLevel.Critical };
@@ -56,7 +50,7 @@
             Address address15 = new Address { Id = guid15, CityName = "Bydgoszcz", StreetName = "Pawia", PhoneNumber = "693-472-193", ZipCode = "57282", ImportanceLevel = ImportanceLevel.VIP };
             Address address16 = new Address { Id = guid16, CityName = "Bialystok", StreetName = "Odrodzenia", PhoneNumber = "583-839-100", ZipCode = "10384", ImportanceLevel = ImportanceLevel.Regular };
             Address address17 = new Address { Id = guid17, CityName = "Torun", StreetName = "Niepodleglosci", PhoneNumber = "500-638-683", ZipCode = "81924", ImportanceLevel = ImportanceLevel.Critical };
-            Address address18 = new Address { Id = guid18, CityName = "Szczecin", StreetName = "Paderewskiego", PhoneNumber = "120-499-281", ZipCode = "91024", ImportanceLevel = ImportanceLevel.VIP};
+            Address address18 = new Address { Id = guid18, CityName = "Szczecin", StreetName = "Paderewskiego", PhoneNumber = "120-499-281", ZipCode = "91024", ImportanceLevel = ImportanceLevel.VIP };
             Address address19 = new Address { Id = guid19, CityName = "Katowice", StreetName = "Hutnicza", PhoneNumber = "601-272-572", ZipCode = "42834", ImportanceLevel = ImportanceLevel.Regular };
             Address address20 = new Address { Id = guid20, CityName = "Wroclaw", StreetName = "Jana Pawla II", PhoneNumber = "609-478-172", ZipCode = "72924", ImportanceLevel = ImportanceLevel.Critical };
             context.Addresses.AddOrUpdate(a => a.Id, new Address[]{
@@ -82,12 +76,9 @@
                 address20
             });
             context.SaveChanges();
-
             using (var applicationContext = new ApplicationDbContext())
             {
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(applicationContext));
-
-
                 if (!roleManager.RoleExists("Administrator"))
                 {
                     var role = new IdentityRole();
@@ -100,7 +91,6 @@
                     role.Name = "RegularUser";
                     roleManager.Create(role);
                 }
-
                 var store = new UserStore<ApplicationUser>(applicationContext);
                 var manager = new ApplicationUserManager(store);
                 var user1Email = "a@a.pl";
@@ -110,7 +100,6 @@
                     manager.Create(user, "Password2@");
                     manager.AddToRole(user.Id, "Administrator");
                 }
-
                 var user2Email = "b@b.pl";
                 if (manager.FindByEmail(user2Email) == null)
                 {
@@ -118,18 +107,12 @@
                     manager.Create(user2, "Password3#");
                     manager.AddToRole(user2.Id, "RegularUser");
                 }
-
-                //praca domowa (opcjonalna, jak nie zrobisz to sie nic nie stanie, masz sie zajac rysowaniem funkcji)
-                //2. zadbaj o to zeby zwykly uzytkownik nie byl autoryzowany do usuwania, czyli jak klika w delete to przenosi go do strony logowania(domyslne zachowanie)
-                //3. zadbaj o to by zwykly uzytkownik nie widzial przycisku delete
             }
         }
     }
 }
-
 //Praca domowa 02.10.2018
 //Dodaj do adresu status danego adresu Regular, VIP, Critical
 //Na liście adresów przy adresie Reugular nie powinno być żadnej ikonki, przy ViP powinna być ikonka VIP, a przy Critical ikonka Critical
-
-    //Przy tworzeniu nowego adresu miej możliwość wybierania statusu adresu poprzez dropdown (lista rozwijana)
-    //Oczywiście przy edycji adresu taka lista rozwijana też musi być dostępna
+//Przy tworzeniu nowego adresu miej możliwość wybierania statusu adresu poprzez dropdown (lista rozwijana)
+//Oczywiście przy edycji adresu taka lista rozwijana też musi być dostępna

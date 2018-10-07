@@ -8,14 +8,12 @@
     function sort() {
         var searchPhrase = search ? $("#addressLookUp").val() : null;
         var pageSize = getURLParameter("PageSize");
-
         window.location.assign("/Address/Index?searchPhrase=" + searchPhrase + "&order=" + this.id + "&PageSize=" + pageSize);
     }
     function getURLParameter(name, url) {
         if (!url) url = window.location.href;
         name = name.replace(/[\[\]]/g, '\\$&');
-        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-            results = regex.exec(url);
+        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'), results = regex.exec(url);
         if (!results) return null;
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
@@ -35,7 +33,7 @@
             $("#addressLookUp").val = searchPhrase;
         }
     });
-    $('#pagesizelist').on('change', function (event) {
+    $('#pagesizelist').on('change', function () {
         var searchPhrase = search ? $("#addressLookUp").val() : null;
         var order = getURLParameter("order");
         pageSize = $('#pagesizelist').val();
@@ -59,9 +57,9 @@
         url: "/Address/GetNumberPages",
         contentType: "application/json; charset=utf-8",
         dataType: "html",
-        success: function (result, status, xhr) {
+        success: function () {
             //uncomment do overwite whatever is in TotalPageNumber div
-           // $("#TotalPageNumber").text(result);
+            // $("#TotalPageNumber").text(result);
         },
         error: function (xhr, status, error) {
             $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);

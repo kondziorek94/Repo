@@ -1,19 +1,8 @@
 ﻿$(window).on("load", function () {
-    $("#calculatorDisplay").val("2 + 5");
-    let myFunction = function () {
-        let display = $("#calculatorDisplay");
-        var currentValue = display.val() + this.id;
-        display.val(currentValue);
-        //alert(this.id);
-    };
-    let operatorFunction = function () {
-        let display = $("#calculatorDisplay");
-        var currentValue = display.val() + " " + this.id + " ";
-        display.val(currentValue);
-    };
     for (let i = 0; i < 10; i++) {
         $("#" + i).click(myFunction);
     }
+    $("#calculatorDisplay").val("2 + 5");
     $("#\\+").click(operatorFunction);
     $("#-").click(operatorFunction);
     $("#\\*").click(operatorFunction);
@@ -74,27 +63,30 @@
         let fn = eval("(function(x){ return " + s + "})");
         myGraph.drawEquation(fn, 'blue', 3);
     });
-    //graph
+    let myFunction = function () {
+        let display = $("#calculatorDisplay");
+        var currentValue = display.val() + this.id;
+        display.val(currentValue);
+    };
+    let operatorFunction = function () {
+        let display = $("#calculatorDisplay");
+        var currentValue = display.val() + " " + this.id + " ";
+        display.val(currentValue);
+    };
     function Graph(config) {
         this.config = config;
         this.repaint(this.config);
     }
     Graph.prototype.repaint = function (config) {
-        // user defined properties
-
         this.canvas = document.getElementById(config.canvasId);
         this.minX = config.minX;
         this.minY = config.minY;
         this.maxX = config.maxX;
         this.maxY = config.maxY;
         this.unitsPerTick = config.unitsPerTick;
-
-        // constants
         this.axisColor = '#aaa';
         this.font = '8pt Calibri';
         this.tickSize = 20;
-
-        // relationships
         this.context = this.canvas.getContext('2d');
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.rangeX = this.maxX - this.minX;
@@ -106,14 +98,11 @@
         this.iteration = (this.maxX - this.minX) / 1000;
         this.scaleX = this.canvas.width / this.rangeX;
         this.scaleY = this.canvas.height / this.rangeY;
-
-        // draw x and y axis
         this.drawXAxis();
         this.drawYAxis();
     };
     Graph.prototype.drawXAxis = function () {
         var context = this.context;
-
         context.save();
         context.beginPath();
         context.moveTo(0, this.centerY);
@@ -121,15 +110,11 @@
         context.strokeStyle = this.axisColor;
         context.lineWidth = 2;
         context.stroke();
-
-        // draw tick marks
         var xPosIncrement = this.unitsPerTick * this.unitX;
         var xPos, unit;
         context.font = this.font;
         context.textAlign = 'center';
         context.textBaseline = 'top';
-
-        // draw left tick marks
         xPos = this.centerX - xPosIncrement;
         unit = -1 * this.unitsPerTick;
         while (xPos > 0) {
@@ -140,8 +125,6 @@
             unit -= this.unitsPerTick;
             xPos = Math.round(xPos - xPosIncrement);
         }
-
-        // draw right tick marks
         xPos = this.centerX + xPosIncrement;
         unit = this.unitsPerTick;
         while (xPos < this.canvas.width) {
@@ -154,7 +137,6 @@
         }
         context.restore();
     };
-
     Graph.prototype.drawYAxis = function () {
         var context = this.context;
         context.save();
@@ -164,15 +146,11 @@
         context.strokeStyle = this.axisColor;
         context.lineWidth = 2;
         context.stroke();
-
-        // draw tick marks
         var yPosIncrement = this.unitsPerTick * this.unitY;
         var yPos, unit;
         context.font = this.font;
         context.textAlign = 'right';
         context.textBaseline = 'middle';
-
-        // draw top tick marks
         yPos = this.centerY - yPosIncrement;
         unit = this.unitsPerTick;
         while (yPos > 0) {
@@ -183,8 +161,6 @@
             unit += this.unitsPerTick;
             yPos = Math.round(yPos - yPosIncrement);
         }
-
-        // draw bottom tick marks
         yPos = this.centerY + yPosIncrement;
         unit = -1 * this.unitsPerTick;
         while (yPos < this.canvas.height) {
@@ -197,20 +173,16 @@
         }
         context.restore();
     };
-
     Graph.prototype.drawEquation = function (equation, color, thickness) {
         var context = this.context;
         context.save();
         context.save();
         this.transformContext();
-
         context.beginPath();
         context.moveTo(this.minX, equation(this.minX));
-
         for (var x = this.minX + this.iteration; x <= this.maxX; x += this.iteration) {
             context.lineTo(x, equation(x));
         }
-
         context.restore();
         context.lineJoin = 'round';
         context.lineWidth = thickness;
@@ -218,18 +190,9 @@
         context.stroke();
         context.restore();
     };
-
     Graph.prototype.transformContext = function () {
         var context = this.context;
-
-        // move context to center of canvas
         this.context.translate(this.centerX, this.centerY);
-
-        /*
-         * stretch grid to fit the canvas window, and
-         * invert the y scale so that that increments
-         * as you move upwards
-         */
         context.scale(this.scaleX, -this.scaleY);
     };
     var myGraph = new Graph({
@@ -240,8 +203,5 @@
         maxY: 10,
         unitsPerTick: 1
     });
-
-
-
 });
 /*$(window).trigger("load")*/

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -7,7 +6,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using CarRentalWebApp.Models;
-
 namespace CarRentalWebApp.Controllers
 {
     [Authorize]
@@ -15,29 +13,25 @@ namespace CarRentalWebApp.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
         public ManageController()
         {
         }
-
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
         public ApplicationSignInManager SignInManager
         {
             get
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -49,9 +43,6 @@ namespace CarRentalWebApp.Controllers
                 _userManager = value;
             }
         }
-
-        //
-        // GET: /Manage/Index
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -62,7 +53,6 @@ namespace CarRentalWebApp.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
@@ -74,9 +64,6 @@ namespace CarRentalWebApp.Controllers
             };
             return View(model);
         }
-
-        //
-        // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemoveLogin(string loginProvider, string providerKey)
@@ -98,16 +85,10 @@ namespace CarRentalWebApp.Controllers
             }
             return RedirectToAction("ManageLogins", new { Message = message });
         }
-
-        //
-        // GET: /Manage/AddPhoneNumber
         public ActionResult AddPhoneNumber()
         {
             return View();
         }
-
-        //
-        // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
@@ -129,9 +110,6 @@ namespace CarRentalWebApp.Controllers
             }
             return RedirectToAction("VerifyPhoneNumber", new { PhoneNumber = model.Number });
         }
-
-        //
-        // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> EnableTwoFactorAuthentication()
@@ -144,9 +122,6 @@ namespace CarRentalWebApp.Controllers
             }
             return RedirectToAction("Index", "Manage");
         }
-
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DisableTwoFactorAuthentication()
@@ -159,18 +134,12 @@ namespace CarRentalWebApp.Controllers
             }
             return RedirectToAction("Index", "Manage");
         }
-
-        //
-        // GET: /Manage/VerifyPhoneNumber
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
             // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
-
-        //
-        // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
@@ -193,9 +162,6 @@ namespace CarRentalWebApp.Controllers
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
-
-        //
-        // POST: /Manage/RemovePhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> RemovePhoneNumber()
@@ -212,16 +178,10 @@ namespace CarRentalWebApp.Controllers
             }
             return RedirectToAction("Index", new { Message = ManageMessageId.RemovePhoneSuccess });
         }
-
-        //
-        // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
         {
             return View();
         }
-
-        //
-        // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
@@ -243,16 +203,10 @@ namespace CarRentalWebApp.Controllers
             AddErrors(result);
             return View(model);
         }
-
-        //
-        // GET: /Manage/SetPassword
         public ActionResult SetPassword()
         {
             return View();
         }
-
-        //
-        // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> SetPassword(SetPasswordViewModel model)
@@ -271,13 +225,9 @@ namespace CarRentalWebApp.Controllers
                 }
                 AddErrors(result);
             }
-
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
-        //
-        // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -298,9 +248,6 @@ namespace CarRentalWebApp.Controllers
                 OtherLogins = otherLogins
             });
         }
-
-        //
-        // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LinkLogin(string provider)
@@ -308,9 +255,6 @@ namespace CarRentalWebApp.Controllers
             // Request a redirect to the external login provider to link a login for the current user
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
-
-        //
-        // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
         {
             var loginInfo = await AuthenticationManager.GetExternalLoginInfoAsync(XsrfKey, User.Identity.GetUserId());
@@ -321,7 +265,6 @@ namespace CarRentalWebApp.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
@@ -329,14 +272,11 @@ namespace CarRentalWebApp.Controllers
                 _userManager.Dispose();
                 _userManager = null;
             }
-
             base.Dispose(disposing);
         }
-
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
-
         private IAuthenticationManager AuthenticationManager
         {
             get
@@ -344,7 +284,6 @@ namespace CarRentalWebApp.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
-
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -352,7 +291,6 @@ namespace CarRentalWebApp.Controllers
                 ModelState.AddModelError("", error);
             }
         }
-
         private bool HasPassword()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -362,7 +300,6 @@ namespace CarRentalWebApp.Controllers
             }
             return false;
         }
-
         private bool HasPhoneNumber()
         {
             var user = UserManager.FindById(User.Identity.GetUserId());
@@ -372,7 +309,6 @@ namespace CarRentalWebApp.Controllers
             }
             return false;
         }
-
         public enum ManageMessageId
         {
             AddPhoneSuccess,
@@ -383,7 +319,6 @@ namespace CarRentalWebApp.Controllers
             RemovePhoneSuccess,
             Error
         }
-
-#endregion
+        #endregion
     }
 }

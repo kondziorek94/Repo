@@ -26,6 +26,7 @@ select,
 textarea {
     max-width: 280px;
 }
-.importanceLevel{
+
+.importanceLevel {
     height: 20px;
 }
