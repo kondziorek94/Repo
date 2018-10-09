@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 namespace CarRentalWebApp.Models
 {
@@ -15,5 +16,6 @@ namespace CarRentalWebApp.Models
         [RegularExpression(@"^\d{3}-\d{3}-\d{3}$", ErrorMessage = "Ivalid Phone Number")]
         public String PhoneNumber { get; set; }
         public ImportanceLevel ImportanceLevel { get; set; }
+        public virtual List<Answer> Answers { get; set; }
     }
 }

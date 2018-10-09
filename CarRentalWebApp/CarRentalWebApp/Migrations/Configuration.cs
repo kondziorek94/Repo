@@ -116,3 +116,11 @@
 //Na liście adresów przy adresie Reugular nie powinno być żadnej ikonki, przy ViP powinna być ikonka VIP, a przy Critical ikonka Critical
 //Przy tworzeniu nowego adresu miej możliwość wybierania statusu adresu poprzez dropdown (lista rozwijana)
 //Oczywiście przy edycji adresu taka lista rozwijana też musi być dostępna
+
+//1. ankieta w adresie, ma byc mozliwosc przeprowadzania wielu ankiet z danym adresem.
+//2. ankieta sklada sie z pytań a pytania składają się z odpowiedzi
+//3. przeprowadzamy z danym adresem ankietę, to znaczy że musimy być w stanie zapamiętać jego odpowiedzi
+// milion adresów - ile ankiet musimy zapamietac
+
+//w domu, dodaj surveys, qestions answers
+//2 ankiety, z 2,3 pytaniami, na kazde pytanie co najmniej 2 odpowiedzi
