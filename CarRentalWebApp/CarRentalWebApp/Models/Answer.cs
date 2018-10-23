@@ -10,7 +10,8 @@ namespace CarRentalWebApp.Models
         public Guid Id { get; set; }
         public String Text { get; set; }
         public virtual Question Question { get; set; }
-        public virtual List<Address> Address { get; set; }
+        public virtual List<Address> Adresses { get; set; }
+
 
     }
 }

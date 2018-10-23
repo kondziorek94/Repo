@@ -1,6 +1,7 @@
 ﻿namespace CarRentalWebApp.Migrations
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity.Migrations;
     using CarRentalWebApp.Models;
     using Microsoft.AspNet.Identity;
@@ -10,6 +11,7 @@
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
         protected override void Seed(CarRentalDbContext context)
         {
@@ -33,6 +35,25 @@
             Guid guid18 = new Guid("ee0c3f49-a648-4476-a465-a9fc2c73da6a");
             Guid guid19 = new Guid("e102cdc1-44c5-4e51-91af-ee908fd37eb9");
             Guid guid20 = new Guid("c880d2ca-2a61-4327-bd07-ecdae0da3465");
+            Guid guid21 = new Guid("4929a366-7568-4e49-aa98-21916a09d01d");
+            Guid guid22 = new Guid("2433d378-5168-4ce1-9761-f0157824e1cd");
+            Guid guid23 = new Guid("c2c6900a-c8a7-4a4b-aa65-79cd0317f9d1");
+            Guid guid24 = new Guid("fa9cf83b-05a2-4fa0-b2ed-96838f0ebd29");
+            Guid guid25 = new Guid("b13a28ab-1139-44c0-ac60-5e0975bec92d");
+            Guid guid26 = new Guid("c3ad4234-106c-41cd-a482-a29c31f36623");
+            Guid guid27 = new Guid("d72fa8ff-051c-4069-a245-b6aa58f397ec");
+            Guid guid28 = new Guid("5c3fdf7b-533a-4489-b77e-a607cdd995a3");
+            Guid guid29 = new Guid("11b372f9-92bb-46ff-b2d2-0ab4485c0086");
+            Guid guid30 = new Guid("d1f440b9-4339-4539-8cb0-a52158ec4dfd");
+            Guid guid31 = new Guid("6c3a1350-e7f9-485f-af0e-26ccce136e2b");
+            Guid guid32 = new Guid("ceb8e1b9-ccbf-4efb-9a46-a711b34c0bbe");
+            Guid guid33 = new Guid("1c555e69-aed3-4700-94a7-e16fb9515ab3");
+            Guid guid34 = new Guid("a109e1c3-a6c6-49b4-88d1-d8b4370b6b7f");
+            Guid guid35 = new Guid("1b64f867-2ce9-4c3c-ad6f-09038d160fbb");
+            Guid guid36 = new Guid("ca84f809-f757-443a-8a15-b14f8d867970");
+            Guid guid37 = new Guid("7ded2844-63e7-4627-b122-4788cea137f3");
+            Guid guid38 = new Guid("18939c46-ed2a-4016-9e4b-c53d23253011");
+
             Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel = ImportanceLevel.Regular };
             Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920", ImportanceLevel = ImportanceLevel.Critical };
             Address address3 = new Address { Id = guid3, CityName = "Los Angeles, CA", StreetName = "Regent Avenue", PhoneNumber = "745-361-295", ZipCode = "930 829", ImportanceLevel = ImportanceLevel.VIP };
@@ -53,6 +74,7 @@
             Address address18 = new Address { Id = guid18, CityName = "Szczecin", StreetName = "Paderewskiego", PhoneNumber = "120-499-281", ZipCode = "91024", ImportanceLevel = ImportanceLevel.VIP };
             Address address19 = new Address { Id = guid19, CityName = "Katowice", StreetName = "Hutnicza", PhoneNumber = "601-272-572", ZipCode = "42834", ImportanceLevel = ImportanceLevel.Regular };
             Address address20 = new Address { Id = guid20, CityName = "Wroclaw", StreetName = "Jana Pawla II", PhoneNumber = "609-478-172", ZipCode = "72924", ImportanceLevel = ImportanceLevel.Critical };
+
             context.Addresses.AddOrUpdate(a => a.Id, new Address[]{
                 address1,
                 address2,
@@ -73,9 +95,79 @@
                 address17,
                 address18,
                 address19,
-                address20
+                address20,
             });
+            Survey survey1 = new Survey { Id = guid21, Title = "Cars" };
+            Survey survey2 = new Survey { Id = guid22, Title = "Phones" };
+
+            Question question1 = new Question { Id = guid23, Text = "What type of car do you have?" };
+            Question question2 = new Question { Id = guid24, Text = "What size is the engine?" };
+            Question question3 = new Question { Id = guid25, Text = "What phone do you have?" };
+            Question question4 = new Question { Id = guid26, Text = "What big is the screen?" };
+
+            Answer answer1 = new Answer { Id = guid27, Text = "Sedan", Question = question1 };
+            Answer answer2 = new Answer { Id = guid28, Text = "3000", Question = question2 };
+            Answer answer3 = new Answer { Id = guid29, Text = "SUV" };
+            Answer answer4 = new Answer { Id = guid30, Text = "<1.5" };
+            Answer answer5 = new Answer { Id = guid31, Text = "1.5<...<3.5" };
+            Answer answer6 = new Answer { Id = guid32, Text = "3.5<" };
+            Answer answer7 = new Answer { Id = guid33, Text = "iPhone" };
+            Answer answer8 = new Answer { Id = guid34, Text = "Samsung" };
+            Answer answer9 = new Answer { Id = guid35, Text = "Huawei" };
+            Answer answer10 = new Answer { Id = guid36, Text = "4 inches" };
+            Answer answer11 = new Answer { Id = guid37, Text = "5 inches" };
+            Answer answer12 = new Answer { Id = guid38, Text = "6 inches" };
+
+
+            //dodawania do bazy danych
+            context.Surveys.AddOrUpdate(s => s.Id, survey1, survey2);
+            context.Questions.AddOrUpdate(a => a.Id, question1, question2, question3, question4);
+            context.Answers.AddOrUpdate(a => a.Id, answer1, answer2, answer3, answer4,
+                answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12);
             context.SaveChanges();
+
+            //wczytywanie obiektow z bazy danych bo z powodu bledow w AddOrUpdate nie sa one sledzone poprawnie
+            survey1 = context.Surveys.Find(survey1.Id);
+            survey2 = context.Surveys.Find(survey2.Id);
+
+            question1 = context.Questions.Find(question1.Id);
+            question2 = context.Questions.Find(question2.Id);
+            question3 = context.Questions.Find(question3.Id);
+            question4 = context.Questions.Find(question4.Id);
+
+            answer1 = context.Answers.Find(answer1.Id);
+            answer2 = context.Answers.Find(answer2.Id);
+            answer3 = context.Answers.Find(answer3.Id);
+            answer4 = context.Answers.Find(answer4.Id);
+            answer5 = context.Answers.Find(answer5.Id);
+            answer6 = context.Answers.Find(answer6.Id);
+            answer7 = context.Answers.Find(answer7.Id);
+            answer8 = context.Answers.Find(answer8.Id);
+            answer9 = context.Answers.Find(answer9.Id);
+            answer10 = context.Answers.Find(answer10.Id);
+            answer11 = context.Answers.Find(answer11.Id);
+            answer12 = context.Answers.Find(answer12.Id);
+            //tworzenie wiazan
+
+            question1.Survey = survey1;
+            question2.Survey = survey1;
+            question3.Survey = survey2;
+            question4.Survey = survey2;
+
+            answer1.Question = question1;
+            answer2.Question = question1;
+            answer3.Question = question1;
+            answer4.Question = question2;
+            answer5.Question = question2;
+            answer6.Question = question2;
+            answer7.Question = question3;
+            answer8.Question = question3;
+            answer9.Question = question3;
+            answer10.Question = question4;
+            answer11.Question = question4;
+            answer12.Question = question4;
+            context.SaveChanges();
+
             using (var applicationContext = new ApplicationDbContext())
             {
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(applicationContext));
@@ -112,15 +204,19 @@
     }
 }
 //Praca domowa 02.10.2018
-//Dodaj do adresu status danego adresu Regular, VIP, Critical
-//Na liście adresów przy adresie Reugular nie powinno być żadnej ikonki, przy ViP powinna być ikonka VIP, a przy Critical ikonka Critical
-//Przy tworzeniu nowego adresu miej możliwość wybierania statusu adresu poprzez dropdown (lista rozwijana)
-//Oczywiście przy edycji adresu taka lista rozwijana też musi być dostępna
-
 //1. ankieta w adresie, ma byc mozliwosc przeprowadzania wielu ankiet z danym adresem.
 //2. ankieta sklada sie z pytań a pytania składają się z odpowiedzi
 //3. przeprowadzamy z danym adresem ankietę, to znaczy że musimy być w stanie zapamiętać jego odpowiedzi
 // milion adresów - ile ankiet musimy zapamietac
-
 //w domu, dodaj surveys, qestions answers
-//2 ankiety, z 2,3 pytaniami, na kazde pytanie co najmniej 2 odpowiedzi
+//2 ankiety, z 2,3 pytaniami, na kazde pytanie c
+
+
+    //W widoku details adresu pokaz dropdown z lista dostepnych ankiet
+    //dodaj tez tam przycisk przeprowadz ankiete
+    //dropdown i przycisk ma byc widoczny tylko dla zalogowanych uzytkownikow
+    //po wcisnieciu przycisku przeprowadz ankiete masz byc przeniesiony do widoku
+    //Fill dla ankiety, zadbaj o to zeby miec dostep w tym widoku dla kogo ta ankieta jest przeprowadzana czyli
+    //potrzebujemy miec dodstep do Id adresu z ktorego przyszlismy
+    //aby to osiagnac Id to trzeba umiesci w querystringu lub mozliwe ze da rade go wrzucic do Viewbaga, ale nie wiem musialbym sam sprobowac
+    //ABY UDOWODNIC ZE MASZ DOSTEP DO TEGO Id wpisz go w tagi <h1> na tej stronie
