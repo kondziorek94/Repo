@@ -52,6 +52,12 @@
     $("#ZipCode_Desc").click(sort);
     $("#PhoneNumber_Asc").click(sort);
     $("#PhoneNumber_Desc").click(sort);
+    $("#FillSurvey").click(
+        function () {
+            window.location.assign("/Survey/Fill?id=" + $("#SurveyDropdown").val() + "&addressId=" + addressId);
+        }
+    );
+
     $.ajax({
         type: "POST",
         url: "/Address/GetNumberPages",

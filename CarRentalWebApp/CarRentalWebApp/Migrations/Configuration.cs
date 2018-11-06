@@ -217,3 +217,8 @@
     //potrzebujemy miec dodstep do Id adresu z ktorego przyszlismy
     //aby to osiagnac Id to trzeba umiesci w querystringu lub mozliwe ze da rade go wrzucic do Viewbaga, ale nie wiem musialbym sam sprobowac
     //ABY UDOWODNIC ZE MASZ DOSTEP DO TEGO Id wpisz go w tagi <h1> na tej stronie
+
+
+    //ZADANIE DOMOWE NA BOKu
+    //Spraw aby przycisk FillSurvey byl wypelniony gradientem
+    //Spraw aby przy najechaniu kursorem myszki(hover) gradient wirowal

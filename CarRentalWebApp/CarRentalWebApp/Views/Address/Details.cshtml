@@ -1,5 +1,11 @@
 ﻿@using CarRentalWebApp.Models
 @model AddressDetailsViewModel
+@section AddToHead{
+    @Scripts.Render("~/bundles/addresses");
+}
+<script>
+     var addressId = @Html.Raw(Json.Encode(Model.Address.Id));
+</script>
 @{
     ViewBag.Title = "Details";
 }
@@ -41,9 +47,13 @@
         @if (User.Identity.IsAuthenticated)
         {
             <dt>
-                <select>
-                </select>
-            </dt>}
+                Survey
+            </dt>
+            <dd>
+                @Html.DropDownList("SurveyDropdown", Model.Surveys.Select(a => new SelectListItem() { Text = a.Title, Value = a.Id.ToString() }))
+                <button id="FillSurvey" class="btn btn-default">Fill Survey</button>
+            </dd>
+        }
     </dl>
 </div>
 <p>
