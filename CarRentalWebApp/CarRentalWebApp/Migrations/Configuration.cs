@@ -99,7 +99,7 @@
             });
             Survey survey1 = new Survey { Id = guid21, Title = "Cars" };
             Survey survey2 = new Survey { Id = guid22, Title = "Phones" };
-
+            
             Question question1 = new Question { Id = guid23, Text = "What type of car do you have?" };
             Question question2 = new Question { Id = guid24, Text = "What size is the engine?" };
             Question question3 = new Question { Id = guid25, Text = "What phone do you have?" };
@@ -208,9 +208,6 @@
 //2. ankieta sklada sie z pytań a pytania składają się z odpowiedzi
 //3. przeprowadzamy z danym adresem ankietę, to znaczy że musimy być w stanie zapamiętać jego odpowiedzi
 // milion adresów - ile ankiet musimy zapamietac
-//w domu, dodaj surveys, qestions answers
-//2 ankiety, z 2,3 pytaniami, na kazde pytanie c
-
 
     //W widoku details adresu pokaz dropdown z lista dostepnych ankiet
     //dodaj tez tam przycisk przeprowadz ankiete
