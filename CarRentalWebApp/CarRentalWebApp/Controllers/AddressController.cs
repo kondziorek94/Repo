@@ -71,7 +71,8 @@ namespace CarRentalWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            return View(address);
+            AddressDetailsViewModel addressDetailsViewModel =new AddressDetailsViewModel {Address=address, Surveys=db.Surveys.ToList()};
+            return View(addressDetailsViewModel);
         }
         public ActionResult Create()
         {

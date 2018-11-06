@@ -1,5 +1,5 @@
 ﻿@using CarRentalWebApp.Models
-@model CarRentalWebApp.Models.Address
+@model AddressDetailsViewModel
 @{
     ViewBag.Title = "Details";
 }
@@ -9,34 +9,34 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.CityName)
+            @Html.DisplayNameFor(model => model.Address.CityName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.CityName)
+            @Html.DisplayFor(model => model.Address.CityName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.StreetName)
+            @Html.DisplayNameFor(model => model.Address.StreetName)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.StreetName)
+            @Html.DisplayFor(model => model.Address.StreetName)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
+            @Html.DisplayNameFor(model => model.Address.ZipCode)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ZipCode)
+            @Html.DisplayFor(model => model.Address.ZipCode)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
+            @Html.DisplayNameFor(model => model.Address.PhoneNumber)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
+            @Html.DisplayFor(model => model.Address.PhoneNumber)
         </dd>
         <dt>
             Importance Level
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.ImportanceLevel)
+            @Html.DisplayFor(model => model.Address.ImportanceLevel)
         </dd>
         @if (User.Identity.IsAuthenticated)
         {
@@ -49,6 +49,6 @@
 <p>
     @if (User.Identity.IsAuthenticated)
     {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <text>|</text>}
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Address.Id }) <text>|</text>}
     @Html.ActionLink("Back to List", "Index")
 </p>
