@@ -51,7 +51,7 @@
             </dt>
             <dd>
                 @Html.DropDownList("SurveyDropdown", Model.Surveys.Select(a => new SelectListItem() { Text = a.Title, Value = a.Id.ToString() }))
-                <button id="FillSurvey" class="gradient-button-js">Fill Survey</button>
+                <button id="FillSurvey" class="gradient-button">Fill Survey</button>
             </dd>
         }
     </dl>
