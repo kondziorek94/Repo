@@ -15,18 +15,34 @@
 .dl-horizontal dt {
     white-space: normal;
 }
-
-.narrowInput {
-    max-width: 40px;
+/* ##GRADIENT BUTTON## */
+.gradient-button-js {
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.gradient-button {
+    animation: rotate-gradient 1s infinite;
+    background-image: linear-gradient(0deg, red, yellow, green);
 }
 
-.importanceLevel {
-    height: 20px;
+@keyframes rotate-gradient {
+    0% {
+        background-image: linear-gradient(0deg, red, yellow, green);
+    }
+    /* Adding a step in the middle */
+    20% {
+        background-image: linear-gradient(60deg, red, yellow, green);
+    }
+    40% {
+        background-image: linear-gradient(120deg, red, yellow, green);
+    }
+    60% {
+        background-image: linear-gradient(180deg, red, yellow, green);
+    }
+    80% {
+        background-image: linear-gradient(240deg, red, yellow, green);
+    }
+    100% {
+        background-image: linear-gradient(300deg, red, yellow, green);
+    }
 }
+/* #################### */

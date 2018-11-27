@@ -118,7 +118,6 @@
             Answer answer11 = new Answer { Id = guid37, Text = "5 inches" };
             Answer answer12 = new Answer { Id = guid38, Text = "6 inches" };
 
-
             //dodawania do bazy danych
             context.Surveys.AddOrUpdate(s => s.Id, survey1, survey2);
             context.Questions.AddOrUpdate(a => a.Id, question1, question2, question3, question4);

@@ -1,0 +1,35 @@
+﻿@using CarRentalWebApp.Models
+@model SurveyFillViewModel
+
+@{
+    ViewBag.Title = "Fill";
+}
+
+<h2>Fill</h2>
+
+<div>
+    <h4>Survey</h4>
+    <hr />
+    <form action="">
+        @foreach (var question in Model.Survey.Questions)
+        {
+            @Html.DisplayFor(model => question.Text)
+            <br />
+            foreach (var answer in question.Answers)
+            {
+
+                <input id="@answer.Id" type="radio" name="@question.Text" value="@answer.Id">@answer.Text<br>
+
+            }
+            <br>
+        }
+    </form>
+</div>
+
+Wyrenedurj ankiete do wypelnienia
+Zajmij sie gradientem
+Masz do naprawienia ikony
+
+
+Nastepne zajecia:
+opracuj kod ktory bedzie zapisywal udzielna odpowiedz w bazie danych

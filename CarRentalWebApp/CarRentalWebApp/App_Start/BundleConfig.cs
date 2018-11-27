@@ -24,7 +24,7 @@ namespace CarRentalWebApp
             bundles.Add(new StyleBundle("~/Content/calc").Include(
                    "~/Content/calculator.css"));
             bundles.Add(new ScriptBundle("~/bundles/myscripts").Include(
-                    "~/Scripts/navbar.js"));
+                    "~/Scripts/navbar.js", "~/Scripts/global.js"));
             bundles.Add(new ScriptBundle("~/bundles/calc").Include(
                 "~/Scripts/calculator.js"));
             bundles.Add(new ScriptBundle("~/bundles/addresses").Include(
