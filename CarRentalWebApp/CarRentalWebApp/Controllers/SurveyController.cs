@@ -40,3 +40,12 @@ namespace CarRentalWebApp.Controllers
 
     }
 }
+
+
+//strona backendu
+//1 zmienic nazwe metody i wprowadzic dwa parametry addressId oraz answerId
+//2 pobrac odpowiednie obiekty z bazy danych i zapisac/aktualizowac udzielona odpowiedz dla danego addresu
+
+//strona frontendu
+//1. zaktualizowac url aby przekazywac odpowiednie argumenty
+//2. usunac alerty
