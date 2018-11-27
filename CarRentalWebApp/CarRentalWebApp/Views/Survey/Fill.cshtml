@@ -1,6 +1,8 @@
 ﻿@using CarRentalWebApp.Models
 @model SurveyFillViewModel
-
+@section AddToHead{
+    @Scripts.Render("~/bundles/surveys");
+}
 @{
     ViewBag.Title = "Fill";
 }

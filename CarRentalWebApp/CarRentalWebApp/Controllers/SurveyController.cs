@@ -28,9 +28,14 @@ namespace CarRentalWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            var surveyFillViewModel = new SurveyFillViewModel { Survey = survey,Address=address };
+            var surveyFillViewModel = new SurveyFillViewModel { Survey = survey, Address = address };
 
             return View(surveyFillViewModel);
+        }
+        [HttpPost]
+        public string EvaluateExpressionAJAX(string expression)
+        {
+            return expression + "backend returned";
         }
 
     }

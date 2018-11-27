@@ -29,6 +29,7 @@ namespace CarRentalWebApp
                 "~/Scripts/calculator.js"));
             bundles.Add(new ScriptBundle("~/bundles/addresses").Include(
                 "~/Scripts/addresses.js"));
+            bundles.Add(new ScriptBundle("~/bundles/surveys").Include("~/Scripts/survey.js"));
         }
     }
 }
