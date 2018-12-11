@@ -93,3 +93,6 @@ namespace CarRentalWebApp.Controllers
 //2. usunac alerty
 
 //button gradient
+
+    //PRACA DOMOWA 
+    //spraw aby po zaladowaniu ankiety byly widoczne poprzednio udzielone odpowiedzi
