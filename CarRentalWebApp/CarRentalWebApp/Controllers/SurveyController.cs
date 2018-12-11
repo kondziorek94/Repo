@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Web.Http;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
 namespace CarRentalWebApp.Controllers
@@ -32,16 +33,49 @@ namespace CarRentalWebApp.Controllers
 
             return View(surveyFillViewModel);
         }
-        [HttpPost]
+
         public void SaveAnswer(String addressId, String answerId)
         {
-            Guid addressIdCopy = Guid.Parse(addressId);
-            Guid answerIdCopy = Guid.Parse(answerId);
-            Address address = db.Addresses.Find(addressIdCopy);
-            Answer answer = address.Answers.Find(a=>a.Id==answerIdCopy);
-            answer = db.Answers.Find(answerId);
+            //parsuj w tryu, jezeli bedzie wyjatek to rzuc http bad request
+            if (addressId == null || answerId == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            Guid addressIdGuid, answerIdGuid;
+            try
+            {
+                addressIdGuid = Guid.Parse(addressId);
+                answerIdGuid = Guid.Parse(answerId);
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            Address address = db.Addresses.Find(addressIdGuid);
+            Answer answer = db.Answers.Find(answerIdGuid);
+            if(address == null || answer == null )
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            //Wybierz z posrod udzielonych opodwiedzi dla adresu taka ktora jest przyporzadkowana do tego samego pytania co answer(udzielna)
+            Answer previousAnswer = address.Answers.Find(a => a.Question.Id == answer.Question.Id);
+
+
+            //sprawdz czy odpowiedz na to pytanie byla juz udzielona dla tego adresu
+            //Jezeli tak: to usun ta odpowiedz (mozna upsrawnic zeby usuwal tylko jezeli zostala dana inna odpowiedz niz poprzednio)
+            //Jezeli nie: to nic
+            //Przypisz nowa odpowiedz do danego adresu (no chyba ze nie trzeba bo nie usunales bo byla taka sama udzielona)
+            if (previousAnswer != null)
+            {
+                address.Answers.RemoveAll(a => a.Id == previousAnswer.Id);
+            }
+            address.Answers.Add(answer);
+
+
+            //pobierz ze wszystkich odpowiedzi przypisanych do tego adresu, odpowiedz o id identycznym z dana odpowiedzia z ankiety
+            //Answer answer = address.Answers.Find(a=>a.Id==answerIdCopy);
+            //answer = db.Answers.Find(answerId);
             db.SaveChanges();
-            return ;
         }
 
     }
