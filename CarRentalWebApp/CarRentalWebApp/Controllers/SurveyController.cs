@@ -33,9 +33,15 @@ namespace CarRentalWebApp.Controllers
             return View(surveyFillViewModel);
         }
         [HttpPost]
-        public string EvaluateExpressionAJAX(string expression)
+        public void SaveAnswer(String addressId, String answerId)
         {
-            return expression + "backend returned";
+            Guid addressIdCopy = Guid.Parse(addressId);
+            Guid answerIdCopy = Guid.Parse(answerId);
+            Address address = db.Addresses.Find(addressIdCopy);
+            Answer answer = address.Answers.Find(a=>a.Id==answerIdCopy);
+            answer = db.Answers.Find(answerId);
+            db.SaveChanges();
+            return ;
         }
 
     }
@@ -44,8 +50,12 @@ namespace CarRentalWebApp.Controllers
 
 //strona backendu
 //1 zmienic nazwe metody i wprowadzic dwa parametry addressId oraz answerId
+//done
 //2 pobrac odpowiednie obiekty z bazy danych i zapisac/aktualizowac udzielona odpowiedz dla danego addresu
+//done
 
 //strona frontendu
 //1. zaktualizowac url aby przekazywac odpowiednie argumenty
 //2. usunac alerty
+
+//button gradient

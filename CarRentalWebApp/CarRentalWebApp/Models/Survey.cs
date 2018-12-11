@@ -10,4 +10,3 @@ namespace CarRentalWebApp.Models
       
     }
 }
-///NA NASTEPNYCH ZAJECIACH PRZYPOMNIJ LAzy LOADING
