@@ -33,6 +33,39 @@ namespace CarRentalWebApp.Controllers
 
             return View(surveyFillViewModel);
         }
+    
+        public String CheckAnswer(String addressId, String answerId)
+        {
+            if (addressId == null || answerId == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            Guid addressIdGuid, newAnswerIdGuid;
+            try
+            {
+                addressIdGuid = Guid.Parse(addressId);
+                newAnswerIdGuid = Guid.Parse(answerId);
+            }
+            catch
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            Address address = db.Addresses.Find(addressIdGuid);
+            Answer newAnswer = db.Answers.Find(newAnswerIdGuid);
+            if (address == null || newAnswer == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            var result = "false";
+            
+            Answer previousAnswer = address.Answers.Find(a => a.Question.Id == newAnswer.Question.Id);
+            if (previousAnswer != null && previousAnswer.Id == newAnswer.Id)
+            {
+                result = "true";
+            }
+            return result;
+            
+        }
 
         public void SaveAnswer(String addressId, String answerId)
         {
