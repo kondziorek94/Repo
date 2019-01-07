@@ -29,11 +29,13 @@ namespace CarRentalWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            survey.Questions.SelectMany(q => q.Answers).Intersect(address.Answers, AnswerComparer.Instance).ToList().ForEach(answer => answer.IsChecked = true);
+
             var surveyFillViewModel = new SurveyFillViewModel { Survey = survey, Address = address };
 
             return View(surveyFillViewModel);
         }
-    
+
         public String CheckAnswer(String addressId, String answerId)
         {
             if (addressId == null || answerId == null)
@@ -57,14 +59,14 @@ namespace CarRentalWebApp.Controllers
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             var result = "false";
-            
+
             Answer previousAnswer = address.Answers.Find(a => a.Question.Id == newAnswer.Question.Id);
             if (previousAnswer != null && previousAnswer.Id == newAnswer.Id)
             {
                 result = "true";
             }
             return result;
-            
+
         }
 
         public void SaveAnswer(String addressId, String answerId)
@@ -86,7 +88,7 @@ namespace CarRentalWebApp.Controllers
             }
             Address address = db.Addresses.Find(addressIdGuid);
             Answer answer = db.Answers.Find(answerIdGuid);
-            if(address == null || answer == null )
+            if (address == null || answer == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
@@ -127,5 +129,5 @@ namespace CarRentalWebApp.Controllers
 
 //button gradient
 
-    //PRACA DOMOWA 
-    //spraw aby po zaladowaniu ankiety byly widoczne poprzednio udzielone odpowiedzi
+//PRACA DOMOWA 
+//spraw aby po zaladowaniu ankiety byly widoczne poprzednio udzielone odpowiedzi

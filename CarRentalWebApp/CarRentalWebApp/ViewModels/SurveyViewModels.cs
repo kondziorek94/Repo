@@ -9,5 +9,6 @@ namespace CarRentalWebApp.Models
     {
         public Survey Survey { get; set; }
         public Address Address { get; set; }
+
     }
 }

@@ -7,21 +7,21 @@
         if (!results[2]) return '';
         return decodeURIComponent(results[2].replace(/\+/g, ' '));
     }
-
-    (function () {
-        //kod ktory przechodzi petla po radio buttonach i je zaznacza jezeli backend zwroci ze powinny byc  zaznaczone
-        $(".answer-button").each(function () {
-            var answerId = this.id;
-            var addressId = getURLParameter("addressId");
-            var radioButtonId = this.id;
-            $.ajax({
-                url: "/Survey/CheckAnswer?addressId=" + addressId + "&answerId=" + answerId,
-                success: function (response) {
-                    $("#" + radioButtonId).prop('checked', true);
-                }
-            });
-        });
-    })();
+    //DZIALAJACE NIE USUWAC, pyta sie o kazda odpowiedz czy powinna byc zaznaczona, zastapione przez efektywniejszy mechanizm
+    //(function () {
+    //    //kod ktory przechodzi petla po radio buttonach i je zaznacza jezeli backend zwroci ze powinny byc  zaznaczone
+    //    $(".answer-button").each(function () {
+    //        var answerId = this.id;
+    //        var addressId = getURLParameter("addressId");
+    //        var radioButtonId = this.id;
+    //        $.ajax({
+    //            url: "/Survey/CheckAnswer?addressId=" + addressId + "&answerId=" + answerId,
+    //            success: function (response) {
+    //                $("#" + radioButtonId).prop('checked', true);
+    //            }
+    //        });
+    //    });
+    //})();
 
 
     $(".answer-button").on('load',function () {
