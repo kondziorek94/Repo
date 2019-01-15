@@ -19,9 +19,7 @@
             <br />
             foreach (var answer in question.Answers)
             {
-
-                <input class="answer-button" id="@answer.Id" type="radio" name="@question.Text" value="@answer.Id">@answer.Text<br>
-
+                <input class="answer-button" id="@answer.Id" @(answer.IsChecked ? "checked" : "") type="radio" name="@question.Text" value="@answer.Id">@answer.Text<br>
             }
             <br>
         }

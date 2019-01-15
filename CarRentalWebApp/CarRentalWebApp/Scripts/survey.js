@@ -24,7 +24,7 @@
     //})();
 
 
-    $(".answer-button").on('load',function () {
+    $(".answer-button").on('load', function () {
         var answerId = this.id;
         var name = this.name;
         var addressId = getURLParameter("addressId");

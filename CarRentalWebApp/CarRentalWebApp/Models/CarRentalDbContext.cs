@@ -10,7 +10,8 @@ namespace CarRentalWebApp.Models
         public DbSet<Question> Questions { get; set; }
         public DbSet<Survey> Surveys { get; set; }
 
-        public CarRentalDbContext() : base("MainDb") {
+        public CarRentalDbContext() : base("MainDb")
+        {
             Configuration.LazyLoadingEnabled = true;
         }
     }

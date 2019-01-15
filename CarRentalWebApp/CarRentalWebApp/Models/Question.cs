@@ -11,6 +11,5 @@ namespace CarRentalWebApp.Models
         public String Text { get; set; }
         public virtual Survey Survey { get; set; }
         public virtual List<Answer> Answers { get; set; }
-
     }
 }

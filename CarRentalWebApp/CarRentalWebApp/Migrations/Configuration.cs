@@ -99,7 +99,7 @@
             });
             Survey survey1 = new Survey { Id = guid21, Title = "Cars" };
             Survey survey2 = new Survey { Id = guid22, Title = "Phones" };
-            
+
             Question question1 = new Question { Id = guid23, Text = "What type of car do you have?" };
             Question question2 = new Question { Id = guid24, Text = "What size is the engine?" };
             Question question3 = new Question { Id = guid25, Text = "What phone do you have?" };
@@ -208,16 +208,16 @@
 //3. przeprowadzamy z danym adresem ankietę, to znaczy że musimy być w stanie zapamiętać jego odpowiedzi
 // milion adresów - ile ankiet musimy zapamietac
 
-    //W widoku details adresu pokaz dropdown z lista dostepnych ankiet
-    //dodaj tez tam przycisk przeprowadz ankiete
-    //dropdown i przycisk ma byc widoczny tylko dla zalogowanych uzytkownikow
-    //po wcisnieciu przycisku przeprowadz ankiete masz byc przeniesiony do widoku
-    //Fill dla ankiety, zadbaj o to zeby miec dostep w tym widoku dla kogo ta ankieta jest przeprowadzana czyli
-    //potrzebujemy miec dodstep do Id adresu z ktorego przyszlismy
-    //aby to osiagnac Id to trzeba umiesci w querystringu lub mozliwe ze da rade go wrzucic do Viewbaga, ale nie wiem musialbym sam sprobowac
-    //ABY UDOWODNIC ZE MASZ DOSTEP DO TEGO Id wpisz go w tagi <h1> na tej stronie
+//W widoku details adresu pokaz dropdown z lista dostepnych ankiet
+//dodaj tez tam przycisk przeprowadz ankiete
+//dropdown i przycisk ma byc widoczny tylko dla zalogowanych uzytkownikow
+//po wcisnieciu przycisku przeprowadz ankiete masz byc przeniesiony do widoku
+//Fill dla ankiety, zadbaj o to zeby miec dostep w tym widoku dla kogo ta ankieta jest przeprowadzana czyli
+//potrzebujemy miec dodstep do Id adresu z ktorego przyszlismy
+//aby to osiagnac Id to trzeba umiesci w querystringu lub mozliwe ze da rade go wrzucic do Viewbaga, ale nie wiem musialbym sam sprobowac
+//ABY UDOWODNIC ZE MASZ DOSTEP DO TEGO Id wpisz go w tagi <h1> na tej stronie
 
 
-    //ZADANIE DOMOWE NA BOKu
-    //Spraw aby przycisk FillSurvey byl wypelniony gradientem
-    //Spraw aby przy najechaniu kursorem myszki(hover) gradient wirowal
+//ZADANIE DOMOWE NA BOKu
+//Spraw aby przycisk FillSurvey byl wypelniony gradientem
+//Spraw aby przy najechaniu kursorem myszki(hover) gradient wirowal

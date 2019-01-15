@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarRentalWebApp.Tests", "Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{BF0575FF-AAF4-4A85-AC1E-E078E0CE53A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeworkSelectMany", "PracaDomowa\HomeworkSelectMany.csproj", "{705E47A7-7F55-41C0-B81D-331AC2B5421A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeworkSingletons", "HomeworkSingletons\HomeworkSingletons.csproj", "{8C271408-B2D4-4509-9C40-9E6BA9D577E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{BF0575FF-AAF4-4A85-AC1E-E078E0CE53A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF0575FF-AAF4-4A85-AC1E-E078E0CE53A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF0575FF-AAF4-4A85-AC1E-E078E0CE53A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{705E47A7-7F55-41C0-B81D-331AC2B5421A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{705E47A7-7F55-41C0-B81D-331AC2B5421A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{705E47A7-7F55-41C0-B81D-331AC2B5421A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{705E47A7-7F55-41C0-B81D-331AC2B5421A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C271408-B2D4-4509-9C40-9E6BA9D577E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C271408-B2D4-4509-9C40-9E6BA9D577E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C271408-B2D4-4509-9C40-9E6BA9D577E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C271408-B2D4-4509-9C40-9E6BA9D577E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

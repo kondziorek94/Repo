@@ -30,7 +30,11 @@ namespace CarRentalWebApp.Controllers
                 return HttpNotFound();
             }
             survey.Questions.SelectMany(q => q.Answers).Intersect(address.Answers, AnswerComparer.Instance).ToList().ForEach(answer => answer.IsChecked = true);
-
+            //posortuj survey.Questions.Answers(kazdy zbior odpowiedzi) na podstawie
+            foreach(var question in survey.Questions)
+            {
+               question.Answers =  question.Answers.OrderBy(o => o.Text).ToList();
+            }
             var surveyFillViewModel = new SurveyFillViewModel { Survey = survey, Address = address };
 
             return View(surveyFillViewModel);
