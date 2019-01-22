@@ -53,39 +53,51 @@
     $("#PhoneNumber_Asc").click(sort);
     $("#PhoneNumber_Desc").click(sort);
     $("#FillSurvey").click(function () {
-            window.location.assign("/Survey/Fill?id=" + $("#SurveyDropdown").val() + "&addressId=" + addressId);
-        }
+        window.location.assign("/Survey/Fill?id=" + $("#SurveyDropdown").val() + "&addressId=" + addressId);
+    }
     );
-    $("#sendEmail").click(function () {
-        var addressId = window.location.href.split("/").pop();
-        $.ajax({
-            url: "/Address/SendEmail?addressId=" + addressId,
-            data: { messageText: $("#emailMsg").val() },
-            success: function (result, status, xhr) {
-              //  alert("E-mail sent");
-            },
-            error: function (result, status, xhr) {
-                //  alert("E-mail sent");
-            }
-        });
-    });
+    $('.alert').hide();
+    var alertHandler = function () {
+        $('.alert').show().fadeTo(500, 1);
+        window.setTimeout(function () {
+            $('.alert').fadeTo(500, 0).slideUp(500, function () {
+                $(this).hide();
+            });
+        }, 3000);
+    };
 
-    //1 mail na 10 sekund
-    //animacja jezeli wyslano maila(np. powiadomienie na srodku ekranu ktore samo znika w ciagu 2 sekund)
-    //jezeli nie wyslano tak tak jak wyzej tylko inna informacja
+$("#sendEmail").click(function () {
+    var addressId = window.location.href.split("/").pop();
     $.ajax({
-        type: "POST",
-        url: "/Address/GetNumberPages",
-        contentType: "application/json; charset=utf-8",
-        dataType: "html",
-        success: function () {
-            //uncomment do overwite whatever is in TotalPageNumber div
-            // $("#TotalPageNumber").text(result);
+        url: "/Address/SendEmail?addressId=" + addressId,
+        data: { messageText: $("#emailMsg").val() },
+        success: function (result, status, xhr) {
+           alertHandler();
         },
-        error: function (xhr, status, error) {
-            $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+        error: function (result, status, xhr) {
+           alertHandler();
         }
     });
+});
+
+//1 mail na 10 sekund (throttling)
+//animacja jezeli wyslano maila(np. powiadomienie na srodku ekranu ktore samo znika w ciagu 2 sekund)
+//jezeli nie wyslano tak tak jak wyzej tylko inna informacja
+//zadbaj o napis ktory sie pojawia w powiadomieniu
+    //spraw aby to powiadomienie od poczatku nie bylo widoczne ani przez chwile
+    $.ajax({
+    type: "POST",
+    url: "/Address/GetNumberPages",
+    contentType: "application/json; charset=utf-8",
+    dataType: "html",
+    success: function () {
+        //uncomment do overwite whatever is in TotalPageNumber div
+        // $("#TotalPageNumber").text(result);
+    },
+    error: function (xhr, status, error) {
+        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText);
+    }
+});
 });
 $(window).trigger("load");
 
