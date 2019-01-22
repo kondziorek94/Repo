@@ -56,7 +56,23 @@
             window.location.assign("/Survey/Fill?id=" + $("#SurveyDropdown").val() + "&addressId=" + addressId);
         }
     );
+    $("#sendEmail").click(function () {
+        var addressId = window.location.href.split("/").pop();
+        $.ajax({
+            url: "/Address/SendEmail?addressId=" + addressId,
+            data: { messageText: $("#emailMsg").val() },
+            success: function (result, status, xhr) {
+              //  alert("E-mail sent");
+            },
+            error: function (result, status, xhr) {
+                //  alert("E-mail sent");
+            }
+        });
+    });
 
+    //1 mail na 10 sekund
+    //animacja jezeli wyslano maila(np. powiadomienie na srodku ekranu ktore samo znika w ciagu 2 sekund)
+    //jezeli nie wyslano tak tak jak wyzej tylko inna informacja
     $.ajax({
         type: "POST",
         url: "/Address/GetNumberPages",
@@ -72,3 +88,7 @@
     });
 });
 $(window).trigger("load");
+
+
+//utworz email
+// controller send email

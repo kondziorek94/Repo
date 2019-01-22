@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
+using System.Net.Mail;
 namespace CarRentalWebApp.Controllers
 {
     public class AddressController : Controller
@@ -118,6 +119,24 @@ namespace CarRentalWebApp.Controllers
             }
             return View(address);
         }
+        public void SendEmail(Guid addressId, string messageText)
+        {
+            var toSendAddress = db.Addresses.Find(addressId);
+            if (string.IsNullOrWhiteSpace(toSendAddress.Email))
+            {
+                throw new System.Web.Http.HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            var smtp = new SmtpClient();
+            MailMessage message = new MailMessage();
+            message.To.Add(new MailAddress(toSendAddress.Email));
+            message.Subject = "subject";
+            message.Body = messageText;
+            {
+                smtp.Send(message);
+            }
+        }
+
         [Authorize(Roles = "Administrator")]
         public ActionResult Delete(Guid? id)
         {

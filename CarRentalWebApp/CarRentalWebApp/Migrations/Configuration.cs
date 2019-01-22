@@ -54,7 +54,7 @@
             Guid guid37 = new Guid("7ded2844-63e7-4627-b122-4788cea137f3");
             Guid guid38 = new Guid("18939c46-ed2a-4016-9e4b-c53d23253011");
 
-            Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel = ImportanceLevel.Regular };
+            Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel = ImportanceLevel.Regular};
             Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920", ImportanceLevel = ImportanceLevel.Critical };
             Address address3 = new Address { Id = guid3, CityName = "Los Angeles, CA", StreetName = "Regent Avenue", PhoneNumber = "745-361-295", ZipCode = "930 829", ImportanceLevel = ImportanceLevel.VIP };
             Address address4 = new Address { Id = guid4, CityName = "Chicago, IL", StreetName = "Fermor Avenue", PhoneNumber = "413-758-382", ZipCode = "592 739", ImportanceLevel = ImportanceLevel.Regular };
@@ -64,7 +64,7 @@
             Address address8 = new Address { Id = guid8, CityName = "Nashville, TN", StreetName = "5th Street", PhoneNumber = "612-019-169", ZipCode = "309 142", ImportanceLevel = ImportanceLevel.Critical };
             Address address9 = new Address { Id = guid9, CityName = "Indianapolis, IN", StreetName = "University Crescent", PhoneNumber = "213-305-756", ZipCode = "745 102", ImportanceLevel = ImportanceLevel.VIP };
             Address address10 = new Address { Id = guid10, CityName = "Kansas, MO", StreetName = "Ulanowska", PhoneNumber = "314-483-795", ZipCode = "901 384", ImportanceLevel = ImportanceLevel.Regular };
-            Address address11 = new Address { Id = guid11, CityName = "Warszawa", StreetName = "Gleboka", PhoneNumber = "501-518-811", ZipCode = "21943", ImportanceLevel = ImportanceLevel.Critical };
+            Address address11 = new Address { Id = guid11, CityName = "Warszawa", StreetName = "Gleboka", PhoneNumber = "501-518-811", ZipCode = "21943", ImportanceLevel = ImportanceLevel.Critical, Email = "kbudny492@gmail.com" };
             Address address12 = new Address { Id = guid12, CityName = "Krakow", StreetName = "Solidarnosci", PhoneNumber = "509-421-255", ZipCode = "46382", ImportanceLevel = ImportanceLevel.VIP };
             Address address13 = new Address { Id = guid13, CityName = "Lublin", StreetName = "Krasnicka", PhoneNumber = "302-281-573", ZipCode = "52845", ImportanceLevel = ImportanceLevel.Regular };
             Address address14 = new Address { Id = guid14, CityName = "Rzeszow", StreetName = "Zemborzycka", PhoneNumber = "728-472-674", ZipCode = "68291", ImportanceLevel = ImportanceLevel.Critical };
@@ -202,22 +202,3 @@
         }
     }
 }
-//Praca domowa 02.10.2018
-//1. ankieta w adresie, ma byc mozliwosc przeprowadzania wielu ankiet z danym adresem.
-//2. ankieta sklada sie z pytań a pytania składają się z odpowiedzi
-//3. przeprowadzamy z danym adresem ankietę, to znaczy że musimy być w stanie zapamiętać jego odpowiedzi
-// milion adresów - ile ankiet musimy zapamietac
-
-//W widoku details adresu pokaz dropdown z lista dostepnych ankiet
-//dodaj tez tam przycisk przeprowadz ankiete
-//dropdown i przycisk ma byc widoczny tylko dla zalogowanych uzytkownikow
-//po wcisnieciu przycisku przeprowadz ankiete masz byc przeniesiony do widoku
-//Fill dla ankiety, zadbaj o to zeby miec dostep w tym widoku dla kogo ta ankieta jest przeprowadzana czyli
-//potrzebujemy miec dodstep do Id adresu z ktorego przyszlismy
-//aby to osiagnac Id to trzeba umiesci w querystringu lub mozliwe ze da rade go wrzucic do Viewbaga, ale nie wiem musialbym sam sprobowac
-//ABY UDOWODNIC ZE MASZ DOSTEP DO TEGO Id wpisz go w tagi <h1> na tej stronie
-
-
-//ZADANIE DOMOWE NA BOKu
-//Spraw aby przycisk FillSurvey byl wypelniony gradientem
-//Spraw aby przy najechaniu kursorem myszki(hover) gradient wirowal

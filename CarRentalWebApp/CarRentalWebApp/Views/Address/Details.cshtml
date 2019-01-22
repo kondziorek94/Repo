@@ -53,6 +53,11 @@
                 @Html.DropDownList("SurveyDropdown", Model.Surveys.Select(a => new SelectListItem() { Text = a.Title, Value = a.Id.ToString() }))
                 <button id="FillSurvey" class="gradient-button">Fill Survey</button>
             </dd>
+            <dd>
+                <textarea class="form-control" rows="5" id="emailMsg"></textarea>
+            
+                <button id="sendEmail">Send E-mail</button>
+            </dd>
         }
     </dl>
 </div>

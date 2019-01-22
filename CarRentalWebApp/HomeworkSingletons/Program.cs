@@ -96,3 +96,6 @@ namespace HomeworkSingletons
 //PO ABSTRAKCJI I INTERFEJSACH
 //Dodamy funkcjonalnosc wysylania e-maila do adresu
 //Zaprogramujemy healthchecki -> monitoring pasywny aplikacji
+
+    //Czy masz z uczelni dostep do Azure DevOps zwane wczesniej Visual Studio Team Services (czy mozesz sobie na tym konto zalozyc)
+    //Czy masz dostep do uczelni do Azure i mozesz stworzyc sobie maszyne wirtualna/
