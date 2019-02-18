@@ -57,8 +57,9 @@
     }
     );
     $('.alert').hide();
-    var alertHandler = function () {
+    var alertHandler = function (message) {
         $('.alert').show().fadeTo(500, 1);
+        $("#message").text(message);
         window.setTimeout(function () {
             $('.alert').fadeTo(500, 0).slideUp(500, function () {
                 $(this).hide();
@@ -72,11 +73,10 @@ $("#sendEmail").click(function () {
         url: "/Address/SendEmail?addressId=" + addressId,
         data: { messageText: $("#emailMsg").val() },
         success: function (result, status, xhr) {
-            alertHandler(window.location.href(), "E-mail sent");
-            ("#message").messageText = "E-mail sent ";
+            alertHandler("E-mail sent");
         },
         error: function (result, status, xhr) {
-           alertHandler();
+           alertHandler("Failed to send an e-mail");
         }
     });
 });

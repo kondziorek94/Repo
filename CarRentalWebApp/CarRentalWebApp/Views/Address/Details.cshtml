@@ -61,8 +61,9 @@
         }
     </dl>
 </div>
-<div class="alert alert-warning fade in">
-    <a href="#" id="message" class=" close" data-dismiss="alert" aria-label="close"style="text-decoration:none">&times;</a>Alert: e-mail
+<div class="alert alert-warning fade in" hidden>
+    <a href="#" class=" close" data-dismiss="alert" aria-label="close" style="text-decoration:none">&times;</a>
+    <text id="message">CZY WIADOMOSC E-MAIL ZOSTALA WYSLANA</text>
 </div> 
 <p>
     @if (User.Identity.IsAuthenticated)
