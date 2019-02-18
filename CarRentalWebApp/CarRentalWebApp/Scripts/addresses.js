@@ -72,7 +72,8 @@ $("#sendEmail").click(function () {
         url: "/Address/SendEmail?addressId=" + addressId,
         data: { messageText: $("#emailMsg").val() },
         success: function (result, status, xhr) {
-           alertHandler();
+            alertHandler(window.location.href(), "E-mail sent");
+            ("#message").messageText = "E-mail sent ";
         },
         error: function (result, status, xhr) {
            alertHandler();
