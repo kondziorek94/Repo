@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
@@ -12,7 +10,6 @@ namespace CarRentalWebApp.Controllers
     public class SurveyController : Controller
     {
         private CarRentalDbContext db = new CarRentalDbContext();
-        // GET: Survey
         public ActionResult Index()
         {
             return View();
@@ -30,10 +27,9 @@ namespace CarRentalWebApp.Controllers
                 return HttpNotFound();
             }
             survey.Questions.SelectMany(q => q.Answers).Intersect(address.Answers, AnswerComparer.Instance).ToList().ForEach(answer => answer.IsChecked = true);
-            //posortuj survey.Questions.Answers(kazdy zbior odpowiedzi) na podstawie
-            foreach(var question in survey.Questions)
+            foreach (var question in survey.Questions)
             {
-               question.Answers =  question.Answers.OrderBy(o => o.Text).ToList();
+                question.Answers = question.Answers.OrderBy(o => o.Text).ToList();
             }
             var surveyFillViewModel = new SurveyFillViewModel { Survey = survey, Address = address };
 
@@ -75,7 +71,6 @@ namespace CarRentalWebApp.Controllers
 
         public void SaveAnswer(String addressId, String answerId)
         {
-            //parsuj w tryu, jezeli bedzie wyjatek to rzuc http bad request
             if (addressId == null || answerId == null)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
@@ -96,27 +91,14 @@ namespace CarRentalWebApp.Controllers
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            //Wybierz z posrod udzielonych opodwiedzi dla adresu taka ktora jest przyporzadkowana do tego samego pytania co answer(udzielna)
             Answer previousAnswer = address.Answers.Find(a => a.Question.Id == answer.Question.Id);
-
-
-            //sprawdz czy odpowiedz na to pytanie byla juz udzielona dla tego adresu
-            //Jezeli tak: to usun ta odpowiedz (mozna upsrawnic zeby usuwal tylko jezeli zostala dana inna odpowiedz niz poprzednio)
-            //Jezeli nie: to nic
-            //Przypisz nowa odpowiedz do danego adresu (no chyba ze nie trzeba bo nie usunales bo byla taka sama udzielona)
             if (previousAnswer != null)
             {
                 address.Answers.RemoveAll(a => a.Id == previousAnswer.Id);
             }
             address.Answers.Add(answer);
-
-
-            //pobierz ze wszystkich odpowiedzi przypisanych do tego adresu, odpowiedz o id identycznym z dana odpowiedzia z ankiety
-            //Answer answer = address.Answers.Find(a=>a.Id==answerIdCopy);
-            //answer = db.Answers.Find(answerId);
             db.SaveChanges();
         }
 
     }
 }
-//button gradient

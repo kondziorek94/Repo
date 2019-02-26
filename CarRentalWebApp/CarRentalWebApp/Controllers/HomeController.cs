@@ -14,7 +14,8 @@ namespace CarRentalWebApp.Controllers
         {
             return View();
         }
-        public ActionResult About()
+
+        public ActionResult GetAbout()
         {
             ViewBag.Message = "Your application description page!";
             dynamic o = new System.Dynamic.ExpandoObject();
@@ -22,7 +23,8 @@ namespace CarRentalWebApp.Controllers
             ViewBag.o = o;
             return View();
         }
-        public ActionResult Contact()
+
+        public ActionResult GetContact()
         {
             ViewBag.Message = "Your contact page.";
             ViewBag.Val = 10;

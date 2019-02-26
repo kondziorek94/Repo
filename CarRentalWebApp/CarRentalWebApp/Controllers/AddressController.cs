@@ -13,7 +13,7 @@ namespace CarRentalWebApp.Controllers
     {
         int pageSize = 2;
         private CarRentalDbContext db = new CarRentalDbContext();
-        private static Dictionary<String,DateTime> ipDictionary = new Dictionary<String,DateTime>();
+        private static Dictionary<String, DateTime> ipDictionary = new Dictionary<String, DateTime>();
         public ActionResult Index(string searchPhrase, string order, int? pageNumber, int? PageSize)
         {
             ViewBag.searchPhrase = searchPhrase;
@@ -122,23 +122,17 @@ namespace CarRentalWebApp.Controllers
         }
         public void SendEmail(Guid addressId, string messageText)
         {
-            //zajrzyj do slownika czy masz juz dany adres ip zapamietany w slowniku i czy id czasu zapisanego w slowniku minelo mniej niz 20 seknud
-            //jezeli tak no to zwroc jakis error(zobacz w jakis sposob dac znac ze ajax sie nie powiodl)
-            //jezeli nie bylo w slowniku tego ip badz minelo co najmniej 20 sekund to wyslij wiadomosc
-
-            //problemy do rozwiazania
-            //1. jak pobrac ip zapytania, w metodzie akcji kontrolera
-            //2. jak przechowywac te pary ip,czas  -> statyczny slownik na gorze tej klasy
-            //3. jak dac znac ze byl error zeby wlasciwa czesc zapytania ajaxowego zostala wykonana(error)
             string ip = Request.UserHostAddress;
-            if (ipDictionary.Keys.Contains(ip) && (DateTime.Now- ipDictionary[ip]).Seconds < 20)
+            if (ipDictionary.Keys.Contains(ip) && (DateTime.Now - ipDictionary[ip]).Seconds < 20)
             {
                 throw new System.Web.Http.HttpResponseException(HttpStatusCode.BadRequest);
             }
-            if (!ipDictionary.Keys.Contains(ip)) {
-                ipDictionary.Add(ip,DateTime.Now);
+            if (!ipDictionary.Keys.Contains(ip))
+            {
+                ipDictionary.Add(ip, DateTime.Now);
             }
-            else if (ipDictionary.Keys.Contains(ip) && (DateTime.Now - ipDictionary[ip]).Seconds > 20) {
+            else if (ipDictionary.Keys.Contains(ip) && (DateTime.Now - ipDictionary[ip]).Seconds > 20)
+            {
                 ipDictionary[ip] = DateTime.Now;
             }
 

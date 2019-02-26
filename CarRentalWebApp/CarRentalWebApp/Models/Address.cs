@@ -14,7 +14,7 @@ namespace CarRentalWebApp.Models
         public String StreetName { get; set; }
         public String ZipCode { get; set; }
         [EmailAddress]
-        public String Email { get; set; } 
+        public String Email { get; set; }
         [RegularExpression(@"^\d{3}-\d{3}-\d{3}$", ErrorMessage = "Ivalid Phone Number")]
         public String PhoneNumber { get; set; }
         public ImportanceLevel ImportanceLevel { get; set; }

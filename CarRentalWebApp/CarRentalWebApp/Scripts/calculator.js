@@ -204,4 +204,3 @@
         unitsPerTick: 1
     });
 });
-/*$(window).trigger("load")*/
