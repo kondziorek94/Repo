@@ -14,6 +14,7 @@ namespace CarRentalWebApp.Controllers
         int pageSize = 2;
         private CarRentalDbContext db = new CarRentalDbContext();
         private static Dictionary<String, DateTime> ipDictionary = new Dictionary<String, DateTime>();
+        //do otestowanie, w tym przypadku sprawdzasz tylko czy zostala zwrocona jakas niepusta lista w modelu
         public ActionResult Index(string searchPhrase, string order, int? pageNumber, int? PageSize)
         {
             ViewBag.searchPhrase = searchPhrase;
@@ -55,6 +56,7 @@ namespace CarRentalWebApp.Controllers
             ViewBag.CurrentPageNumber = currentPage;
             return View(list);
         }
+        //do otestowania 
         public int GetNumberPages(List<Address> list)
         {
             int recordNumber = list != null ? list.Count() : 0;

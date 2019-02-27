@@ -20,10 +20,13 @@ namespace CarRentalWebApp.Tests.Controllers
         public void About()
         {
             // Arrange
+            HomeController controller = new HomeController();
             // Act
-            ViewResult result = ((HomeController)new HomeController()).GetAbout() as ViewResult;
+            ViewResult result = controller.GetAbout() as ViewResult;
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            var actual = result.ViewBag.Message;
+            var expected = "Your application description page!";
+            Assert.AreEqual(expected, actual);
         }
         [TestMethod]
         public void Contact()
