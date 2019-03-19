@@ -3,8 +3,12 @@
 	As a math idiot
 	I want to be told the sum of two numbers
 
-@scenario
 Scenario: Go to About page
 	Given I am on the home page
 	And I clicked "About" button
 	Then I see "About" page
+
+Scenario: Go to Contact page
+	Given I am on the home page
+	And I clicked "Contact" button
+	Then I see "Contact" page

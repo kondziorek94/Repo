@@ -29,29 +29,39 @@ namespace CarRentalWebApp.E2ETests.Steps
         [Given(@"I clicked ""(.*)"" button")]
         public void GivenIClickedButton(string buttonText)
         {
-            By buttonSeletor;
+            By buttonSelector;
             switch (buttonText)
             {
+                case "Contact":
+                    buttonSelector = HomePageModel.ContactSelector;
+                    break;
                 default:
-                    buttonSeletor = HomePageModel.AboutSelector;
+                    buttonSelector = HomePageModel.AboutSelector;
                     break;
             }
 
-            homePageModel.ClickButton(buttonSeletor);
+            homePageModel.ClickButton(buttonSelector);
         }
 
         [Then(@"I see ""(.*)"" page")]
-        public void ThenISeePage(string title)
+        public void ThenISeePage(string pageName)
         {
             By titleSelector;
-            switch (title)
+            string expectedValue = "";
+            switch (pageName)
             {
+                case "Contact":
+                    titleSelector = ContactPageModel.Title;
+                    expectedValue = "Contact.";
+                    break;
                 default:
                     titleSelector = AboutPageModel.Title;
+                    expectedValue = "About.";
                     break;
             }
             string titleText = driver.FindElement(titleSelector).Text;
-            Assert.AreEqual("About.", titleText);
+
+            Assert.AreEqual(expectedValue, titleText);
         }
 
     }

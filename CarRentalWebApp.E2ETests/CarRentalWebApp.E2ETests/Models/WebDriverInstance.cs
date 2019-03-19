@@ -6,6 +6,11 @@ namespace CarRentalWebApp.E2ETests.Models
 {
     public class WebDriverInstance
     {
-        public static readonly IWebDriver INSTANCE = new ChromeDriver();
+        public static IWebDriver INSTANCE { private set; get; }
+        public static void Reinstiate()
+        {
+            INSTANCE = new ChromeDriver();
+        }
+
     }
 }
