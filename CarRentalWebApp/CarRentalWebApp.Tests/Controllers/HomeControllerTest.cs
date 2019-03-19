@@ -22,7 +22,7 @@ namespace CarRentalWebApp.Tests.Controllers
             // Arrange
             HomeController controller = new HomeController();
             // Act
-            ViewResult result = controller.GetAbout() as ViewResult;
+            ViewResult result = controller.About() as ViewResult;
             // Assert
             var actual = result.ViewBag.Message;
             var expected = "Your application description page!";
@@ -34,7 +34,7 @@ namespace CarRentalWebApp.Tests.Controllers
             // Arrange
             HomeController controller = new HomeController();
             // Act
-            ViewResult result = controller.GetContact() as ViewResult;
+            ViewResult result = controller.Contact() as ViewResult;
             // Assert
             Assert.IsNotNull(result);
         }
