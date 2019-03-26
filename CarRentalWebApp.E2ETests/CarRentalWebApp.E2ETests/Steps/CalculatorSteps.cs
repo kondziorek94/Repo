@@ -16,12 +16,10 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             driver = WebDriverInstance.INSTANCE;
         }
-
-        [Then(@"I check the result")]
-        public void ICheckTheResult()
+        [Then(@"I check if the result eqauls '(.*)'")]
+        public void ThenICheckIfTheResultEqauls(string expectedValue)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            string expectedValue = "2 + 5";
             string actualValue = driver.FindElement(CalculatorPageModel.DisplaySelector).GetAttribute("value");
             Assert.AreEqual(expectedValue, actualValue);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);

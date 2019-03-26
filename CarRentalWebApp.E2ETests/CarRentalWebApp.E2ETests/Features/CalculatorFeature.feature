@@ -6,4 +6,9 @@
 Scenario: Check calculator functionality
 	Given I am on the home page
 	And I clicked "Go to calculator" button
-	Then I check the result
+	Then I check if the result eqauls '2 + 5'
+
+
+	//wciskam C/CE i ekran jest pusty
+	//wciskam 2,3,*,5=
+	//wtedy na ekranie jest 115

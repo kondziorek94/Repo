@@ -1,14 +1,9 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CarRentalWebApp.E2ETests.Models
 {
-    class ContactPageModel
+    class ContactPageModel : PageModel
     {
-        public static readonly By Title = By.TagName("h1");
+        public static readonly By Title = By.TagName("h2");
     }
 }
