@@ -10,8 +10,8 @@ namespace CarRentalWebApp.E2ETests.Models
     public class CalculatorPageModel
     {
         private IWebDriver driver = WebDriverInstance.INSTANCE;
-        public static By DisplayId = By.Id("calculatorDisplay");
-        public static By EqualSignId = By.Id("equals2");
+        public static By DisplaySelector = By.Id("calculatorDisplay");
+        public static By EqualSignSelector = By.Id("equals2");
 
         public void ClickButton(By selector)
         {

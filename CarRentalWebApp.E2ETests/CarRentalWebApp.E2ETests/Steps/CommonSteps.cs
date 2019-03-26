@@ -24,10 +24,5 @@ namespace CarRentalWebApp.E2ETests.Steps
     }
 }
 
-//done
-//Fix e-mails in database
-//Napraw kalkulator w pelni
-
-
 //to-do list
 //napisz test ktory idzie do kalkulatora i dodaje dwie liczby i sprawdza wynik

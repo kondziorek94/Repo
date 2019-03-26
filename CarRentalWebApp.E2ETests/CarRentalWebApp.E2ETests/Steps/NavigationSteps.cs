@@ -40,7 +40,7 @@ namespace CarRentalWebApp.E2ETests.Steps
                     buttonSelector = HomePageModel.CalculatorSelector;
                     break;
                 case "equals2":
-                    buttonSelector = CalculatorPageModel.EqualSignId;
+                    buttonSelector = CalculatorPageModel.EqualSignSelector;
                     break;
                 default:
                     buttonSelector = HomePageModel.AboutSelector;
@@ -70,15 +70,5 @@ namespace CarRentalWebApp.E2ETests.Steps
 
             Assert.AreEqual(expectedValue, titleText);
         }
-        [Then(@"I check the result")]
-        public void ICheckTheResult()
-        {
-            driver.Manage().Timeouts().ImplicitWait=TimeSpan.FromSeconds(10);
-            string expectedValue = "2 + 5";
-            string actualValue = driver.FindElement(CalculatorPageModel.DisplayId).Text;
-            Assert.AreEqual(expectedValue, actualValue);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-        }
-
     }
 }
