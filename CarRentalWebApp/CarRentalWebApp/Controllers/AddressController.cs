@@ -28,6 +28,7 @@ namespace CarRentalWebApp.Controllers
                 list = db.Addresses.Where(a => a.CityName.Contains(searchPhrase) ||
                                                a.StreetName.Contains(searchPhrase) ||
                                                a.ZipCode.Contains(searchPhrase) ||
+                                               a.Email.Contains(searchPhrase) ||
                                                a.PhoneNumber.Contains(searchPhrase)).ToList();
             }
             else
@@ -84,7 +85,7 @@ namespace CarRentalWebApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber,ImportanceLevel")] Address address)
+        public ActionResult Create([Bind(Include = "Id,CityName,StreetName,ZipCode,Email,PhoneNumber,ImportanceLevel")] Address address)
         {
             if (ModelState.IsValid)
             {
@@ -112,7 +113,7 @@ namespace CarRentalWebApp.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,CityName,StreetName,ZipCode,PhoneNumber,ImportanceLevel")] Address address)
+        public ActionResult Edit([Bind(Include = "Id,CityName,StreetName,ZipCode,Email,PhoneNumber,ImportanceLevel")] Address address)
         {
             if (ModelState.IsValid)
             {

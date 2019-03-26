@@ -1,4 +1,14 @@
 ﻿$(window).on("load", function () {
+    let myFunction = function () {
+        let display = $("#calculatorDisplay");
+        var currentValue = display.val() + this.id;
+        display.val(currentValue);
+    };
+    let operatorFunction = function () {
+        let display = $("#calculatorDisplay");
+        var currentValue = display.val() + " " + this.id + " ";
+        display.val(currentValue);
+    };
     for (let i = 0; i < 10; i++) {
         $("#" + i).click(myFunction);
     }
@@ -63,16 +73,8 @@
         let fn = eval("(function(x){ return " + s + "})");
         myGraph.drawEquation(fn, 'blue', 3);
     });
-    let myFunction = function () {
-        let display = $("#calculatorDisplay");
-        var currentValue = display.val() + this.id;
-        display.val(currentValue);
-    };
-    let operatorFunction = function () {
-        let display = $("#calculatorDisplay");
-        var currentValue = display.val() + " " + this.id + " ";
-        display.val(currentValue);
-    };
+   
+    
     function Graph(config) {
         this.config = config;
         this.repaint(this.config);

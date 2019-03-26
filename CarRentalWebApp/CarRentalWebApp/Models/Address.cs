@@ -10,12 +10,18 @@ namespace CarRentalWebApp.Models
     public class Address
     {
         public Guid Id { get; set; }
+        [Required]
         public String CityName { get; set; }
+        [Required]
         public String StreetName { get; set; }
+        [Required]
         public String ZipCode { get; set; }
         [EmailAddress]
+        [Required]
+        //[RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Invalid email")]
         public String Email { get; set; }
-        [RegularExpression(@"^\d{3}-\d{3}-\d{3}$", ErrorMessage = "Ivalid Phone Number")]
+        [Required]
+        [RegularExpression(@"^\d{3}-\d{3}-\d{3}$", ErrorMessage = "Invalid Phone Number")]
         public String PhoneNumber { get; set; }
         public ImportanceLevel ImportanceLevel { get; set; }
         public virtual List<Answer> Answers { get; set; }

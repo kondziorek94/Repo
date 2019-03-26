@@ -88,6 +88,7 @@
       <DependentUpon>NavigationFeature.feature</DependentUpon>
     </Compile>
     <Compile Include="Models\AboutPageModel.cs" />
+    <Compile Include="Models\CalculatorPageModel.cs" />
     <Compile Include="Models\ContactPageModel.cs" />
     <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\WebDriverInstance.cs" />

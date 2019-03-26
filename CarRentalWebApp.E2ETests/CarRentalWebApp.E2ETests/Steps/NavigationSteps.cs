@@ -1,6 +1,7 @@
 ﻿using CarRentalWebApp.E2ETests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
+using System;
 using System.Configuration;
 using TechTalk.SpecFlow;
 
@@ -35,6 +36,12 @@ namespace CarRentalWebApp.E2ETests.Steps
                 case "Contact":
                     buttonSelector = HomePageModel.ContactSelector;
                     break;
+                case "Go to calculator":
+                    buttonSelector = HomePageModel.CalculatorSelector;
+                    break;
+                case "equals2":
+                    buttonSelector = CalculatorPageModel.EqualSignId;
+                    break;
                 default:
                     buttonSelector = HomePageModel.AboutSelector;
                     break;
@@ -62,6 +69,15 @@ namespace CarRentalWebApp.E2ETests.Steps
             string titleText = driver.FindElement(titleSelector).Text;
 
             Assert.AreEqual(expectedValue, titleText);
+        }
+        [Then(@"I check the result")]
+        public void ICheckTheResult()
+        {
+            driver.Manage().Timeouts().ImplicitWait=TimeSpan.FromSeconds(10);
+            string expectedValue = "2 + 5";
+            string actualValue = driver.FindElement(CalculatorPageModel.DisplayId).Text;
+            Assert.AreEqual(expectedValue, actualValue);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
 
     }

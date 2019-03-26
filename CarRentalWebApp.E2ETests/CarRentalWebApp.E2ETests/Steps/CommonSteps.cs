@@ -23,7 +23,11 @@ namespace CarRentalWebApp.E2ETests.Steps
         }
     }
 }
-//1. ZROB KOPIE CALEGO PROJEKTU
-//2. Oryginal sprobuj dodac do jakiegos repozytorium github, nie musi byc to samo co CarRentalWebApp
-//3. Napisz test ktory idzie do strony Contact i sprawdza czy jest na tej stronie 
-//4. NIE podejmuj sie 3. jezeli nie wykonasz 2.
+
+//done
+//Fix e-mails in database
+//Napraw kalkulator w pelni
+
+
+//to-do list
+//napisz test ktory idzie do kalkulatora i dodaje dwie liczby i sprawdza wynik

@@ -9,6 +9,6 @@ namespace CarRentalWebApp.E2ETests.Models
 {
     class ContactPageModel
     {
-        public static readonly By Title = By.TagName("h2");
+        public static readonly By Title = By.TagName("h1");
     }
 }

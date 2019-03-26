@@ -12,3 +12,11 @@ Scenario: Go to Contact page
 	Given I am on the home page
 	And I clicked "Contact" button
 	Then I see "Contact" page
+
+Scenario: Check calculator functionality
+	Given I am on the home page
+	And I clicked "Go to calculator" button
+	Then I check the result
+	
+	
+

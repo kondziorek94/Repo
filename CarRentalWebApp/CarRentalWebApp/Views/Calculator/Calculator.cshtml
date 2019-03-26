@@ -2,6 +2,10 @@
     @Styles.Render("~/Content/calc");
     @Scripts.Render("~/bundles/calc");
 }
+@{ 
+    ViewBag.Title = "Calculator";
+}
+<h2 center >@ViewBag.Title</h2>
 <div class="container text-center" id="calc">
     <div class="calcBG col-md-3 col-md-offset-4 text-center">
         <div class="row">
