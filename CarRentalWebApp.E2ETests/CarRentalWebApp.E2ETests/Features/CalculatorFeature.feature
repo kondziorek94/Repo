@@ -5,10 +5,14 @@
 
 Scenario: Check calculator functionality
 	Given I am on the home page
-	And I clicked "Go to calculator" button
-	Then I check if the result eqauls '2 + 5'
+	And I click "Go to calculator" button
+	And I check if the result equals to '2 + 5'
+	And I click "CE" calculator buttons
+	And I check if the result equals to ''
+	And I click "2,3,*,5,=" calculator buttons
+	Then I check if the result equals to '115'
 
 
-	//wciskam C/CE i ekran jest pusty
-	//wciskam 2,3,*,5=
-	//wtedy na ekranie jest 115
+	#wciskam C/CE i ekran jest pusty - podzie na dwa krokji
+	#wciskam 2,3,*,5=
+	#wtedy na ekranie jest 115

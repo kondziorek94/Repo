@@ -5,10 +5,10 @@
 
 Scenario: Go to About page
 	Given I am on the home page
-	And I clicked "About" button
+	And I click "About" button
 	Then I see "About" page
 
 Scenario: Go to Contact page
 	Given I am on the home page
-	And I clicked "Contact" button
+	And I click "Contact" button
 	Then I see "Contact" page

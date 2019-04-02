@@ -3,10 +3,10 @@ namespace CarRentalWebApp.E2ETests.Models
 {
     public class PageModel
     {
-        protected IWebDriver driver = WebDriverInstance.INSTANCE;
-        public void ClickButton(By selector)
+        protected static IWebDriver Driver => WebDriverInstance.INSTANCE;
+        public static void ClickButton(By selector)
         {
-            IWebElement button = driver.FindElement(selector);
+            IWebElement button = Driver.FindElement(selector);
             button.Click();
         }
     }

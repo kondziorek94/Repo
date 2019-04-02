@@ -10,11 +10,9 @@ namespace CarRentalWebApp.E2ETests.Steps
     [Binding]
     public class NavigationSteps
     {
-        private HomePageModel homePageModel;
         private IWebDriver driver;
         public NavigationSteps()
         {
-            homePageModel = new HomePageModel();
             driver = WebDriverInstance.INSTANCE;
         }
 
@@ -27,8 +25,8 @@ namespace CarRentalWebApp.E2ETests.Steps
             Assert.AreEqual("ASP.NET", title.Text);
         }
 
-        [Given(@"I clicked ""(.*)"" button")]
-        public void GivenIClickedButton(string buttonText)
+        [Given(@"I click ""(.*)"" button")]
+        public void GivenIClickButton(string buttonText)
         {
             By buttonSelector;
             switch (buttonText)
@@ -47,7 +45,7 @@ namespace CarRentalWebApp.E2ETests.Steps
                     break;
             }
 
-            homePageModel.ClickButton(buttonSelector);
+            PageModel.ClickButton(buttonSelector);
         }
 
         [Then(@"I see ""(.*)"" page")]
