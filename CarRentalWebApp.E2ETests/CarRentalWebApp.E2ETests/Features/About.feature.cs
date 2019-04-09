@@ -99,3 +99,4 @@ this.CanFindSearchResults("single", "chrome", ((string[])(null)));
 }
 #pragma warning restore
 #endregion
+

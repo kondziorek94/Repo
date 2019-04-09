@@ -17,8 +17,8 @@ namespace CarRentalWebApp.E2ETests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("CalculatorFeature", Description="\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-        "f two numbers", SourceFile="Features\\CalculatorFeature.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("CalculatorFeature", Description="\tIn order to be able to evaluate expressions\r\n\tAs a user\r\n\tI would like to be abl" +
+        "e to get correct results from calculator", SourceFile="Features\\CalculatorFeature.feature", SourceLine=0)]
     public partial class CalculatorFeatureFeature
     {
         
@@ -31,8 +31,8 @@ namespace CarRentalWebApp.E2ETests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CalculatorFeature", "\tIn order to avoid silly mistakes\r\n\tAs a math idiot\r\n\tI want to be told the sum o" +
-                    "f two numbers", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "CalculatorFeature", "\tIn order to be able to evaluate expressions\r\n\tAs a user\r\n\tI would like to be abl" +
+                    "e to get correct results from calculator", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -102,3 +102,4 @@ this.ScenarioInitialize(scenarioInfo);
 }
 #pragma warning restore
 #endregion
+

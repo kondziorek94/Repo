@@ -1,7 +1,7 @@
 ﻿Feature: CalculatorFeature
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
+	In order to be able to evaluate expressions
+	As a user
+	I would like to be able to get correct results from calculator
 
 Scenario: Check calculator functionality
 	Given I am on the home page
@@ -16,3 +16,16 @@ Scenario: Check calculator functionality
 	#wciskam C/CE i ekran jest pusty - podzie na dwa krokji
 	#wciskam 2,3,*,5=
 	#wtedy na ekranie jest 115
+
+	#loguje sie na administratora
+#klikam ten przycisk go to the lsit
+#klikam create new
+#uzupelanam dane nieporpawnie i sprawdzam czy sa 2 validation errors messages
+#poprawiam dane
+#klikam Create
+#wpisuje w input search dane utworzonego uzytkownika tak by go znalezc
+#sprawdzam czy w tabeli jest szukany uzytkownik
+#klikam delelte i otwierdzami
+#wpisuje w input search dane utworzonego uzytkownika tak by go znalezc
+#praaczym ze w tableli nie ma szukanego uzytkownika
+#ocpjonalnie wylogowuje sie
