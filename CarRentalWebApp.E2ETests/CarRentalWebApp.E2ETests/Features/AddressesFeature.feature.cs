@@ -17,7 +17,7 @@ namespace CarRentalWebApp.E2ETests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.4.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [TechTalk.SpecRun.FeatureAttribute("AddressesFeature", Description="\tChecking filling addresses\' fields", SourceFile="Features\\AddressesFeature.feature", SourceLine=0)]
+    [TechTalk.SpecRun.FeatureAttribute("AddressesFeature", Description="\tIn order to avoid silly mistakes", SourceFile="Features\\AddressesFeature.feature", SourceLine=0)]
     public partial class AddressesFeatureFeature
     {
         
@@ -30,7 +30,7 @@ namespace CarRentalWebApp.E2ETests.Features
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AddressesFeature", "\tChecking filling addresses\' fields", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "AddressesFeature", "\tIn order to avoid silly mistakes", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,19 +66,83 @@ namespace CarRentalWebApp.E2ETests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Create new contact", SourceLine=3)]
-        public virtual void CreateNewContact()
+        [TechTalk.SpecRun.ScenarioAttribute("Add two numbers", new string[] {
+                "mytag"}, SourceLine=5)]
+        public virtual void AddTwoNumbers()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create new contact", null, ((string[])(null)));
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, new string[] {
+                        "mytag"});
+#line 6
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 5
- testRunner.Given("I am on the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 6
- testRunner.And("I clicked \"Go to the list\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 7
- testRunner.Then("I see \"About\" page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Given("I am on the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 8
+ testRunner.And("I click \"Log in\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table1.AddRow(new string[] {
+                        "Email",
+                        "a@a.pl"});
+            table1.AddRow(new string[] {
+                        "Password",
+                        "Password2@"});
+#line 9
+ testRunner.And("I enter login information:", ((string)(null)), table1, "And ");
+#line 13
+ testRunner.And("I click \"Log in\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 14
+ testRunner.And("I click \"Go to the list\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 15
+ testRunner.And("I click \"Create New\" link", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table2.AddRow(new string[] {
+                        "CityName",
+                        "Lublin"});
+            table2.AddRow(new string[] {
+                        "StreetName",
+                        "Nadbystrzycka"});
+            table2.AddRow(new string[] {
+                        "ZipCode",
+                        "21-024"});
+            table2.AddRow(new string[] {
+                        "Email",
+                        "asjv"});
+            table2.AddRow(new string[] {
+                        "PhoneNumber",
+                        "2014321920"});
+#line 16
+ testRunner.And("I fill data information:", ((string)(null)), table2, "And ");
+#line 23
+ testRunner.And("I check if there are \"2\" validation error(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 24
+ testRunner.And("I click \"Create\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "Value"});
+            table3.AddRow(new string[] {
+                        "CityName",
+                        "Lublin"});
+            table3.AddRow(new string[] {
+                        "StreetName",
+                        "Nadbystrzycka"});
+            table3.AddRow(new string[] {
+                        "ZipCode",
+                        "21-024"});
+            table3.AddRow(new string[] {
+                        "Email",
+                        "kbudny492@gmail.com"});
+            table3.AddRow(new string[] {
+                        "PhoneNumber",
+                        "923-231-432"});
+#line 25
+ testRunner.And("I correct data information:", ((string)(null)), table3, "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -92,3 +156,4 @@ this.ScenarioInitialize(scenarioInfo);
 }
 #pragma warning restore
 #endregion
+

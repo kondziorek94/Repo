@@ -23,6 +23,3 @@ namespace CarRentalWebApp.E2ETests.Steps
         }
     }
 }
-
-//to-do list
-//napisz test ktory idzie do kalkulatora i dodaje dwie liczby i sprawdza wynik

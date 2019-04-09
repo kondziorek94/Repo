@@ -82,6 +82,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>About.feature</DependentUpon>
     </Compile>
+    <Compile Include="Features\AddressesFeature.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddressesFeature.feature</DependentUpon>
+    </Compile>
     <Compile Include="Features\CalculatorFeature.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,6 +115,10 @@
     <None Include="Features\About.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>About.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\AddressesFeature.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddressesFeature.feature.cs</LastGenOutput>
     </None>
     <None Include="Features\CalculatorFeature.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
