@@ -2,7 +2,9 @@
 	In order to avoid silly mistakes
 
 
-@mytag
+#"https://specflow.org/documentation/SpecFlow-Assist-Helpers/"
+#Dokończyć test
+#Rejestracja wideo przebiegu testu
 Scenario: Add two numbers
 	Given I am on the home page
 	And I click "Log in" button
