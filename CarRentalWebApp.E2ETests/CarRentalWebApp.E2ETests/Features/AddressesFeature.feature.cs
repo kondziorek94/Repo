@@ -141,6 +141,23 @@ this.ScenarioInitialize(scenarioInfo);
                         "923-231-432"});
 #line 27
  testRunner.And("I correct data information:", ((string)(null)), table3, "And ");
+#line 34
+ testRunner.And("I click \"Create\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Field",
+                        "value"});
+            table4.AddRow(new string[] {
+                        "addressLookUp",
+                        "Lublin"});
+#line 35
+ testRunner.And("I fill search information in", ((string)(null)), table4, "And ");
+#line 38
+ testRunner.And("I check if the list contain specific address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 39
+ testRunner.And("I delete address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 40
+ testRunner.And("I check if address does not exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }

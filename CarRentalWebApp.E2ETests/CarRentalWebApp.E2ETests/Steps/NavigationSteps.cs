@@ -28,7 +28,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         [Given(@"I click ""(.*)"" button")]
         public void GivenIClickButton(string buttonText)
         {
-            By buttonSelector;
+            By buttonSelector = null;
             switch (buttonText)
             {
                 case "Contact":
@@ -39,6 +39,21 @@ namespace CarRentalWebApp.E2ETests.Steps
                     break;
                 case "equals2":
                     buttonSelector = CalculatorPageModel.EqualSignSelector;
+                    break;
+                case "Log in":
+                    //sth
+                    break;
+                case "Go to the list":
+                    //sth
+                    break;
+                case "Create New":
+                    //sth
+                    break;
+                case "Create":
+                    //sth
+                    break;
+                case "Log out":
+                    //sth
                     break;
                 default:
                     buttonSelector = HomePageModel.AboutSelector;

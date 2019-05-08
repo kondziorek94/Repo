@@ -19,42 +19,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             driver = WebDriverInstance.INSTANCE;
         }
-        [Given(@"I am on the home page")]
-        public void GivenIAmOnTheHomePage()
-        {
-            driver.Navigate().GoToUrl(ConfigurationManager.AppSettings["baseurl"]);
-            IWebElement title = driver.FindElement(HomePageModel.TitleSelector);
-            Assert.AreEqual("ASP.NET", title.Text);
-        }
-        //Distinguish 2 buttons with the same name
-        [Given(@"I click ""(.*)"" button")]
-        [Then(@"I click ""(.*)"" button")]
-        public void GivenIClickButton(string buttonText)
-        {
-            By buttonSelector;
-            switch (buttonText)
-            {
-                case "Log in":
-                    buttonSelector = HomePageModel.ContactSelector;
-                    break;
-                case "Go to the list":
-                    buttonSelector = HomePageModel.CalculatorSelector;
-                    break;
-                case "Create New":
-                    buttonSelector = CalculatorPageModel.EqualSignSelector;
-                    break;
-                case "Create":
-                    buttonSelector = CalculatorPageModel.EqualSignSelector;
-                    break;
-                case "Log out":
-                    buttonSelector = CalculatorPageModel.EqualSignSelector;
-                    break;
-                default:
-                    buttonSelector = HomePageModel.AboutSelector;
-                    break;
-            }
-
-        }
+ 
         //how to search for field
         [Given(@"I enter login information:")]
         public void IEnterLoginInformation(string login, string password)
