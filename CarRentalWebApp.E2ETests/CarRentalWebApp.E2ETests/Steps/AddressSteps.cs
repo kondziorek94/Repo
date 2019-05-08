@@ -19,15 +19,53 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             driver = WebDriverInstance.INSTANCE;
         }
- 
+
         //how to search for field
         [Given(@"I enter login information:")]
-        public void IEnterLoginInformation(string login, string password)
+        public void IEnterLoginInformation(Table table)
         {
-
-            var q = driver.FindElement(By.Id("loginLink"));
-            q.Click();
+            var emailField = driver.FindElement(By.Id("Email"));
+            emailField.SendKeys(table.Rows[0][1]);
+            var passwordField = driver.FindElement(By.Id("Password"));
+            passwordField.SendKeys(table.Rows[1][1]);
         }
+
+        [Given(@"I fill data information:")]
+        public void GivenIFillDataInformation(Table table)
+        {
+            var cityNameField = driver.FindElement(By.Id("CityName"));
+            cityNameField.SendKeys(table.Rows[0][1]);
+            var streetNameField = driver.FindElement(By.Id("StreetName"));
+            streetNameField.SendKeys(table.Rows[1][1]);
+            var zipCodeField = driver.FindElement(By.Id("ZipCode"));
+            zipCodeField.SendKeys(table.Rows[2][1]);
+            var emailField = driver.FindElement(By.Id("Email"));
+            emailField.SendKeys(table.Rows[3][1]);
+            var phoneNumber = driver.FindElement(By.Id("PhoneNumber"));
+            phoneNumber.SendKeys(table.Rows[4][1]);
+            var importanceLevel = driver.FindElement(By.Id("ImportanceLevel"));
+            importanceLevel.Click();
+            var importanceLevelRegularOption = table.Rows[5][1].ToString();
+            By importanceLevelOptionSelector = null;
+            switch (importanceLevelRegularOption)
+            {
+                case "VIP":
+                    importanceLevelOptionSelector = AddressCreatePageModel.VipSelector;
+                    break;
+                case "Critical":
+                    importanceLevelOptionSelector = AddressCreatePageModel.CriticalSelector;
+                    break;
+                case "Regular":
+                    importanceLevelOptionSelector = AddressCreatePageModel.RegularSelector;
+                    break;
+            }
+            PageModel.ClickButton(importanceLevelOptionSelector);
+
+
+        }
+
+
+
         [Given(@"And I check if there are ""(.*)"" validation error(s)")]
         public void AndICheckIfThereAreValidationErrors(int numberOfErrors)
         {

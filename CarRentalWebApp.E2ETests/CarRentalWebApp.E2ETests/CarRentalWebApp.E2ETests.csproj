@@ -99,9 +99,13 @@
       <DependentUpon>NavigationFeature.feature</DependentUpon>
     </Compile>
     <Compile Include="Models\AboutPageModel.cs" />
+    <Compile Include="Models\AddressCreatePageModel.cs" />
+    <Compile Include="Models\AddressIndexPageModel.cs" />
     <Compile Include="Models\CalculatorPageModel.cs" />
     <Compile Include="Models\ContactPageModel.cs" />
     <Compile Include="Models\HomePageModel.cs" />
+    <Compile Include="Models\LogInPageModel.cs" />
+    <Compile Include="Models\NavbarModel.cs" />
     <Compile Include="Models\PageModel.cs" />
     <Compile Include="Models\WebDriverInstance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

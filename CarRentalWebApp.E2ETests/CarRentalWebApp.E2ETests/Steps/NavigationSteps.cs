@@ -40,14 +40,17 @@ namespace CarRentalWebApp.E2ETests.Steps
                 case "equals2":
                     buttonSelector = CalculatorPageModel.EqualSignSelector;
                     break;
+                case "Log in navbar":
+                    buttonSelector = NavbarModel.LogInSelector;
+                    break;
                 case "Log in":
-                    //sth
+                    buttonSelector = LogInPageModel.LogInButtonSelector;
                     break;
                 case "Go to the list":
-                    //sth
+                    buttonSelector = HomePageModel.GoToTheListSelector;
                     break;
                 case "Create New":
-                    //sth
+                    buttonSelector = AddressIndexPageModel.CreateNewSelector;
                     break;
                 case "Create":
                     //sth
