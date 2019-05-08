@@ -31,23 +31,12 @@ Scenario: Add two numbers
 	| ZipCode     | 21-024        |
 	| Email       | kbudny492@gmail.com          |
 	| PhoneNumber | 923-231-432    |
-	#And I click "Create" button
-	#And I fill search information in
-	#| Field         | value  |
-	#| addressLookUp | Lublin |
-	#And I check if the list contain specific address
+	And I click "Create" button
+	And I fill search information in
+	| Field         | value  |
+	| addressLookUp | Lublin |
+	And I check if the list contain specific address
+	And I delete address
+	And I check if address does not exists
 
-
-
-		#loguje sie na administratora
-#klikam ten przycisk go to the lsit
-#klikam create new
-#uzupelanam dane nieporpawnie i sprawdzam czy sa 2 validation errors messages
-#poprawiam dane
-#klikam Create
-#wpisuje w input search dane utworzonego uzytkownika tak by go znalezc
-#sprawdzam czy w tabeli jest szukany uzytkownik
-#klikam delelte i otwierdzami
-#wpisuje w input search dane utworzonego uzytkownika tak by go znalezc
-#praaczym ze w tableli nie ma szukanego uzytkownika
 #ocpjonalnie wylogowuje sie
