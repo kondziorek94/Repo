@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using System;
 using System.Configuration;
+using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace CarRentalWebApp.E2ETests.Steps
@@ -34,6 +35,9 @@ namespace CarRentalWebApp.E2ETests.Steps
                 case "Contact":
                     buttonSelector = HomePageModel.ContactSelector;
                     break;
+                case "Search":
+                    buttonSelector = AddressIndexPageModel.SearchSelector;
+                    break;
                 case "Go to calculator":
                     buttonSelector = HomePageModel.CalculatorSelector;
                     break;
@@ -53,10 +57,10 @@ namespace CarRentalWebApp.E2ETests.Steps
                     buttonSelector = AddressIndexPageModel.CreateNewSelector;
                     break;
                 case "Create":
-                    //sth
+                    buttonSelector = AddressCreatePageModel.CreateSelector;
                     break;
-                case "Log out":
-                    //sth
+                case "Log off":
+                    buttonSelector = NavbarModel.LogOffSelector;
                     break;
                 default:
                     buttonSelector = HomePageModel.AboutSelector;

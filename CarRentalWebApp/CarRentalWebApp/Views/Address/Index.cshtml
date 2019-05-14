@@ -18,7 +18,7 @@
 <button type="button" class="btn btn-default" id="clearSearch">
     Clear search
 </button>
-<table class="table">
+<table class="table" id="addressesListTable">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.CityName)
@@ -64,6 +64,7 @@
             <span id="TotalPageNumber">@ViewBag.TotalPageNumber</span>
         </th>
     </tr>
+    
     @foreach (var item in Model)
     {
         <tr>

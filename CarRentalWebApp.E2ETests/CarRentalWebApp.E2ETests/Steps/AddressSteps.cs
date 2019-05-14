@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
@@ -61,75 +62,108 @@ namespace CarRentalWebApp.E2ETests.Steps
             }
             PageModel.ClickButton(importanceLevelOptionSelector);
 
-
+            Thread.Sleep(1000);
+        }
+        //0 errors
+        [Given(@"I check if there are ""(.*)"" validation error\(s\)")]
+        public void GivenICheckIfThereAreValidationErrorS(int numberOfErrors)
+        {
+            List<IWebElement> errors = new List<IWebElement>();
+            try
+            {
+                errors.Add(driver.FindElement(By.Id("PhoneNumber-error")));
+                errors.Add(driver.FindElement(By.Id("Email-error")));
+            }
+            catch (NoSuchElementException ex) { }
+            Assert.AreEqual(numberOfErrors, errors.Count);
+            
         }
 
 
 
-        [Given(@"And I check if there are ""(.*)"" validation error(s)")]
-        public void AndICheckIfThereAreValidationErrors(int numberOfErrors)
+        [Given(@"I correct data information:")]
+        public void GivenICorrectDataInformation(Table table)
         {
 
+            var cityNameField = driver.FindElement(By.Id("CityName"));
+            cityNameField.Clear();
+            cityNameField.SendKeys(table.Rows[0][1]);
+            var streetNameField = driver.FindElement(By.Id("StreetName"));
+            streetNameField.Clear();
+            streetNameField.SendKeys(table.Rows[1][1]);
+            var zipCodeField = driver.FindElement(By.Id("ZipCode"));
+            zipCodeField.Clear();
+            zipCodeField.SendKeys(table.Rows[2][1]);
+            var emailField = driver.FindElement(By.Id("Email"));
+            emailField.Clear();
+            emailField.SendKeys(table.Rows[3][1]);
+            var phoneNumber = driver.FindElement(By.Id("PhoneNumber"));
+            phoneNumber.Clear();
+            phoneNumber.SendKeys(table.Rows[4][1]);
+            ScenarioContext.Current["Email"] = table.Rows[3][1];
         }
-        [Given(@"And I correct data information")]
-        public void AndICorrectDataInformation()
+        [Given(@"I fill search information in")]
+        public void GivenIFillSearchInformationIn(Table table)
         {
+            var searchBox = driver.FindElement(By.Id("addressLookUp"));
+            searchBox.SendKeys(table.Rows[0][1]);
+            //another way
+            searchBox.SendKeys("\n");
+    
 
         }
-        [Given(@"And I fill search information in")]
-        public void AndIFillSearchInformationIn()
+        [Given(@"I check if the list contain specific address")]
+        public void GivenICheckIfTheListContainSpecificAddress()
         {
-
+            var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
+            IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
+            bool actualFound = false;
+            bool expectedFound = true;
+            foreach (var row in tableRow) {
+                
+                if (row.Text.Contains("Lublin") &&row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
+                {
+                    actualFound = true;
+                }
+            }
+            Assert.AreEqual(expectedFound, actualFound);
         }
-        [Given(@"And I check if the list contain specific address")]
-        public void AndICheckIfTheListContainSpecificAddress()
+        [Given(@"I delete created address")]
+        public void GivenIDeleteAddress()
         {
+            var emailToSearch = ScenarioContext.Current["Email"];
+            //var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
+            //IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
+            //foreach (var row in tableRow)
+            //{
 
+            //    if (row.Text.Contains("Lublin") && row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
+            //    {
+            //        var deleteButton=By.ClassName("btn btn-danger btn-xs");
+            //        PageModel.ClickButton(deleteButton);
+            //        deleteButton=By.CssSelector("input[value='delete']");
+            //        PageModel.ClickButton(deleteButton);
+            //    }
+            //}
         }
-        [Given(@"And I delete address")]
-        public void AndIDeleteAddress()
+        [Given(@"I check if address does not exists")]
+        public void GivenICheckIfAddressDoesNotExists()
         {
+            var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
+            IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
+            bool actualFound = false;
+            bool expectedFound = false;
+            foreach (var row in tableRow)
+            {
 
+                if (row.Text.Contains("Lublin") && row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
+                {
+                    actualFound = true;
+                }
+            }
+            Assert.AreEqual(expectedFound, actualFound);
         }
-        [Given(@"And I check if address does not exists")]
-        public void AndICheckIfAddressDoesNotExists()
-        {
+        
 
-        }
     }
 }
-
-/*
-	And I enter login information:
-	|Field|Value|
-	|Email|a@a.pl|
-	|Password|Password2@|
-	And I click "Log in" button
-	And I click "Go to the list" button
-	And I click "Create New" link
-	And I fill data information:
-	| Field       | Value         |
-	| CityName    | Lublin        |
-	| StreetName  | Nadbystrzycka |
-	| ZipCode     | 21-024        |
-	| Email       | asjv          |
-	| PhoneNumber | 2014321920    |
-	And I check if there are "2" validation error(s)
-	And I click "Create" button
-	And I correct data information:
-	| Field       | Value         |
-	| CityName    | Lublin        |
-	| StreetName  | Nadbystrzycka |
-	| ZipCode     | 21-024        |
-	| Email       | kbudny492@gmail.com          |
-	| PhoneNumber | 923-231-432    |
-	And I click "Create" button
-	And I fill search information in
-	| Field         | value  |
-	| addressLookUp | Lublin |
-	And I check if the list contain specific address
-	
-	And I delete address
-	And I check if address does not exists
-
-*/
