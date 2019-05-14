@@ -30,6 +30,7 @@ Scenario: Add two numbers
 		| ZipCode     | 21-024              |
 		| Email       | test@gmail.com |
 		| PhoneNumber | 923-231-432         |
+		| ImportanceLevel | Regular       |
 	And I check if there are "0" validation error(s)
 	And I click "Create" button
 	And I fill search information in

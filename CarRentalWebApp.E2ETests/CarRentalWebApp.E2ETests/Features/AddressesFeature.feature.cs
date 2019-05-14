@@ -140,11 +140,14 @@ this.ScenarioInitialize(scenarioInfo);
             table3.AddRow(new string[] {
                         "PhoneNumber",
                         "923-231-432"});
+            table3.AddRow(new string[] {
+                        "ImportanceLevel",
+                        "Regular"});
 #line 26
  testRunner.And("I correct data information:", ((string)(null)), table3, "And ");
-#line 33
- testRunner.And("I check if there are \"0\" validation error(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 34
+ testRunner.And("I check if there are \"0\" validation error(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 35
  testRunner.And("I click \"Create\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -153,15 +156,15 @@ this.ScenarioInitialize(scenarioInfo);
             table4.AddRow(new string[] {
                         "addressLookUp",
                         "Lublin"});
-#line 35
+#line 36
  testRunner.And("I fill search information in", ((string)(null)), table4, "And ");
-#line 38
- testRunner.And("I check if the list contain specific address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 39
- testRunner.And("I delete created address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I check if the list contain specific address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 40
- testRunner.And("I check if address does not exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("I delete created address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 41
+ testRunner.And("I check if address does not exists", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line 42
  testRunner.And("I click \"Log off\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

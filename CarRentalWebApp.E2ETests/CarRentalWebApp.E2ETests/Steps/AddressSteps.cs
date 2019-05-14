@@ -32,18 +32,23 @@ namespace CarRentalWebApp.E2ETests.Steps
         }
 
         [Given(@"I fill data information:")]
-        
+        [Given(@"I correct data information:")]
         public void GivenIFillDataInformation(Table table)
         {
             var cityNameField = driver.FindElement(By.Id("CityName"));
+            cityNameField.Clear();
             cityNameField.SendKeys(table.Rows[0][1]);
             var streetNameField = driver.FindElement(By.Id("StreetName"));
+            streetNameField.Clear();
             streetNameField.SendKeys(table.Rows[1][1]);
             var zipCodeField = driver.FindElement(By.Id("ZipCode"));
+            zipCodeField.Clear();
             zipCodeField.SendKeys(table.Rows[2][1]);
             var emailField = driver.FindElement(By.Id("Email"));
+            emailField.Clear();
             emailField.SendKeys(table.Rows[3][1]);
             var phoneNumber = driver.FindElement(By.Id("PhoneNumber"));
+            phoneNumber.Clear();
             phoneNumber.SendKeys(table.Rows[4][1]);
             var importanceLevel = driver.FindElement(By.Id("ImportanceLevel"));
             importanceLevel.Click();
@@ -62,7 +67,7 @@ namespace CarRentalWebApp.E2ETests.Steps
                     break;
             }
             PageModel.ClickButton(importanceLevelOptionSelector);
-
+            ScenarioContext.Current["Email"] = table.Rows[3][1];
             Thread.Sleep(1000);
         }
         //0 errors
@@ -82,27 +87,27 @@ namespace CarRentalWebApp.E2ETests.Steps
 
 
 
-        [Given(@"I correct data information:")]
-        public void GivenICorrectDataInformation(Table table)
-        {
+        //[Given(@"I correct data information:")]
+        //public void GivenICorrectDataInformation(Table table)
+        //{
 
-            var cityNameField = driver.FindElement(By.Id("CityName"));
-            cityNameField.Clear();
-            cityNameField.SendKeys(table.Rows[0][1]);
-            var streetNameField = driver.FindElement(By.Id("StreetName"));
-            streetNameField.Clear();
-            streetNameField.SendKeys(table.Rows[1][1]);
-            var zipCodeField = driver.FindElement(By.Id("ZipCode"));
-            zipCodeField.Clear();
-            zipCodeField.SendKeys(table.Rows[2][1]);
-            var emailField = driver.FindElement(By.Id("Email"));
-            emailField.Clear();
-            emailField.SendKeys(table.Rows[3][1]);
-            var phoneNumber = driver.FindElement(By.Id("PhoneNumber"));
-            phoneNumber.Clear();
-            phoneNumber.SendKeys(table.Rows[4][1]);
-            ScenarioContext.Current["Email"] = table.Rows[3][1];
-        }
+        //    var cityNameField = driver.FindElement(By.Id("CityName"));
+        //    cityNameField.Clear();
+        //    cityNameField.SendKeys(table.Rows[0][1]);
+        //    var streetNameField = driver.FindElement(By.Id("StreetName"));
+        //    streetNameField.Clear();
+        //    streetNameField.SendKeys(table.Rows[1][1]);
+        //    var zipCodeField = driver.FindElement(By.Id("ZipCode"));
+        //    zipCodeField.Clear();
+        //    zipCodeField.SendKeys(table.Rows[2][1]);
+        //    var emailField = driver.FindElement(By.Id("Email"));
+        //    emailField.Clear();
+        //    emailField.SendKeys(table.Rows[3][1]);
+        //    var phoneNumber = driver.FindElement(By.Id("PhoneNumber"));
+        //    phoneNumber.Clear();
+        //    phoneNumber.SendKeys(table.Rows[4][1]);
+            
+        //}
         [Given(@"I fill search information in")]
         public void GivenIFillSearchInformationIn(Table table)
         {
