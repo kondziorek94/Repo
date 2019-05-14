@@ -100,6 +100,7 @@
     </Compile>
     <Compile Include="Models\AboutPageModel.cs" />
     <Compile Include="Models\AddressCreatePageModel.cs" />
+    <Compile Include="Models\AddressDeletePageModel.cs" />
     <Compile Include="Models\AddressIndexPageModel.cs" />
     <Compile Include="Models\CalculatorPageModel.cs" />
     <Compile Include="Models\ContactPageModel.cs" />

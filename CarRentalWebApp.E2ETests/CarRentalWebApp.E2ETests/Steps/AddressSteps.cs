@@ -32,6 +32,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         }
 
         [Given(@"I fill data information:")]
+        
         public void GivenIFillDataInformation(Table table)
         {
             var cityNameField = driver.FindElement(By.Id("CityName"));
@@ -108,7 +109,7 @@ namespace CarRentalWebApp.E2ETests.Steps
             var searchBox = driver.FindElement(By.Id("addressLookUp"));
             searchBox.SendKeys(table.Rows[0][1]);
             //another way
-            searchBox.SendKeys("\n");
+            searchBox.SendKeys(Keys.Enter);
     
 
         }
@@ -132,6 +133,14 @@ namespace CarRentalWebApp.E2ETests.Steps
         public void GivenIDeleteAddress()
         {
             var emailToSearch = ScenarioContext.Current["Email"];
+            var searchBox = driver.FindElement(By.Id("addressLookUp"));
+            searchBox.Clear();
+            searchBox.SendKeys(emailToSearch.ToString());
+            searchBox.SendKeys(Keys.Enter);
+            
+            PageModel.ClickButton(AddressIndexPageModel.DeleteSelector);
+            PageModel.ClickButton(AddressDeletePageModel.DeleteSelector);
+
             //var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
             //IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
             //foreach (var row in tableRow)

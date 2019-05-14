@@ -5,5 +5,6 @@ namespace CarRentalWebApp.E2ETests.Models
     {
         public static By CreateNewSelector = By.LinkText("Create New");
         public static By SearchSelector = By.Id("search");
+        public static By DeleteSelector = By.LinkText("Delete");
     }
 }
