@@ -13,8 +13,11 @@
 </p>
 <p>
     <input id="addressLookUp" placeholder="Look for address" value="@ViewBag.searchPhrase" />
-    @Html.ActionLink("Search", "Index", "Address", new { searchPhrase = "xxx" }, new { id = "search" })
+
 </p>
+
+<button type="button" class="btn btn-default" id="search">Search</button>
+
 <button type="button" class="btn btn-default" id="clearSearch">
     Clear search
 </button>
@@ -64,7 +67,7 @@
             <span id="TotalPageNumber">@ViewBag.TotalPageNumber</span>
         </th>
     </tr>
-    
+
     @foreach (var item in Model)
     {
         <tr>
