@@ -1,9 +1,7 @@
 ﻿using CarRentalWebApp.E2ETests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using System;
 using System.Configuration;
-using System.Threading;
 using TechTalk.SpecFlow;
 
 namespace CarRentalWebApp.E2ETests.Steps
@@ -16,7 +14,6 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             driver = WebDriverInstance.INSTANCE;
         }
-
 
         [Given(@"I am on the home page")]
         public void GivenIAmOnTheHomePage()
@@ -66,7 +63,6 @@ namespace CarRentalWebApp.E2ETests.Steps
                     buttonSelector = HomePageModel.AboutSelector;
                     break;
             }
-
             PageModel.ClickButton(buttonSelector);
         }
 
@@ -87,7 +83,6 @@ namespace CarRentalWebApp.E2ETests.Steps
                     break;
             }
             string titleText = driver.FindElement(titleSelector).Text;
-
             Assert.AreEqual(expectedValue, titleText);
         }
     }

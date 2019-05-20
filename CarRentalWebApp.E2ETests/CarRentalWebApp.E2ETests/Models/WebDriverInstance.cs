@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System.Configuration;
 
 namespace CarRentalWebApp.E2ETests.Models
 {
@@ -11,6 +10,5 @@ namespace CarRentalWebApp.E2ETests.Models
         {
             INSTANCE = new ChromeDriver();
         }
-
     }
 }

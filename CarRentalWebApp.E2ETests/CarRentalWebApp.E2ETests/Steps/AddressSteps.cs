@@ -1,13 +1,7 @@
 ﻿using CarRentalWebApp.E2ETests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
-using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using TechTalk.SpecFlow;
 
 namespace CarRentalWebApp.E2ETests.Steps
@@ -21,7 +15,6 @@ namespace CarRentalWebApp.E2ETests.Steps
             driver = WebDriverInstance.INSTANCE;
         }
 
-        //how to search for field
         [Given(@"I enter login information:")]
         public void IEnterLoginInformation(Table table)
         {
@@ -68,9 +61,8 @@ namespace CarRentalWebApp.E2ETests.Steps
             }
             PageModel.ClickButton(importanceLevelOptionSelector);
             ScenarioContext.Current["Email"] = table.Rows[3][1];
-            Thread.Sleep(1000);
         }
-        //0 errors
+
         [Given(@"I check if there are ""(.*)"" validation error\(s\)")]
         public void GivenICheckIfThereAreValidationErrorS(int numberOfErrors)
         {
@@ -82,58 +74,33 @@ namespace CarRentalWebApp.E2ETests.Steps
             }
             catch (NoSuchElementException ex) { }
             Assert.AreEqual(numberOfErrors, errors.Count);
-            
         }
 
-
-
-        //[Given(@"I correct data information:")]
-        //public void GivenICorrectDataInformation(Table table)
-        //{
-
-        //    var cityNameField = driver.FindElement(By.Id("CityName"));
-        //    cityNameField.Clear();
-        //    cityNameField.SendKeys(table.Rows[0][1]);
-        //    var streetNameField = driver.FindElement(By.Id("StreetName"));
-        //    streetNameField.Clear();
-        //    streetNameField.SendKeys(table.Rows[1][1]);
-        //    var zipCodeField = driver.FindElement(By.Id("ZipCode"));
-        //    zipCodeField.Clear();
-        //    zipCodeField.SendKeys(table.Rows[2][1]);
-        //    var emailField = driver.FindElement(By.Id("Email"));
-        //    emailField.Clear();
-        //    emailField.SendKeys(table.Rows[3][1]);
-        //    var phoneNumber = driver.FindElement(By.Id("PhoneNumber"));
-        //    phoneNumber.Clear();
-        //    phoneNumber.SendKeys(table.Rows[4][1]);
-            
-        //}
         [Given(@"I fill search information in")]
         public void GivenIFillSearchInformationIn(Table table)
         {
             var searchBox = driver.FindElement(By.Id("addressLookUp"));
             searchBox.SendKeys(table.Rows[0][1]);
-            //another way
             searchBox.SendKeys(Keys.Enter);
-    
-
         }
-        [Given(@"I check if the list contain specific address")]
-        public void GivenICheckIfTheListContainSpecificAddress()
+
+        [Given(@"I check if the list contain specific address ""(.*)""")]
+        [Given(@"I check if address does not exists ""(.*)""")]
+        public void GivenICheckIfTheListContainSpecificAddress(bool expectedValue)
         {
             var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
             IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
             bool actualFound = false;
-            bool expectedFound = true;
-            foreach (var row in tableRow) {
-                
-                if (row.Text.Contains("Lublin") &&row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
+            foreach (var row in tableRow)
+            {
+                if (row.Text.Contains("Lublin") && row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
                 {
                     actualFound = true;
                 }
             }
-            Assert.AreEqual(expectedFound, actualFound);
+            Assert.AreEqual(expectedValue, actualFound);
         }
+
         [Given(@"I delete created address")]
         public void GivenIDeleteAddress()
         {
@@ -142,42 +109,8 @@ namespace CarRentalWebApp.E2ETests.Steps
             searchBox.Clear();
             searchBox.SendKeys(emailToSearch.ToString());
             searchBox.SendKeys(Keys.Enter);
-            
             PageModel.ClickButton(AddressIndexPageModel.DeleteSelector);
             PageModel.ClickButton(AddressDeletePageModel.DeleteSelector);
-
-            //var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
-            //IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
-            //foreach (var row in tableRow)
-            //{
-
-            //    if (row.Text.Contains("Lublin") && row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
-            //    {
-            //        var deleteButton=By.ClassName("btn btn-danger btn-xs");
-            //        PageModel.ClickButton(deleteButton);
-            //        deleteButton=By.CssSelector("input[value='delete']");
-            //        PageModel.ClickButton(deleteButton);
-            //    }
-            //}
         }
-        [Given(@"I check if address does not exists")]
-        public void GivenICheckIfAddressDoesNotExists()
-        {
-            var AddressesListTable = driver.FindElement(By.Id("addressesListTable"));
-            IList<IWebElement> tableRow = AddressesListTable.FindElements(By.TagName("tr"));
-            bool actualFound = false;
-            bool expectedFound = false;
-            foreach (var row in tableRow)
-            {
-
-                if (row.Text.Contains("Lublin") && row.Text.Contains("Nadbystrzycka") && row.Text.Contains("21-024") && row.Text.Contains("923-231-432"))
-                {
-                    actualFound = true;
-                }
-            }
-            Assert.AreEqual(expectedFound, actualFound);
-        }
-        
-
     }
 }

@@ -7,7 +7,7 @@ namespace CarRentalWebApp.E2ETests.Steps
     [Binding]
     public class CommonSteps
     {
-        private IWebDriver driver ;
+        private IWebDriver driver;
 
         [Before]
         public void BeforeScenario()

@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+
 namespace CarRentalWebApp.E2ETests.Models
 {
     class NavbarModel

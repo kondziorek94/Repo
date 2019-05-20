@@ -1,8 +1,6 @@
 ﻿Feature: AddressesFeature
 	In order to avoid silly mistakes
 
-#"https://specflow.org/documentation/SpecFlow-Assist-Helpers/"
-#Dokończyć test
 #Rejestracja wideo przebiegu testu
 Scenario: Add two numbers
 	Given I am on the home page
@@ -24,19 +22,19 @@ Scenario: Add two numbers
 		| ImportanceLevel | Regular       |
 	And I check if there are "2" validation error(s)
 	And I correct data information:
-		| Field       | Value               |
-		| CityName    | Lublin              |
-		| StreetName  | Nadbystrzycka       |
-		| ZipCode     | 21-024              |
-		| Email       | test@gmail.com |
-		| PhoneNumber | 923-231-432         |
-		| ImportanceLevel | Regular       |
+		| Field           | Value          |
+		| CityName        | Lublin         |
+		| StreetName      | Nadbystrzycka  |
+		| ZipCode         | 21-024         |
+		| Email           | test@gmail.com |
+		| PhoneNumber     | 923-231-432    |
+		| ImportanceLevel | Regular        |
 	And I check if there are "0" validation error(s)
 	And I click "Create" button
 	And I fill search information in
 		| Field         | value  |
 		| addressLookUp | Lublin |
-	And I check if the list contain specific address
+	And I check if the list contain specific address "true"
 	And I delete created address
-	And I check if address does not exists
+	And I check if address does not exists "false"
 	And I click "Log off" button
