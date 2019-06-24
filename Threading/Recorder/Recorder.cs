@@ -9,6 +9,8 @@ using SharpAvi.Codecs;
 using SharpAvi.Output;
 using System.Windows.Forms;
 using System.Management;
+using System.Diagnostics;
+using System.Collections.Concurrent;
 
 namespace Recorder
 {
@@ -28,8 +30,8 @@ namespace Recorder
             {
                 int convertedHeight = Convert.ToInt32(record["CurrentVerticalResolution"]);
                 int convertedWidth = Convert.ToInt32(record["CurrentHorizontalResolution"]);
-                Height = convertedHeight > 0 ? convertedHeight : Height;
-                Width = convertedWidth > 0 ? convertedWidth : Width;
+                Height =  convertedHeight > 0 ? convertedHeight : Height;
+                Width =  convertedWidth > 0 ? convertedWidth : Width;
             }
 
         }
@@ -72,8 +74,10 @@ namespace Recorder
         AviWriter writer;
         RecorderParams Params;
         IAviVideoStream videoStream;
-        Thread screenThread;
+        Thread captureThread;
+        Thread writerThread;
         ManualResetEvent stopThread = new ManualResetEvent(false);
+        private BlockingCollection<byte[]> bufferQueue = new BlockingCollection<byte[]>();
         #endregion
         private bool isDisposed = false;
 
@@ -83,43 +87,63 @@ namespace Recorder
             writer = Params.CreateAviWriter();
             videoStream = Params.CreateVideoStream(writer);
             videoStream.Name = "Captura";
-            screenThread = new Thread(RecordScreen)
+            captureThread = new Thread(CaptureScreen)
             {
-                Name = typeof(Recorder).Name + ".RecordScreen",
+                Name = typeof(Recorder).Name + ".CaptureScreen",
                 IsBackground = true
             };
-            screenThread.Start();
+            writerThread = new Thread(WriteScreen)
+            {
+                IsBackground = true
+            };
+            writerThread.Start();
+            captureThread.Start();
         }
+
 
         public void Dispose()
         {
             if (!isDisposed)
             {
                 stopThread.Set();
-                screenThread.Join();
+                writerThread.Join();
+                captureThread.Join();
                 writer.Close();
                 stopThread.Dispose();
             }
             isDisposed = true;
         }
 
-        void RecordScreen()
+        public void WriteScreen()
+        {
+            while (!bufferQueue.IsCompleted)
+            {
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                // the code that you want to measure comes here
+                var buffer = bufferQueue.Take();
+                videoStream.WriteFrame(true, buffer, 0, buffer.Length);
+                watch.Stop();
+                var elapsedMs = watch.ElapsedMilliseconds;
+                System.Diagnostics.Debug.WriteLine(elapsedMs);
+            }
+        }
+        void CaptureScreen()
         {
             var frameInterval = TimeSpan.FromSeconds(1 / (double)writer.FramesPerSecond);
-            var buffer = new byte[Params.Width * Params.Height * 4];
-            Task videoWriteTask = null;
             var timeTillNextFrame = TimeSpan.Zero;
+            // the code that you want to measure comes here
             while (!stopThread.WaitOne(timeTillNextFrame))
             {
+                var buffer = new byte[Params.Width * Params.Height * 4];
                 var timestamp = DateTime.Now;
                 Screenshot(buffer);
-                videoWriteTask?.Wait();
-                videoWriteTask = videoStream.WriteFrameAsync(true, buffer, 0, buffer.Length);
+                bufferQueue.Add(buffer);
                 timeTillNextFrame = timestamp + frameInterval - DateTime.Now;
                 if (timeTillNextFrame < TimeSpan.Zero)
                     timeTillNextFrame = TimeSpan.Zero;
             }
-            videoWriteTask?.Wait();
+            bufferQueue.CompleteAdding();
+
         }
 
         public void Screenshot(byte[] Buffer)
@@ -139,3 +163,7 @@ namespace Recorder
 
     }
 }
+//zaimplementuj wzorzec producent konsument, przy pomocy kolekcji blokujacej
+//producent to ten co produkuje nowe klatki do zapisu czyli ten co wywoluje metode Screenshot i dodaje je do kolekcji
+//konsument to ten co pobiera nowe klatki i je koduje 
+//po wszystkim uzyj klas stopwatch do zmierzenia wydajnosci (klatki na sekunde)

@@ -22,7 +22,7 @@ namespace Recorder
         private void StartRecordingButton_Click(object sender, EventArgs e)
         {
 
-            Rec = new Recorder(new RecorderParams("out.avi", 10, SharpAvi.KnownFourCCs.Codecs.MotionJpeg, 70));
+            Rec = new Recorder(new RecorderParams("out.avi", 30, SharpAvi.KnownFourCCs.Codecs.Xvid, 70));
             infoBox.Text = "Recording. Press Finish to stop recording.";
         }
 
