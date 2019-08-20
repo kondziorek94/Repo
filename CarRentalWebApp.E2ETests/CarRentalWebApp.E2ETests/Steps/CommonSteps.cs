@@ -19,9 +19,10 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             WebDriverInstance.Reinstiate();
             driver = WebDriverInstance.INSTANCE;
+            // driver.Manage().Window.FullScreen();
+            driver.Manage().Window.Maximize();
             Recorder = new Recorder(new RecorderParams(getVideoRecordingPath(), 15, SharpAvi.KnownFourCCs.Codecs.Xvid, 70));
         }
-
         [After]
         public void AfterScenario()
         {
