@@ -19,14 +19,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             WebDriverInstance.Reinstiate();
             driver = WebDriverInstance.INSTANCE;
-            var videoRecordingsPath = videoDirectory + "/" + currentRecordingTime;
-            if (!Directory.Exists(videoRecordingsPath))
-            {
-                Directory.CreateDirectory(videoRecordingsPath);
-
-            }
-            string filePath = videoRecordingsPath + "/" + ScenarioContext.Current.ScenarioInfo.Title + ".avi";
-            Recorder = new Recorder(new RecorderParams(filePath, 15, SharpAvi.KnownFourCCs.Codecs.Xvid, 70));
+            Recorder = new Recorder(new RecorderParams(getVideoRecordingPath(), 15, SharpAvi.KnownFourCCs.Codecs.Xvid, 70));
         }
 
         [After]
@@ -34,8 +27,24 @@ namespace CarRentalWebApp.E2ETests.Steps
         {
             driver.Dispose();
             Recorder?.Dispose();
+            if (ScenarioContext.Current.TestError == null)
+            {
+                File.Delete(getVideoRecordingPath());
+            }
+        }
+        public string getVideoRecordingPath()
+        {
+            var videoRecordingsPath = videoDirectory + "/" + currentRecordingTime;
+            if (!Directory.Exists(videoRecordingsPath))
+            {
+                Directory.CreateDirectory(videoRecordingsPath);
+
+            }
+            string filePath = videoRecordingsPath + "/" + ScenarioContext.Current.ScenarioInfo.Title + ".avi";
+            return filePath;
+
         }
     }
 }
-    //1. sprawic zeby zachowane byly tylko nagrania testow ktore sfailowaly
-    //2. sprawic by przegladarka otwierala sie w trybie pelnoekranowym
+//1. sprawic zeby zachowane byly tylko nagrania testow ktore sfailowaly
+//2. sprawic by przegladarka otwierala sie w trybie pelnoekranowym
