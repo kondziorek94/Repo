@@ -88,7 +88,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.And("I click \"2,3,*,5,=\" calculator buttons", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 13
- testRunner.Then("I check if the result equals to \'115\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("I check if the result equals to \'116\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

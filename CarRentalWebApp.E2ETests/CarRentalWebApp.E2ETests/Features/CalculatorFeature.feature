@@ -10,4 +10,4 @@ Scenario: Check calculator functionality
 	And I click "CE" calculator buttons
 	And I check if the result equals to ''
 	And I click "2,3,*,5,=" calculator buttons
-	Then I check if the result equals to '115'
+	Then I check if the result equals to '116'
