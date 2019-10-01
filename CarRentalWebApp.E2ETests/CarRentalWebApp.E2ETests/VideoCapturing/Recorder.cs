@@ -163,4 +163,3 @@ namespace VideoCapturing
 //zaimplementuj wzorzec producent konsument, przy pomocy kolekcji blokujacej
 //producent to ten co produkuje nowe klatki do zapisu czyli ten co wywoluje metode Screenshot i dodaje je do kolekcji
 //konsument to ten co pobiera nowe klatki i je koduje 
-//po wszystkim uzyj klas stopwatch do zmierzenia wydajnosci (klatki na sekunde)

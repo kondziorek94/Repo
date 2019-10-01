@@ -66,16 +66,16 @@ namespace CarRentalWebApp.E2ETests.Features
             testRunner.CollectScenarioErrors();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Add two numbers", SourceLine=4)]
+        [TechTalk.SpecRun.ScenarioAttribute("Add two numbers", SourceLine=3)]
         public virtual void AddTwoNumbers()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Add two numbers", null, ((string[])(null)));
-#line 5
+#line 4
 this.ScenarioInitialize(scenarioInfo);
             this.ScenarioStart();
-#line 6
+#line 5
  testRunner.Given("I am on the home page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 7
+#line 6
  testRunner.And("I click \"Log in navbar\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -87,13 +87,13 @@ this.ScenarioInitialize(scenarioInfo);
             table1.AddRow(new string[] {
                         "Password",
                         "Password2@"});
-#line 8
+#line 7
  testRunner.And("I enter login information:", ((string)(null)), table1, "And ");
-#line 12
+#line 11
  testRunner.And("I click \"Log in\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 13
+#line 12
  testRunner.And("I click \"Go to the list\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 14
+#line 13
  testRunner.And("I click \"Create New\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -117,9 +117,9 @@ this.ScenarioInitialize(scenarioInfo);
             table2.AddRow(new string[] {
                         "ImportanceLevel",
                         "Regular"});
-#line 15
+#line 14
  testRunner.And("I fill data information:", ((string)(null)), table2, "And ");
-#line 23
+#line 22
  testRunner.And("I check if there are \"2\" validation error(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
@@ -143,11 +143,11 @@ this.ScenarioInitialize(scenarioInfo);
             table3.AddRow(new string[] {
                         "ImportanceLevel",
                         "Regular"});
-#line 24
+#line 23
  testRunner.And("I correct data information:", ((string)(null)), table3, "And ");
-#line 32
+#line 31
  testRunner.And("I check if there are \"0\" validation error(s)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 33
+#line 32
  testRunner.And("I click \"Create\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
@@ -156,15 +156,15 @@ this.ScenarioInitialize(scenarioInfo);
             table4.AddRow(new string[] {
                         "addressLookUp",
                         "Lublin"});
-#line 34
+#line 33
  testRunner.And("I fill search information in", ((string)(null)), table4, "And ");
-#line 37
+#line 36
  testRunner.And("I check if the list contain specific address \"true\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 38
+#line 37
  testRunner.And("I delete created address", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 39
+#line 38
  testRunner.And("I check if address does not exists \"false\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line 40
+#line 39
  testRunner.And("I click \"Log off\" button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();

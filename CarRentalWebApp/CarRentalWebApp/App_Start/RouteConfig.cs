@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using Microsoft.AspNetCore.Rewrite;
+using System.Web.Mvc;
 using System.Web.Routing;
 namespace CarRentalWebApp
 {
@@ -13,6 +14,8 @@ namespace CarRentalWebApp
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            var options = new RewriteOptions();
+
         }
     }
 }

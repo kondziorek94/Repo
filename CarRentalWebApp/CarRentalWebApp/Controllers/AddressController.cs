@@ -145,7 +145,7 @@ namespace CarRentalWebApp.Controllers
                 throw new System.Web.Http.HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            var smtp = new SmtpClient();
+            SmtpClient smtp = new SmtpClient();
             MailMessage message = new MailMessage();
             message.To.Add(new MailAddress(toSendAddress.Email));
             message.Subject = "subject";

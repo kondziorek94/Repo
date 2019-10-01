@@ -1,7 +1,6 @@
 ﻿Feature: AddressesFeature
 	In order to avoid silly mistakes
 
-#Rejestracja wideo przebiegu testu
 Scenario: Add two numbers
 	Given I am on the home page
 	And I click "Log in navbar" button

@@ -47,5 +47,3 @@ namespace CarRentalWebApp.E2ETests.Steps
         }
     }
 }
-//1. sprawic zeby zachowane byly tylko nagrania testow ktore sfailowaly
-//2. sprawic by przegladarka otwierala sie w trybie pelnoekranowym
