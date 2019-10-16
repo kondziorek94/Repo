@@ -1,9 +1,7 @@
 ﻿$(window).on("load", function () {
     function trim(result) {
         result = result.replace("{\"success\":{\"total\":1},\"contents\":{\"translated\":", "");
-        result = result.replace(",\"text\":\"", "");
-        result = result.replace($("#YodaInput").val(), "");
-        result = result.replace("\",\"translation\":\"yoda\"}}","");
+        result = result.replace(",\"text\":\"" + $("#YodaInput").val() + "\",\"translation\":\"yoda\"}}", "");
         return result;
     }
     $("#apiTest").keypress(function (e) {
