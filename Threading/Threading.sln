@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerConsumer", "Produce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recorder", "Recorder\Recorder.csproj", "{365DC7CB-CBCD-4BF7-BBE0-8F3BCEE8886A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingExercise", "ThreadingExercise\ThreadingExercise\ThreadingExercise.csproj", "{8D3C5CD9-7907-43C8-9065-AC81E25E3312}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{365DC7CB-CBCD-4BF7-BBE0-8F3BCEE8886A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{365DC7CB-CBCD-4BF7-BBE0-8F3BCEE8886A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{365DC7CB-CBCD-4BF7-BBE0-8F3BCEE8886A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3C5CD9-7907-43C8-9065-AC81E25E3312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3C5CD9-7907-43C8-9065-AC81E25E3312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3C5CD9-7907-43C8-9065-AC81E25E3312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3C5CD9-7907-43C8-9065-AC81E25E3312}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

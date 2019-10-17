@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 
@@ -10,6 +9,7 @@ namespace ProducerConsumer
     {
         private static BlockingCollection<int> queue = new BlockingCollection<int>();
         private static volatile bool work = true;
+
         public static void Producer()
         {
             Random random = new Random();
@@ -25,6 +25,7 @@ namespace ProducerConsumer
             }
             queue.CompleteAdding();
         }
+
         public static void Consumer()
         {
             while (queue.Count > 0 || !queue.IsCompleted)
@@ -34,6 +35,7 @@ namespace ProducerConsumer
                 Console.WriteLine("po pobraniu z kolejki");
             }
         }
+
         public static void Main(string[] args)
         {
             Thread t1 = new Thread(Producer);
@@ -45,9 +47,3 @@ namespace ProducerConsumer
         }
     }
 }
-//Niech producent produkuje co losowy czas od 1 do 3 sekund kolejna liczbe naturalna
-//Niech konsument gdy tylko jakas liczba jest dostepna dopisuje ja na koniec pliku out.txt bedaego w katalogu wynikowym tego projektu
-//liczby maja byc produkowane do wcsiniecia dowonlnego przycisku 
-
-//HOMEWORK 
-//finish this

@@ -3,45 +3,39 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
 using SharpAvi;
 using SharpAvi.Codecs;
 using SharpAvi.Output;
-using System.Windows.Forms;
 using System.Management;
-using System.Diagnostics;
 using System.Collections.Concurrent;
 
 namespace Recorder
 {
     public class RecorderParams
     {
+        string FileName;
+        public int FramesPerSecond, Quality;
+        FourCC Codec;
+        public int Height { get; private set; }
+        public int Width { get; private set; }
+
         public RecorderParams(string filename, int FrameRate, FourCC Encoder, int Quality)
         {
             FileName = filename;
             FramesPerSecond = FrameRate;
             Codec = Encoder;
             this.Quality = Quality;
-            //  Height = Screen.PrimaryScreen.Bounds.Height*2;
-            //     Width = Screen.PrimaryScreen.Bounds.Width*2;
             ManagementObjectSearcher mydisplayResolution = new ManagementObjectSearcher("SELECT CurrentHorizontalResolution, CurrentVerticalResolution FROM Win32_VideoController");
             ManagementObjectCollection moc = mydisplayResolution.Get();
             foreach (ManagementObject record in moc)
             {
                 int convertedHeight = Convert.ToInt32(record["CurrentVerticalResolution"]);
                 int convertedWidth = Convert.ToInt32(record["CurrentHorizontalResolution"]);
-                Height =  convertedHeight > 0 ? convertedHeight : Height;
-                Width =  convertedWidth > 0 ? convertedWidth : Width;
+                Height = convertedHeight > 0 ? convertedHeight : Height;
+                Width = convertedWidth > 0 ? convertedWidth : Width;
             }
 
         }
-
-
-        string FileName;
-        public int FramesPerSecond, Quality;
-        FourCC Codec;
-        public int Height { get; private set; }
-        public int Width { get; private set; }
 
         public AviWriter CreateAviWriter()
         {
@@ -100,7 +94,6 @@ namespace Recorder
             captureThread.Start();
         }
 
-
         public void Dispose()
         {
             if (!isDisposed)
@@ -119,7 +112,6 @@ namespace Recorder
             while (!bufferQueue.IsCompleted)
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-                // the code that you want to measure comes here
                 var buffer = bufferQueue.Take();
                 videoStream.WriteFrame(true, buffer, 0, buffer.Length);
                 watch.Stop();
@@ -127,11 +119,11 @@ namespace Recorder
                 System.Diagnostics.Debug.WriteLine(elapsedMs);
             }
         }
+
         void CaptureScreen()
         {
             var frameInterval = TimeSpan.FromSeconds(1 / (double)writer.FramesPerSecond);
             var timeTillNextFrame = TimeSpan.Zero;
-            // the code that you want to measure comes here
             while (!stopThread.WaitOne(timeTillNextFrame))
             {
                 var buffer = new byte[Params.Width * Params.Height * 4];
@@ -143,7 +135,6 @@ namespace Recorder
                     timeTillNextFrame = TimeSpan.Zero;
             }
             bufferQueue.CompleteAdding();
-
         }
 
         public void Screenshot(byte[] Buffer)
@@ -163,7 +154,3 @@ namespace Recorder
 
     }
 }
-//zaimplementuj wzorzec producent konsument, przy pomocy kolekcji blokujacej
-//producent to ten co produkuje nowe klatki do zapisu czyli ten co wywoluje metode Screenshot i dodaje je do kolekcji
-//konsument to ten co pobiera nowe klatki i je koduje 
-//po wszystkim uzyj klas stopwatch do zmierzenia wydajnosci (klatki na sekunde)

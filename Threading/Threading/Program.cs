@@ -1,17 +1,13 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Threading
 {
-   public class Program
+    public class Program
     {
-
         private static volatile bool work = true;
+
         public static void M1()
         {
             while (true)
