@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿//https://localhost:44371/tennisdecision/this?outlook=Sunny&temperature=21&Wind=Weak
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-//https://localhost:44371/tennisdecision/this?outlook=Sunny&temperature=21&Wind=Weak
+
 namespace PeopleAPI.Controllers
 {
     [Route("[controller]")]
@@ -15,15 +16,17 @@ namespace PeopleAPI.Controllers
         {
             return new string[] { "Yes", "No" };
         }
+
         [HttpGet("{id}")]
         public string Get(int id)
         {
             return "value";
         }
+
         [Route("This")]
         public string This([FromQuery] string outlook, [FromQuery] int Temperature, [FromQuery]string wind)
         {
-            string decision = Decisions.GetValue(0).ToString();
+            string decision = Decisions[0].ToString();
             if (Temperature > 15)
             {
                 if (outlook == Outlook.GetValue(0).ToString())
