@@ -33,11 +33,29 @@ namespace PeopleAPI.Controllers
             {
                 if (day.Decision.Equals("Yes"))
                     yesCount++;
-                else if (day.Decision.Equals("No"))
+                else if (day.Decision.Equals("No"))3,3
                     noCount++;
             }
             return CalculateEntropy(noCount, yesCount, WeatherReport.WeatherReports.Count());
         }
+        SAT
+        Summed Area Table
+        4 3 2 5 6 7 4
+        4 3 2 3 5 6 7
+        7 4 3 7 9 5 3 
+        2 9 4 6 4 5 7 
+        7 5 4 9 3 0 1
+        S(1,1,3,3) = 3 +2 +3 + 4 + 3+ 7 +9 + 4 + 6
+
+        2
+        3,3,3
+        4,4
+
+        6
+        7
+
+        9
+
 
         public double WindGainRatio()
         {
@@ -163,6 +181,18 @@ namespace PeopleAPI.Controllers
         {
             WeatherReport.WeatherReports.Sort((data1, data2) => data1.Humidity.CompareTo(data2.Humidity));
             List<double> thresholdForHumidityData = new List<double>();
+            for(int i=0; i < WeatherReport.WeatherReports.Count(); i++)
+            {
+                double entropy1;
+                double entropy2;
+                double gain;
+                double splitInfo;
+                double gainRatio;
+                for(int j=0; j <= i; j++)
+                {
+
+                }
+            }
         }
 
         public double CheckThresholdForHumidity(int humidity, List<WeatherForecast> weathers)
