@@ -10,9 +10,9 @@ namespace CarRentalWebApp.E2ETests.Steps
     {
         private IWebDriver driver;
 
-        public CalculatorSteps()
+        public CalculatorSteps(IWebDriver driver)
         {
-            driver = WebDriverInstance.INSTANCE;
+            this.driver = driver;
         }
 
         [Then(@"I check if the result equals to '(.*)'")]
@@ -29,7 +29,7 @@ namespace CarRentalWebApp.E2ETests.Steps
             string[] buttonList = buttons.Contains(",") ? buttons.Split(',') : new string[] { buttons };
             foreach (string character in buttonList)
             {
-                PageModel.ClickButton(CalculatorPageModel.GetButtonLocator(character));
+                driver.FindElement(CalculatorPageModel.GetButtonLocator(character)).Click();
             }
         }
     }

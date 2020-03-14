@@ -9,9 +9,9 @@ public class AboutSteps
 {
     private IWebDriver driver;
 
-    public AboutSteps()
+    public AboutSteps(IWebDriver driver)
     {
-        driver = new ChromeDriver();
+        this.driver = driver;
     }
 
     [Given(@"I am on the google page for (.*) and (.*)")]

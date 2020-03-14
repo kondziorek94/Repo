@@ -1,15 +1,14 @@
-﻿using CarRentalWebApp.E2ETests.Models;
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Gherkin.Model;
+using AventStack.ExtentReports.Reporter;
+using BoDi;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System;
 using System.IO;
 using TechTalk.SpecFlow;
 using VideoCapturing;
-using System;
-using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
-using AventStack.ExtentReports.Model;
-using AventStack.ExtentReports.Gherkin.Model;
-using CarRentalWebApp.E2ETests.Features;
-using AventStack.ExtentReports.Gherkin.Model;
+using OpenQA.Selenium.Firefox;
 
 
 namespace CarRentalWebApp.E2ETests.Steps
@@ -18,11 +17,18 @@ namespace CarRentalWebApp.E2ETests.Steps
     public class Hooks
     {
         private IWebDriver driver;
+        private IObjectContainer container;
         private static ExtentReports extentReports;
         private static ExtentTest extentFeature, extentScenario;
         public Recorder Recorder { get; set; }
         private static string videoDirectory = System.Configuration.ConfigurationManager.AppSettings["VideoDirectory"];
         private static string currentRecordingTime = DateTime.Now.ToString("ddMMyyyyhhmmss");
+
+        public Hooks(IObjectContainer container)
+        {
+            this.container = container;
+        }
+
 
         [BeforeTestRun]
         public static void BeforeTestRun()
@@ -59,10 +65,20 @@ namespace CarRentalWebApp.E2ETests.Steps
         [BeforeScenario]
         public void BeforeScenario()
         {
+            var browser = System.Configuration.ConfigurationManager.AppSettings["Browser"];
+            if (browser == "Firefox")
+            {
+                driver = new FirefoxDriver();
+            }
+            else if (browser == "Chrome")
+            {
+                driver = new ChromeDriver();
+            }
+
+
+            container.RegisterInstanceAs<IWebDriver>(driver);
+
             extentScenario = extentFeature.CreateNode<Scenario>(ScenarioContext.Current.ScenarioInfo.Title);
-            WebDriverInstance.Reinstiate();
-            driver = WebDriverInstance.INSTANCE;
-            // driver.Manage().Window.FullScreen();
             driver.Manage().Window.Maximize();
             Recorder = new Recorder(new RecorderParams(getVideoRecordingPath(), 15, SharpAvi.KnownFourCCs.Codecs.Xvid, 70));
         }
@@ -70,11 +86,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         [AfterStep]
         public void AfterStep()
         {
-            // 1. Sparametryzuj metode Create Node wlasciwym typem kroku
-            var stepType = ScenarioContext.Current.StepContext.StepInfo.StepDefinitionType.ToString();
-
-            //var step = extentScenario.CreateNode(stepType, ScenarioContext.Current.StepContext.StepInfo.Text);//skad wziac typ kroku?
-            // obiektzwroconyw65linijkce.Fail(""/* stos wywolan np. itp. message */);
+            //var stepType = ScenarioContext.Current.StepContext.StepInfo.StepDefinitionType.ToString();
             var step = extentScenario.CreateNode<AventStack.ExtentReports.Gherkin.Model.Then>(ScenarioContext.Current.StepContext.StepInfo.Text);
             if (ScenarioContext.Current.TestError != null)
             {
@@ -85,7 +97,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         [AfterScenario]
         public void AfterScenario()
         {
-            driver.Dispose();
+            driver.Quit();
             Recorder?.Dispose();
             if (ScenarioContext.Current.TestError == null)
             {

@@ -10,9 +10,9 @@ namespace CarRentalWebApp.E2ETests.Steps
     class AddressSteps
     {
         private IWebDriver driver;
-        public AddressSteps()
+        public AddressSteps(IWebDriver driver)
         {
-            driver = WebDriverInstance.INSTANCE;
+           this.driver = driver;
         }
 
         [Given(@"I enter login information:")]
@@ -59,7 +59,8 @@ namespace CarRentalWebApp.E2ETests.Steps
                     importanceLevelOptionSelector = AddressCreatePageModel.RegularSelector;
                     break;
             }
-            PageModel.ClickButton(importanceLevelOptionSelector);
+            
+            driver.FindElement(importanceLevelOptionSelector).Click();
             ScenarioContext.Current["Email"] = table.Rows[3][1];
         }
 
@@ -72,7 +73,7 @@ namespace CarRentalWebApp.E2ETests.Steps
                 errors.Add(driver.FindElement(By.Id("PhoneNumber-error")));
                 errors.Add(driver.FindElement(By.Id("Email-error")));
             }
-            catch (NoSuchElementException ex) { }
+            catch (NoSuchElementException) { }
             Assert.AreEqual(numberOfErrors, errors.Count);
         }
 
@@ -109,8 +110,8 @@ namespace CarRentalWebApp.E2ETests.Steps
             searchBox.Clear();
             searchBox.SendKeys(emailToSearch.ToString());
             searchBox.SendKeys(Keys.Enter);
-            PageModel.ClickButton(AddressIndexPageModel.DeleteSelector);
-            PageModel.ClickButton(AddressDeletePageModel.DeleteSelector);
+            driver.FindElement(AddressIndexPageModel.DeleteSelector).Click();
+            driver.FindElement(AddressDeletePageModel.DeleteSelector).Click();
         }
     }
 }

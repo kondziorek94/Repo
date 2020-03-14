@@ -10,9 +10,9 @@ namespace CarRentalWebApp.E2ETests.Steps
     public class NavigationSteps
     {
         private IWebDriver driver;
-        public NavigationSteps()
+        public NavigationSteps(IWebDriver driver)
         {
-            driver = WebDriverInstance.INSTANCE;
+            this.driver = driver;
         }
 
         [Given(@"I am on the home page")]
@@ -63,7 +63,7 @@ namespace CarRentalWebApp.E2ETests.Steps
                     buttonSelector = HomePageModel.AboutSelector;
                     break;
             }
-            PageModel.ClickButton(buttonSelector);
+            driver.FindElement(buttonSelector).Click();
         }
 
         [Then(@"I see ""(.*)"" page")]
