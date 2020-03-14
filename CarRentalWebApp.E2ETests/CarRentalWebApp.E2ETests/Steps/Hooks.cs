@@ -73,8 +73,9 @@ namespace CarRentalWebApp.E2ETests.Steps
             // 1. Sparametryzuj metode Create Node wlasciwym typem kroku
             var stepType = ScenarioContext.Current.StepContext.StepInfo.StepDefinitionType.ToString();
 
-            var step = extentScenario.CreateNode(stepType, ScenarioContext.Current.StepContext.StepInfo.Text);//skad wziac typ kroku?
-                                                                                                              // obiektzwroconyw65linijkce.Fail(""/* stos wywolan np. itp. message */);
+            //var step = extentScenario.CreateNode(stepType, ScenarioContext.Current.StepContext.StepInfo.Text);//skad wziac typ kroku?
+            // obiektzwroconyw65linijkce.Fail(""/* stos wywolan np. itp. message */);
+            var step = extentScenario.CreateNode<AventStack.ExtentReports.Gherkin.Model.Then>(ScenarioContext.Current.StepContext.StepInfo.Text);
             if (ScenarioContext.Current.TestError != null)
             {
                 step.Fail(ScenarioContext.Current.TestError.Message);
@@ -105,3 +106,7 @@ namespace CarRentalWebApp.E2ETests.Steps
         }
     }
 }
+
+//null point exception przy tworzeniu raportu
+// dołączyć firefox
+//screenshoty w raportach
