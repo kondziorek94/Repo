@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-
 namespace CarRentalWebApp.Models
 {
     public class AddressDetailsViewModel

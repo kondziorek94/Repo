@@ -25,7 +25,6 @@ namespace CarRentalWebApp.Controllers
         {
             return View();
         }
-        // rozbije 1 + 2 na a, b i operator i wywola metode Evaluate()
         public ActionResult EvaluateExpression(string expression)
         {
             expression = expression.Trim();
@@ -36,15 +35,12 @@ namespace CarRentalWebApp.Controllers
             return RedirectToAction("Evaluate", new { a, b, op });
         }
         [HttpPost]
-        // rozbije 1 + 2 na a, b i operator i wywola metode Evaluate()
         public string EvaluateExpressionAJAX(string expression)
         {
             expression = expression.Trim();
             string pattern = @"^-?(\d+)*(?:\.\d+)?(\s+)(\+|\-|\*|/|\%)(\s+)-?(\d+)*(?:\.\d+)?$";
             if (Regex.IsMatch(expression, pattern))
             {
-                //Asynchronous Java script And XML
-                //JSON JavaSript Object Notation
                 string[] splitExpression = Regex.Split(expression, @"\s+");
                 double a = Convert.ToDouble(splitExpression[0]);
                 double b = Convert.ToDouble(splitExpression[2]);

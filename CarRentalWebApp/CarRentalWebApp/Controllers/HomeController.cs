@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using CarRentalWebApp.Models;
-//adresAplikacji/NazwaKontrolera/NazwaMetody
 namespace CarRentalWebApp.Controllers
 {
     public class HomeController : Controller
@@ -14,7 +13,6 @@ namespace CarRentalWebApp.Controllers
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page!";
@@ -23,7 +21,6 @@ namespace CarRentalWebApp.Controllers
             ViewBag.o = o;
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

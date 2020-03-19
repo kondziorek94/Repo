@@ -97,7 +97,6 @@ namespace CarRentalWebApp.Controllers
             {
                 return View(model);
             }
-            // Generate the token and send it
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), model.Number);
             if (UserManager.SmsService != null)
             {
@@ -137,7 +136,6 @@ namespace CarRentalWebApp.Controllers
         public async Task<ActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var code = await UserManager.GenerateChangePhoneNumberTokenAsync(User.Identity.GetUserId(), phoneNumber);
-            // Send an SMS through the SMS provider to verify the phone number
             return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
         [HttpPost]
@@ -158,7 +156,6 @@ namespace CarRentalWebApp.Controllers
                 }
                 return RedirectToAction("Index", new { Message = ManageMessageId.AddPhoneSuccess });
             }
-            // If we got this far, something failed, redisplay form
             ModelState.AddModelError("", "Failed to verify phone");
             return View(model);
         }
@@ -275,7 +272,6 @@ namespace CarRentalWebApp.Controllers
             base.Dispose(disposing);
         }
         #region Helpers
-        // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
         private IAuthenticationManager AuthenticationManager
         {

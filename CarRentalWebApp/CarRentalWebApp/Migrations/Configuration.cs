@@ -1,11 +1,10 @@
-﻿namespace CarRentalWebApp.Migrations
+﻿using System;
+using System.Data.Entity.Migrations;
+using CarRentalWebApp.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+namespace CarRentalWebApp.Migrations
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity.Migrations;
-    using CarRentalWebApp.Models;
-    using Microsoft.AspNet.Identity;
-    using Microsoft.AspNet.Identity.EntityFramework;
     internal sealed class Configuration : DbMigrationsConfiguration<CarRentalWebApp.Models.CarRentalDbContext>
     {
         public Configuration()
@@ -53,7 +52,6 @@
             Guid guid36 = new Guid("ca84f809-f757-443a-8a15-b14f8d867970");
             Guid guid37 = new Guid("7ded2844-63e7-4627-b122-4788cea137f3");
             Guid guid38 = new Guid("18939c46-ed2a-4016-9e4b-c53d23253011");
-
             Address address1 = new Address { Id = guid1, CityName = "New York, NY", StreetName = "Pembina Highway", PhoneNumber = "891-783-749", ZipCode = "551 783", ImportanceLevel = ImportanceLevel.Regular, Email = "kbudny492@gmail.com" };
             Address address2 = new Address { Id = guid2, CityName = "Miami, FL", StreetName = "Donald Street", PhoneNumber = "573-624-942", ZipCode = "738 920", ImportanceLevel = ImportanceLevel.Critical, Email = "kbudny492@gmail.com" };
             Address address3 = new Address { Id = guid3, CityName = "Los Angeles, CA", StreetName = "Regent Avenue", PhoneNumber = "745-361-295", ZipCode = "930 829", ImportanceLevel = ImportanceLevel.VIP, Email = "kbudny492@gmail.com" };
@@ -74,7 +72,6 @@
             Address address18 = new Address { Id = guid18, CityName = "Szczecin", StreetName = "Paderewskiego", PhoneNumber = "120-499-281", ZipCode = "91024", ImportanceLevel = ImportanceLevel.VIP, Email = "kbudny492@gmail.com" };
             Address address19 = new Address { Id = guid19, CityName = "Katowice", StreetName = "Hutnicza", PhoneNumber = "601-272-572", ZipCode = "42834", ImportanceLevel = ImportanceLevel.Regular, Email = "kbudny492@gmail.com" };
             Address address20 = new Address { Id = guid20, CityName = "Wroclaw", StreetName = "Jana Pawla II", PhoneNumber = "609-478-172", ZipCode = "72924", ImportanceLevel = ImportanceLevel.Critical, Email = "kbudny492@gmail.com" };
-
             context.Addresses.AddOrUpdate(a => a.Id, new Address[]{
                 address1,
                 address2,
@@ -99,12 +96,10 @@
             });
             Survey survey1 = new Survey { Id = guid21, Title = "Cars" };
             Survey survey2 = new Survey { Id = guid22, Title = "Phones" };
-
             Question question1 = new Question { Id = guid23, Text = "What type of car do you have?" };
             Question question2 = new Question { Id = guid24, Text = "What size is the engine?" };
             Question question3 = new Question { Id = guid25, Text = "What phone do you have?" };
             Question question4 = new Question { Id = guid26, Text = "What big is the screen?" };
-
             Answer answer1 = new Answer { Id = guid27, Text = "Sedan", Question = question1 };
             Answer answer2 = new Answer { Id = guid28, Text = "3000", Question = question2 };
             Answer answer3 = new Answer { Id = guid29, Text = "SUV" };
@@ -117,23 +112,18 @@
             Answer answer10 = new Answer { Id = guid36, Text = "4 inches" };
             Answer answer11 = new Answer { Id = guid37, Text = "5 inches" };
             Answer answer12 = new Answer { Id = guid38, Text = "6 inches" };
-
-            //dodawania do bazy danych
             context.Surveys.AddOrUpdate(s => s.Id, survey1, survey2);
             context.Questions.AddOrUpdate(a => a.Id, question1, question2, question3, question4);
             context.Answers.AddOrUpdate(a => a.Id, answer1, answer2, answer3, answer4,
                 answer5, answer6, answer7, answer8, answer9, answer10, answer11, answer12);
             context.SaveChanges();
-
             //wczytywanie obiektow z bazy danych bo z powodu bledow w AddOrUpdate nie sa one sledzone poprawnie
             survey1 = context.Surveys.Find(survey1.Id);
             survey2 = context.Surveys.Find(survey2.Id);
-
             question1 = context.Questions.Find(question1.Id);
             question2 = context.Questions.Find(question2.Id);
             question3 = context.Questions.Find(question3.Id);
             question4 = context.Questions.Find(question4.Id);
-
             answer1 = context.Answers.Find(answer1.Id);
             answer2 = context.Answers.Find(answer2.Id);
             answer3 = context.Answers.Find(answer3.Id);
@@ -146,13 +136,10 @@
             answer10 = context.Answers.Find(answer10.Id);
             answer11 = context.Answers.Find(answer11.Id);
             answer12 = context.Answers.Find(answer12.Id);
-            //tworzenie wiazan
-
             question1.Survey = survey1;
             question2.Survey = survey1;
             question3.Survey = survey2;
             question4.Survey = survey2;
-
             answer1.Question = question1;
             answer2.Question = question1;
             answer3.Question = question1;
@@ -166,7 +153,6 @@
             answer11.Question = question4;
             answer12.Question = question4;
             context.SaveChanges();
-
             using (var applicationContext = new ApplicationDbContext())
             {
                 var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(applicationContext));

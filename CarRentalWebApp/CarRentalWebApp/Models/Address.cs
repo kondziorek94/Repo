@@ -18,7 +18,6 @@ namespace CarRentalWebApp.Models
         public String ZipCode { get; set; }
         [EmailAddress]
         [Required]
-        //[RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Invalid email")]
         public String Email { get; set; }
         [Required]
         [RegularExpression(@"^\d{3}-\d{3}-\d{3}$", ErrorMessage = "Invalid Phone Number")]

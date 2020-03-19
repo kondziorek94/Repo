@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace CarRentalWebApp.Models
 {
     public class Answer
@@ -31,4 +30,3 @@ namespace CarRentalWebApp.Models
         }
     }
 }
-//5. sprawdzic baze danych

@@ -35,7 +35,6 @@ namespace CarRentalWebApp.Controllers
 
             return View(surveyFillViewModel);
         }
-
         public String CheckAnswer(String addressId, String answerId)
         {
             if (addressId == null || answerId == null)
@@ -66,9 +65,7 @@ namespace CarRentalWebApp.Controllers
                 result = "true";
             }
             return result;
-
         }
-
         public void SaveAnswer(String addressId, String answerId)
         {
             if (addressId == null || answerId == null)
