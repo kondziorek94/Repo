@@ -103,17 +103,18 @@ namespace Project2
         static void Main(string[] args)
         {
             Employee e = new Employee("roman", 100, 160);
-            e.HourlyRate = 10;//gdy uzywa sie HourlyRate po LHS to wywola sie setter gdy po RHS to getter
+            e.HourlyRate = 10;
             Console.WriteLine(e.HourlyRate);
             e.IntroduceYouslelf();
 
-            Product product = new Product { PriceWoTax = 5 };//object initilizer, nie mnusisz miec konkretnego konstruktora jesli nie chcecsz
+            Product product = new Product { PriceWoTax = 5 };
             Console.WriteLine(product);
             product.PriceWTax = 10;
             Console.WriteLine(product);
             Car c = new Car("Audi", "A8", 250);
             Rental rental = new Rental { RentedCar =  c,StartingDate= new DateTime(2017,04,02),EndingDate=new DateTime(2017,04,10)};
             Console.WriteLine(rental.RentCost);
+            Console.WriteLine(c.Model);
             Console.WriteLine(rental);
             Console.ReadKey();
         }
